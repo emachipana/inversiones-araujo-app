@@ -9,7 +9,6 @@ export async function login(credentials) {
 }
 
 export async function logout() {
-  const response = await apiFetch("logout", { method: "DELETE" });
+  await apiFetch("logout", { method: "DELETE" });
   sessionStorage.removeItem(token_key);
-  return response;
 }
