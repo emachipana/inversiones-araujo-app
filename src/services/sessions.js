@@ -1,18 +1,15 @@
-import axios from "axios";
-import { base_uri, token_key } from "../config";
+import { token_key } from "../config";
+import { apiFetch } from "./api-fetch";
 
 export async function login(credentials) {
-  const response = await axios.post(`${base_uri}/login`, credentials);
-  const { token, ...user } = response.data;
+  const response = await apiFetch("login", { body: credentials });
+  const { token, ...user } = response;
   sessionStorage.setItem(token_key, token);
   return user;
 }
 
 export async function logout() {
-  const token = sessionStorage.getItem(token_key);
-  const response = await axios.delete(`${base_uri}/logout`, { headers: {
-    Authorization: `Token token=${token}`
-  } });
+  const response = await apiFetch("logout", { method: "DELETE" });
   sessionStorage.removeItem(token_key);
-  return response.data;
+  return response;
 }
