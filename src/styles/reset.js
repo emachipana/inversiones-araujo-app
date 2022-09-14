@@ -1,5 +1,5 @@
-/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
+import { colors } from "./colors";
 import { fonts } from "./font";
 
 export const reset = css`
@@ -21,6 +21,8 @@ export const reset = css`
 
   body {
     font-family: ${fonts.primary};
+    color: ${colors.gray.normal};
+    background-color: ${colors.gray.light};
     font-size: 1rem;
   }
 `;
