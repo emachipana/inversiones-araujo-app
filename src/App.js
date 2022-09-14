@@ -1,6 +1,8 @@
+import UnauthenticatedApp from "./UnauthenticatedApp";
+
 function App() {
   return (
-    <h1>Invesiones Araujo</h1>
+    <UnauthenticatedApp />
   );
 }
 
