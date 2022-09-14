@@ -68,23 +68,13 @@ export const NavItem = styled(NavLink)`
   cursor: pointer;
   transition: .3s ease-in;
   &:hover {
-    border-bottom: 2px solid ${colors.green};
+    border-bottom: 2px solid ${colors.green.normal};
     color: ${colors.gray.normal};
   }
 `;
 
-export const ButtonStyle = css`
-  background-color: ${colors.green};
-  border: none;
-  font-weight: 800;
-  font-size: 15px;
-  color: ${colors.white};
-  letter-spacing: 1.25px;
-  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, .2);
-`;
-
 export const activeStyle = ({ isActive }) => (
-  isActive ? { borderBottom: `2px solid ${colors.green}` } : undefined
+  isActive ? { borderBottom: `2px solid ${colors.green.normal}` } : undefined
 );
 
 export const Icon = css`

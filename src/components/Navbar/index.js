@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import * as Style from "./styles";
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "reactstrap";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5"
 import { HiMenuAlt3 } from "react-icons/hi";
 import { colors } from "../../styles";
+import Button from "../Button";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation().pathname;
+  const navigate = useNavigate();
 
   const handleOpen = () => {
     if(!isOpen) return
@@ -56,9 +57,13 @@ function Navbar() {
         >
           Sobre Nosotros
         </Style.NavItem>
-        <Link to="/login">
-          <Button css={Style.ButtonStyle}>ADMIN</Button>
-        </Link>
+        <Button
+          fontSize="14px"
+          onClick={() => {
+            navigate("/login");
+            handleOpen();
+          }}
+        >ADMIN</Button>
       </div>
     </Style.Container>
   );
