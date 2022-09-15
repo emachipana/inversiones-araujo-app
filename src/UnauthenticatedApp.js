@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar";
+import Navbar from "./components/Navbar";
+import LoginPage from "./pages/login";
 
 function UnauthenticatedApp() {
   return (
@@ -8,6 +9,7 @@ function UnauthenticatedApp() {
       <Navbar />
       <Routes>
         <Route index path="/" element={<h1>This is home</h1>} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </React.Fragment>
   );
