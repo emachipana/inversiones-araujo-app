@@ -23,4 +23,9 @@ export const Container = styled.button`
     background-color: ${colors.green.bold};
     transform: scale(1.04);
   }
+
+  &:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
 `;
