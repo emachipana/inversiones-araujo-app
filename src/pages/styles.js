@@ -7,26 +7,27 @@ export const Wrapper = styled.div`
 `;
 
 export const Section = styled.div`
-  width: 50vw;
+  width: 40vw;
   height: 100vh;
-  padding: 2rem 3rem;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   jusitfy-content: center;
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 880px) {
     width: 100%;
     margin: 0 1rem;
+    padding: 2rem;
   }
 `;
 
 export const Banner = styled.img`
   height: 100vh;
   object-fit: cover;
-  width: 50vw;
+  width: 60vw;
   
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 880px) {
     display: none;
   }
 `;

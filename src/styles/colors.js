@@ -4,9 +4,10 @@ export const colors = {
     normal: "#363636",
     bold: "#2E2E2E"
   },
-  white: "#F5F5F5",
+  white: "#FFFFFF",
   green: {
     normal: "#3CC25E",
-    bold: "#30b353"
+    bold: "#30b353",
+    extrabold: "#2EA357"
   }
 }
