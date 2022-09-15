@@ -18,9 +18,9 @@ function AuthProvider({ children }) {
       try {
         const {_token, ...user} = await get("profile");
         setUser(user);
-        setTimeout(() => setIsLoading(false), 500);
+        setTimeout(() => setIsLoading(false), 1000);
       }catch {
-        setIsLoading(false);
+        setTimeout(() => setIsLoading(false), 1000);
       }
     }
 
@@ -30,10 +30,12 @@ function AuthProvider({ children }) {
   async function login(credentials) {
     try {
       const response = await session.login(credentials);
+      if (response.user_type === "client") throw new Error("Tienes que ser administrador para ingresar");
       setUser(response);
       navigate("/");
     }catch(e) {
-      setError(e.message);
+      setTimeout(() => setError(e.message), 500);
+      setTimeout(() => setError(null), 5000);
     }
   }
 
