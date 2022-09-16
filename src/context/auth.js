@@ -30,7 +30,6 @@ function AuthProvider({ children }) {
   async function login(credentials) {
     try {
       const response = await session.login(credentials);
-      if (response.user_type === "client") throw new Error("Tienes que ser administrador para ingresar");
       setUser(response);
       navigate("/");
     }catch(e) {
