@@ -1,0 +1,37 @@
+/** @jsxImportSource @emotion/react */
+import { Autoplay, EffectCube } from "swiper";
+import { Swiper, SwiperSlide,  } from "swiper/react";
+import { SliderStyle } from "./styles";
+import "swiper/css";
+import "swiper/css/effect-cube";
+
+function CubeSlider({ images }) {
+  return (
+      <Swiper
+        css={SliderStyle}
+        effect="cube"
+        grabCursor
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false
+        }}
+        cubeEffect={{
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94
+        }}
+        modules={[EffectCube, Autoplay]}
+      >
+        {
+          images.map(image => (
+            <SwiperSlide>
+              <img alt={image.alt} src={image.src} />
+            </SwiperSlide>
+          ))
+        }
+      </Swiper>
+  );
+}
+
+export default CubeSlider;
