@@ -24,9 +24,9 @@ function CubeSlider({ images }) {
         modules={[EffectCube, Autoplay]}
       >
         {
-          images.map(image => (
-            <SwiperSlide>
-              <img alt={image.alt} src={image.src} />
+          images.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img src={image.src} alt={image.alt} />
             </SwiperSlide>
           ))
         }
