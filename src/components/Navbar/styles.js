@@ -1,19 +1,21 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
 import { colors } from "../../styles";
 
 export const Container = styled.div`
   width: 100%;
-  background-color: ${colors.white};
+  background-color: ${({ isMove, location }) => isMove ? "rgba(255, 255, 255, .9)" : location === "/" ? "transparent" : "rgba(255, 255, 255, .9)"};
   max-height: 70px;
   min-height: 66px;
-  display: flex;
+  display: ${({ location }) => location === "/login" ? "none" : "flex"};
+  z-index: 5;
   padding: 0.5rem 1rem;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
+  position: ${({ location }) => location === "/" ? "fixed" : "sticky"};
   top: 0;
+  transition: .3s ease-in;
+  box-shadow: ${({ isMove, location }) => isMove ? "0px 0px 2px 4px rgba(0, 0, 0, .3)" : location === "/" ? "none" : "0px 0px 2px 4px rgba(0, 0, 0, .3)"};
 
   .handle {
     display: none;
@@ -27,6 +29,9 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 520px) {
+    background-color: ${({ isOpen, isMove, location }) => ( isOpen || isMove ) ? "rgba(255, 255, 255, .9)" : location === "/" ? "transparent" : "rgba(255, 255, 255, .9)"};
+    box-shadow: none;
+
     .nav {
       position: fixed;
       left: -100%;
@@ -38,7 +43,7 @@ export const Container = styled.div`
       height: 100vh;
       z-index: 10;
       transition: .3s ease-in;
-      background-color: ${colors.white};
+      background-color: rgba(255, 255, 255, .9);
       padding: 1rem;
     }
 
@@ -57,25 +62,24 @@ export const Logo = styled.img`
   height: 50px;
 `;
 
-export const NavItem = styled(NavLink)`
+const colorItem = (props) => ( props.isOpen || props.isMove ) ? colors.gray.normal : props.location === "/" ? colors.white : colors.gray.normal;
+
+export const NavItem = styled.a`
   text-decoration: none;
   font-size: 17px;
   font-weight: 800;
-  color: ${colors.gray.normal};
+  color: ${(props) => colorItem(props)};
   padding: 0 0.2rem;
   margin: 0 0.3rem;
   border: 2px solid transparent;
   cursor: pointer;
   transition: .3s ease-in;
+  border-bottom: 2px solid ${({ to, location }) => to === location ? colors.green.extrabold : "transparent"};
   &:hover {
-    border-bottom: 2px solid ${colors.green.normal};
-    color: ${colors.gray.normal};
+    border-bottom: 2px solid ${colors.green.extrabold};
+    color: ${(props) => colorItem(props)};
   }
 `;
-
-export const activeStyle = ({ isActive }) => (
-  isActive ? { borderBottom: `2px solid ${colors.green.normal}` } : undefined
-);
 
 export const Icon = css`
   font-size: 30px;
