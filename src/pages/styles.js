@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
   display: flex;
+  height: 100vh;
 `;
 
 export const Section = styled.div`
@@ -30,4 +30,18 @@ export const Banner = styled.img`
   @media screen and (max-width: 880px) {
     display: none;
   }
+`;
+
+export const LandingBanner = styled.div`
+  background: url("img/landing-banner.jpg")rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  diplay: flex;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 `;
