@@ -31,17 +31,3 @@ export const Banner = styled.img`
     display: none;
   }
 `;
-
-export const LandingBanner = styled.div`
-  background: url("img/landing-banner.jpg")rgba(0, 0, 0, 0.5);
-  background-blend-mode: darken;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100vh;
-  diplay: flex;
-  position: relative;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-`;
