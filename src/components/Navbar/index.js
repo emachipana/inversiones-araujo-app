@@ -9,60 +9,83 @@ import Button from "../Button";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMove, setIsMove] = useState(false);
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
-  const handleOpen = () => {
-    if(!isOpen) return
+  const handleOpen = (to) => {
+    navigate(to)
+    if(!isOpen) return;
+    window.scrollTo(0, 0);
     setIsOpen(!isOpen);
   }
 
+  const handleClickMove = () => {
+    if(window.scrollY >= 80) return setIsMove(true);
+    setIsMove(false);
+  }
+
+  window.addEventListener("scroll", handleClickMove);
+
+  const iconColor = ( isOpen || isMove ) ? colors.gray.normal : location === "/" ? colors.white : colors.gray.normal;
+
   return (
-    <Style.Container style={{display: location === "/login" ? "none" : undefined }}>
-      <Style.Logo src="https://cdn.iconscout.com/icon/premium/png-256-thumb/plant-1594842-1349472.png" alt="logo"/>
+    <Style.Container
+      location={location}
+      isOpen={isOpen}
+      isMove={isMove}
+    >
+      <Style.Logo
+        onClick={() => navigate("/")}
+        src="https://cdn.iconscout.com/icon/premium/png-256-thumb/plant-1594842-1349472.png"
+        alt="logo"
+      />
       <div className="handle" onClick={() => setIsOpen(!isOpen)}>
         {
           isOpen
           ?
             <IoClose
               css={Style.Icon}
-              color={colors.gray.normal}
+              color={iconColor}
             />
           :
             <HiMenuAlt3 
               css={Style.Icon}
-              color={colors.gray.normal}
+              color={iconColor}
             />
         }
       </div>
       <div className={isOpen ? "nav active" : "nav"}>
-        <Style.NavItem 
-          style={Style.activeStyle}
-          to="/"
-          onClick={() => handleOpen()}
+        <Style.NavItem
+          location={location}
+          to={"/"}
+          isOpen={isOpen}
+          isMove={isMove}   
+          onClick={() => handleOpen("/")}
         >
           Inicio
         </Style.NavItem>
-        <Style.NavItem 
-          style={Style.activeStyle}
+        <Style.NavItem
+          location={location}
           to="/products"
-          onClick={() => handleOpen()}
+          isOpen={isOpen}
+          isMove={isMove}
+          onClick={() => handleOpen("/products")}
         >
           Productos
         </Style.NavItem>
-        <Style.NavItem 
-          style={Style.activeStyle}
+        <Style.NavItem
+          location={location}
           to="/about"
-          onClick={() => handleOpen()}
+          isOpen={isOpen}
+          isMove={isMove}        
+          onClick={() => handleOpen("/about")}
         >
           Sobre Nosotros
         </Style.NavItem>
         <Button
-          fontSize="14px"
-          onClick={() => {
-            navigate("/login");
-            handleOpen();
-          }}
+          size="sm"
+          onClick={() => handleOpen("/login")}
         >ADMIN</Button>
       </div>
     </Style.Container>

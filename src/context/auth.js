@@ -18,9 +18,9 @@ function AuthProvider({ children }) {
       try {
         const {_token, ...user} = await get("profile");
         setUser(user);
-        setTimeout(() => setIsLoading(false), 1000);
+        setTimeout(() => setIsLoading(false), 500);
       }catch {
-        setTimeout(() => setIsLoading(false), 1000);
+        setTimeout(() => setIsLoading(false), 500);
       }
     }
 

@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
   display: flex;
+  height: 100vh;
 `;
 
 export const Section = styled.div`

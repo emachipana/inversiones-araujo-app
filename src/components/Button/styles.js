@@ -3,12 +3,13 @@ import { colors } from "../../styles";
 
 export const Container = styled.button`
   font-size: ${({ fontSize }) => fontSize ? fontSize : "1rem"};
-  background-color: ${colors.green.normal};
+  background-color: ${({ color }) => color ? color : colors.green.normal};
   color: ${colors.white};
-  padding: 0.4rem 0.8rem;
+  padding: ${({ size }) => size === "sm" ? "0.4rem 0.8rem" : "0.5rem 1rem"};
   display: flex;
   font-weight: 800;
   text-decoration: none;
+  font-size: ${({ size }) => size === "sm" ? "14px" : "1.1rem"};
   letter-spacing: 1.25px;
   align-items: center;
   justify-content: center;
@@ -20,7 +21,6 @@ export const Container = styled.button`
   transition: .2s linear;
 
   &:hover {
-    background-color: ${colors.green.bold};
     transform: scale(1.04);
   }
 
