@@ -35,7 +35,11 @@ function Navbar() {
       isOpen={isOpen}
       isMove={isMove}
     >
-      <Style.Logo src="https://cdn.iconscout.com/icon/premium/png-256-thumb/plant-1594842-1349472.png" alt="logo"/>
+      <Style.Logo
+        onClick={() => navigate("/")}
+        src="https://cdn.iconscout.com/icon/premium/png-256-thumb/plant-1594842-1349472.png"
+        alt="logo"
+      />
       <div className="handle" onClick={() => setIsOpen(!isOpen)}>
         {
           isOpen
@@ -80,7 +84,7 @@ function Navbar() {
           Sobre Nosotros
         </Style.NavItem>
         <Button
-          fontSize="14px"
+          size="sm"
           onClick={() => handleOpen("/login")}
         >ADMIN</Button>
       </div>
