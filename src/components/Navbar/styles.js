@@ -60,6 +60,7 @@ export const Container = styled.div`
 export const Logo = styled.img`
   width: 50px;
   height: 50px;
+  cursor: pointer;
 `;
 
 const colorItem = (props) => ( props.isOpen || props.isMove ) ? colors.gray.normal : props.location === "/" ? colors.white : colors.gray.normal;
