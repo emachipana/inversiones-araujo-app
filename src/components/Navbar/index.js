@@ -14,7 +14,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const handleOpen = (to) => {
-    navigate(to)
+    navigate(to);
     if(!isOpen) return;
     window.scrollTo(0, 0);
     setIsOpen(!isOpen);

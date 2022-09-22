@@ -1,15 +1,28 @@
-import { Button } from "reactstrap";
-import { useAuth } from "./context/auth";
+import styled from "@emotion/styled";
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import AsideNav from "./components/AsideNav";
 
 function AuthenticatedApp() {
-  const { user, logout } = useAuth();
-  
+  const [isOpen, setIsOpen] = useState(false);
+
+  const Container = styled.div`
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto 1fr;
+  `;
+
   return (
-    <>
-      <h1>Hola { user.name }</h1>
-      <Button color="danger" onClick={() => logout()}>Logout</Button>
-    </>
-  )
+    <Container>
+      <AsideNav 
+        navOpen={isOpen}
+        handleOpen={setIsOpen}
+      />
+      <Routes>
+        <Route path="/" index element={<div><h1>Hola user</h1></div>}/>
+      </Routes>
+    </Container>
+  );
 }
 
 export default AuthenticatedApp;
