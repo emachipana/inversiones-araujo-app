@@ -9,12 +9,12 @@ import { AuthProvider } from './context/auth';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.Fragment>
+  <React.StrictMode>
     <Global styles={reset}/>
     <BrowserRouter>
       <AuthProvider>
         <App />
       </AuthProvider>
     </BrowserRouter>
-  </React.Fragment>
+  </React.StrictMode>
 );
