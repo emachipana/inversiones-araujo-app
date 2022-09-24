@@ -2,22 +2,21 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { colors, fonts } from "../../styles";
 
-export const Container = styled.aside`
+export const Container = styled.nav`
   display: flex;
   flex-direction: column;
   padding: 0.5rem 0 0 0.5rem;
   position: sticky;
-  background-color: ${colors.green.normal};
   top: 0;
+  background-color: ${colors.green.normal};
   height: 100vh;
   width: ${({ isOpen }) => isOpen ? "195px" : "70px"};
   overflow: hidden;
   transition: .3s ease-in;
   
   @media screen and (max-width: 520px) {
-    display: block;    
-    position: ${({ isOpen }) => isOpen ? "fixed" : "sticky"};
-    height: ${({ isOpen }) => isOpen ? "100%" : "60px"};
+    display: block;
+    height: ${({ isOpen }) => isOpen ? "100vh" : "60px"};
     width: ${({ isOpen }) => isOpen ? "195px" : "60px"};
     border-bottom-right-radius: ${({ isOpen }) => isOpen ? "0px" : "30px"};
   }
@@ -39,6 +38,10 @@ export const Text = styled.h2`
   top: 1.1rem;
   font-weight: 800;
   font-family: ${fonts.secondary};
+
+  @media screen and (max-width: 520px) {
+    font-size: 14px;
+  }
 `;
 
 export const Item = styled.div`
@@ -86,13 +89,23 @@ export const IconNavBar = css`
   width: 28px;
   height: 28px;
   position: absolute;
-  left: 0.8rem;
+  left: 0.7rem;
+
+  @media screen and (max-width: 520px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const Section = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  margin: 3rem 0; 
+  gap: 1.8rem;
+  margin: 2.6rem 0;
+
+  @media screen and (max-width: 520px) {
+    gap: 1.2rem;
+    margin: 2.5rem 0;
+  }
 `;
