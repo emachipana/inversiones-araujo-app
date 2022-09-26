@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import LoginPage from "./pages/login";
-import HomePage from "./pages/home";
+import HomePage from "./pages/client/home";
+import LoginPage from "./pages/client/login";
 
 function UnauthenticatedApp() {
   return (
