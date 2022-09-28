@@ -15,6 +15,7 @@ export const Container = styled.nav`
   top: 0;
   right: 0;
   border-bottom-left-radius: 25px;
+  z-index: 2;
 `;
 
 export const Row = styled.div`
@@ -86,11 +87,6 @@ export const Section = styled(SimpleBar)`
   height: 80%;
   width: 100%;
   margin: 1rem auto;
-  // display: flex;
-  // flex-direction: column;
-  // aling-items: center;
-  // overflow: auto;
-  // margin: 1rem 0;
 `;
 
 export const Notification = styled.div`

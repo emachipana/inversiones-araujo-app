@@ -12,8 +12,7 @@ function CubeSlider({ images }) {
         effect="cube"
         grabCursor
         autoplay={{
-          delay: 3000,
-          disableOnInteraction: true
+          delay: 3000
         }}
         cubeEffect={{
           shadow: true,
