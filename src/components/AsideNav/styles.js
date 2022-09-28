@@ -8,14 +8,15 @@ export const Container = styled.nav`
   padding: 0.5rem 0 0 0.5rem;
   position: sticky;
   top: 0;
+  z-index: 5;
   background-color: ${colors.green.normal};
-  height: 100vh;
   width: ${({ isOpen }) => isOpen ? "195px" : "70px"};
   overflow: hidden;
   transition: .3s ease-in;
   
   @media screen and (max-width: 520px) {
     display: block;
+    position: fixed;
     height: ${({ isOpen }) => isOpen ? "100vh" : "60px"};
     width: ${({ isOpen }) => isOpen ? "195px" : "60px"};
     border-bottom-right-radius: ${({ isOpen }) => isOpen ? "0px" : "30px"};
@@ -62,22 +63,22 @@ export const Item = styled.div`
       content: '';
       position: absolute;
       right: 0;  
-      top: -50px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      box-shadow: 35px 35px 0 10px ${colors.gray.light};
+      top: -45px;
+      width: 45px;
+      height: 45px;
+      border-radius: 45%;
+      box-shadow: 30px 30px 0 10px ${colors.gray.light};
     }
 
     &::after {
       content: '';
       position: absolute;
       right: 0;
-      bottom: -50px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      box-shadow: 35px -35px 0 10px ${colors.gray.light};
+      bottom: -45px;
+      width: 45px;
+      height: 45px;
+      border-radius: 45%;
+      box-shadow: 30px -30px 0 10px ${colors.gray.light};
     }
   `
   :

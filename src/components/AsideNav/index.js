@@ -23,7 +23,7 @@ function AsideNav() {
   return (
     <Container isOpen={isOpen}>
       <HiMenu
-        style={{transform: `rotate(${isOpen ? "90deg" : "0deg"})`}}
+        style={{transform: `rotate(${isOpen ? "180deg" : "0deg"})`}}
         css={IconStyle}
         onClick={() => handleOpen()}
       />
@@ -70,15 +70,15 @@ function AsideNav() {
         >
           Perfil
         </NavItem>
-        </Section>
-        <NavItem
-          click={logout}
-          Icon={BiLogOut}
-          to="/login"
-          isOpen={isOpen}
-        >
-          Salir
-        </NavItem>
+      </Section>
+      <NavItem
+        click={logout}
+        Icon={BiLogOut}
+        to="/login"
+        isOpen={isOpen}
+      >
+        Salir
+      </NavItem>
     </Container>
   );
 }
