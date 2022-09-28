@@ -14,11 +14,16 @@ function AuthenticatedApp() {
 
   const Section = styled.div`
     width: 100%;
-    padding: 2.5rem;
+    padding: 3rem 5rem;
+    margin: 3rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+
+    @media screen and (max-width: 720px) {
+      padding: 2.5rem;
+    }
   `;
 
   return (
