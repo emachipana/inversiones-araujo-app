@@ -1,12 +1,10 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AsideNav from "./components/AsideNav";
 import NavbarAdmin from "./components/NavbarAdmin";
+import CategoriesPage from "./pages/admin/categories";
 
 function AuthenticatedApp() {
-  const [isOpen, setIsOpen] = useState(false);
-
   const Container = styled.div`
     display: grid;
     width: 100%;
@@ -14,18 +12,31 @@ function AuthenticatedApp() {
     grid-template-columns: auto 1fr;
   `;
 
+  const Section = styled.div`
+    width: 100%;
+    padding: 3rem 5rem;
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    @media screen and (max-width: 720px) {
+      padding: 2.5rem;
+    }
+  `;
+
   return (
     <Container>
       <NavbarAdmin
         requests={[]}
       />
-      <AsideNav 
-        navOpen={isOpen}
-        handleOpen={setIsOpen}
-      />
-      <Routes>
-        <Route path="/" index element={<div><h1>Hola user</h1></div>}/>
-      </Routes>
+      <AsideNav />
+      <Section>
+        <Routes>
+          <Route path="/categories" index element={<CategoriesPage />}/>
+        </Routes>
+      </Section>
     </Container>
   );
 }

@@ -10,7 +10,7 @@ function SessionForm() {
   const { login, error } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
-  function validate(values) {
+  const validate = (values) => {
     const { username, password } = values;
     const errors = {};
 

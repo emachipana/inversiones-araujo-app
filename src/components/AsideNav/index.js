@@ -7,69 +7,77 @@ import { BiCategory, BiLogOut } from "react-icons/bi";
 import { HiDocumentSearch, HiDocumentDuplicate } from "react-icons/hi";
 import { TbUserCircle } from "react-icons/tb";
 import { useAuth } from "../../context/auth";
+import { useState } from "react";
 
-function AsideNav({ navOpen, handleOpen }) {
+function AsideNav() {
   const { logout } = useAuth();
+  const navOpen = localStorage.getItem("nav-bar-position");
+  const [isOpen, setIsOpen] = useState(navOpen === "true" || false);
+
+  const handleOpen = () => {
+    localStorage.setItem("nav-bar-position", !isOpen);
+    setIsOpen(!isOpen);
+  }
 
   return (
-    <Container isOpen={navOpen}>
+    <Container isOpen={isOpen}>
       <HiMenu
-        style={{transform: `rotate(${navOpen ? "90deg" : "0deg"})`}}
+        style={{transform: `rotate(${isOpen ? "180deg" : "0deg"})`}}
         css={IconStyle}
-        onClick={() => handleOpen(!navOpen)}
+        onClick={() => handleOpen()}
       />
       <Section>
         <NavItem
           Icon={IoHome}
           to="/"
-          isOpen={navOpen}
+          isOpen={isOpen}
         >
           Inicio
         </NavItem>
         <NavItem
           Icon={BiCategory}
           to="/categories"
-          isOpen={navOpen}
+          isOpen={isOpen}
         >
           Categorías
         </NavItem>
         <NavItem
           Icon={IoBagHandle}
           to="/products"
-          isOpen={navOpen}
+          isOpen={isOpen}
         >
           Productos
         </NavItem>
         <NavItem
           Icon={HiDocumentSearch}
           to="/requests"
-          isOpen={navOpen}
+          isOpen={isOpen}
         >
           Solicitudes
         </NavItem>
         <NavItem
           Icon={HiDocumentDuplicate}
           to="/quotations"
-          isOpen={navOpen}
+          isOpen={isOpen}
         >
           Cotizaciones
         </NavItem>
         <NavItem
           Icon={TbUserCircle}
           to="/profile"
-          isOpen={navOpen}
+          isOpen={isOpen}
         >
           Perfil
         </NavItem>
-        </Section>
-        <NavItem
-          click={logout}
-          Icon={BiLogOut}
-          to="/login"
-          isOpen={navOpen}
-        >
-          Salir
-        </NavItem>
+      </Section>
+      <NavItem
+        click={logout}
+        Icon={BiLogOut}
+        to="/login"
+        isOpen={isOpen}
+      >
+        Salir
+      </NavItem>
     </Container>
   );
 }

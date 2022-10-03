@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import SessionForm from "../components/SessionForm";
+import SessionForm from "../../components/SessionForm";
 import { Banner, Section, Wrapper } from "./styles";
 import { BiArrowBack } from "react-icons/bi";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
