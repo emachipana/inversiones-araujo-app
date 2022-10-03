@@ -16,7 +16,6 @@ function AsideNav() {
 
   const handleOpen = () => {
     localStorage.setItem("nav-bar-position", !isOpen);
-    console.log(typeof navOpen);
     setIsOpen(!isOpen);
   }
 
