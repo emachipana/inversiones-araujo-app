@@ -1,28 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
-import { Button, Input } from "reactstrap";
+import { Button } from "reactstrap";
 import { Buttons, Container, Form, IconStyle, Name, Section, SubCategories } from "./styles";
 import { BiEdit, BiTrash, BiCheck } from "react-icons/bi";
-import { InputStyle } from "../SessionForm/styles";
-import { colors } from "../../styles";
 import { MdClose } from "react-icons/md";
 import { update } from "../../services";
-import { AiOutlineArrowDown } from "react-icons/ai";
+import { AiOutlineArrowDown, AiOutlinePlus } from "react-icons/ai";
 import DeleteModal from "../DeleteModal";
 import SubCategoryCard from "./sub-category-card";
+import FormCheck from "./FormCheck";
 
-function CategoryCard({ id, name, subCategories, handleDeleteCategory, handleDeleteSubCategory }) {
+function CategoryCard({ id, name, subCategories, handleDeleteCategory, handleDeleteSubCategory, handleSubmitSubCategory }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [categoryName, setCategoryName] = useState(name);
   const [backup, setBackup] = useState(name);
   const [modal, setModal] = useState(false);
+  const [newSubCategory, setNewSubCategory] = useState("");
 
   const description = `
     ¿Estas seguro de eliminar esta categoría?
     Recuerda que si eliminas esta categoría, también
     se eliminaran las sub categorias y productos asociados a la misma.
   `;
+
+  const handleChangeSubCategory = (e) => setNewSubCategory(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,26 +61,12 @@ function CategoryCard({ id, name, subCategories, handleDeleteCategory, handleDel
           {
             isEditing
             ?
-            <>
-              <Input
-                style={{padding: "5px"}}
-                value={categoryName}
-                onChange={handleChange}
-                css={InputStyle}
-                id="category_name"
-                name="category_name"
-              />
-              <Button
-                type="submit"
-                style={{padding: "2px", backgroundColor: colors.green.normal, border: `1px solid ${colors.green.normal}`}}
-                size="sm"
-              >
-                <BiCheck
-                  size="22px"
-                  css={IconStyle}
-                />
-              </Button>
-            </>
+            <FormCheck
+              Icon={BiCheck}
+              handleChange={handleChange}
+              inputValue={categoryName}
+              placeholder="Categoría"
+            />
             :
             <Name>{ categoryName }</Name>
           }
@@ -129,13 +117,13 @@ function CategoryCard({ id, name, subCategories, handleDeleteCategory, handleDel
           </Button>
         </Buttons>
       </Section>
+      <hr 
+        style={{width: "100%", border: "1px solid gray"}}
+      />
       {
         subCategories.length > 0
         &&
         <SubCategories>
-          <hr 
-            style={{width: "100%", border: "1px solid gray"}}
-          />
           {
             subCategories.map(subCategory => (
               <SubCategoryCard
@@ -152,6 +140,24 @@ function CategoryCard({ id, name, subCategories, handleDeleteCategory, handleDel
           }
         </SubCategories>
       }
+      <Form
+        onSubmit={e => handleSubmitSubCategory(e, newSubCategory, id, setNewSubCategory)}
+        style={{
+          backgroundColor: "white",
+          padding: "0.5rem",
+          boxShadow: "0px 0px 3px 2px rgba(0, 0, 0, .2)",
+          borderRadius: "0.5rem",
+          margin: "0.8rem 0"
+        }}
+      >
+        <FormCheck
+          Icon={AiOutlinePlus}
+          handleChange={handleChangeSubCategory}
+          inputValue={newSubCategory}
+          placeholder="Sub Categoría..."
+          rounded
+        />
+      </Form>
       {
         modal
         &&

@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
-import { Button, Input } from "reactstrap";
+import { Button } from "reactstrap";
 import { update } from "../../services";
-import { colors } from "../../styles";
 import DeleteModal from "../DeleteModal";
-import { InputStyle } from "../SessionForm/styles";
+import FormCheck from "./FormCheck";
 import { Buttons, Form, IconStyle, Name, Section } from "./styles";
 
 function SubCategoryCard({ id, name, Check, Edit, Close, Trash, handleDelete }) {
@@ -48,26 +47,13 @@ function SubCategoryCard({ id, name, Check, Edit, Close, Trash, handleDelete }) 
         {
             isEditing
             ?
-            <>
-              <Input
-                style={{padding: "5px"}}
-                value={subName}
-                onChange={handleChange}
-                css={InputStyle}
-                id="name"
-                name="name"
-              />
-              <Button
-                type="submit"
-                style={{padding: "2px", backgroundColor: colors.green.normal, border: `1px solid ${colors.green.normal}`}}
-                size="sm"
-              >
-                <Check
-                  size="18px"
-                  css={IconStyle}
-                />
-              </Button>
-            </>
+            <FormCheck
+              Icon={Check}
+              handleChange={handleChange}
+              inputValue={subName}
+              iconSize="18px"
+              placeholder="Sub Categoría"
+            />
             :
             <Name
               style={{fontSize: "15px"}}
