@@ -8,10 +8,9 @@ export const Title = styled.h1`
 
 export const Container = styled.div`
   width: 100%;
-  height: fit-content;
   display: flex;
-  padding: 1rem;
+  padding: 2rem 1rem;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 34px
+  gap: 32px
 `;
