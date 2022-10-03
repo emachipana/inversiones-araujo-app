@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 import SimpleBar from 'simplebar-react';
 
 export const Container = styled.div`
-  width: 250px;
-  height: ${({ isOpen, noSub }) => isOpen ? (noSub ? 200 : 300) : 50}px;
+  width: 248px;
+  height: ${({ isOpen, noSub }) => isOpen ? (noSub ? 155 : 295) : 50}px;
   transition: .3s ease-in;
   background-color: #F8F8F8;
   border-radius: 1rem 0.3rem;
@@ -54,7 +54,6 @@ export const Form = styled.form`
 `;  
 
 export const SubCategories = styled(SimpleBar)`
-  height: 180px;
+  height: 140px;
   width: 100%;
-  margin: 1rem 0;
 `;
