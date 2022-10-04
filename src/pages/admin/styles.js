@@ -14,3 +14,18 @@ export const Container = styled.div`
   flex-wrap: wrap;
   gap: 32px
 `;
+
+export const SearchContainer = styled.div`
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  gap: 1rem;
+
+  @media screen and (max-width: 720px) {
+    justify-content: center;
+  }
+`;
