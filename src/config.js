@@ -1,2 +1,2 @@
-export const base_uri = "http://localhost:3000";
+export const base_uri = "https://inv-araujo-api.herokuapp.com";
 export const token_key = "inv-araujo-token";
