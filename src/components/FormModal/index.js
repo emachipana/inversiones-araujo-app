@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import { useState } from "react";
 import { Modal, Button, ModalBody, ModalFooter, ModalHeader, Spinner } from "reactstrap";
 import { post } from "../../services";
+import { uploadImage } from "../../services/cloudinary";
 import CategoryForm from "./CategoryForm";
 import ProductForm from "./ProductForm";
 import validate from "./validate";
@@ -9,6 +10,8 @@ import validate from "./validate";
 function FormModal({ title, handleClose, type, setParent, size }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState("");
+  const [imgMessage, setImgMessage] = useState(null);
 
   const initialValues = type === "category" 
                         ?
@@ -16,26 +19,38 @@ function FormModal({ title, handleClose, type, setParent, size }) {
                         :
                         {
                           name: "",
-                          sub_category: "",
+                          sub_category_id: "",
                           stock: "",
                           price: "",
                           description: "",
-                          unit_metric: ""
+                          unit_metric: "",
+                          marca: ""
                         };
 
   const handleSubmit = async (values) => {
     setIsLoading(true);
     try{
-      const response = await post("categories", { name: values.categoryName });
-      setParent(old => [...old, { ...response, sub_categories: [] }]);
-      setTimeout(() => {
-        setIsLoading(false);
-        handleClose();
-      }, 500);
+      if(type === "category") {
+        const response = await post("categories", { name: values.categoryName });
+        setParent(old => [...old, { ...response, sub_categories: [] }]);
+      }else {
+        if(image === "") {
+          setImgMessage("Necesitas elegir una imagen");
+          setIsLoading(false);
+          return;
+        }
+        const photo_url = await uploadImage(image);
+        const response = await post("products", { ...values, sub_category_id: values.sub_category_id * 1, photo_url: photo_url });
+        setParent(old => [...old, response]);
+      }
+      setIsLoading(false);
+      setImgMessage(null);
+      handleClose();
 
     }catch(e) {
       setError(e.message.replaceAll(`["`, " ").replaceAll(`"]`, " "));
       setIsLoading(false);
+      setImgMessage(null);
     }
   }
 
@@ -83,6 +98,9 @@ function FormModal({ title, handleClose, type, setParent, size }) {
                 />
                 :
                 <ProductForm
+                  setImage={setImage}
+                  setImgMessage={setImgMessage}
+                  imgMessage={imgMessage}
                   error={error}
                   errors={errors}
                   values={values}
@@ -94,7 +112,7 @@ function FormModal({ title, handleClose, type, setParent, size }) {
             </ModalBody>
             <ModalFooter>
               <Button
-                disabled={!isValid || isLoading}
+                disabled={!isValid || isLoading || !!imgMessage}
                 style={{fontWeight: "700"}}
                 type="submit"
                 color="success"
