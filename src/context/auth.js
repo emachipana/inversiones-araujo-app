@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
     try {
       const response = await session.login(credentials);
       setUser(response);
-      navigate("/");
+      navigate("/categories");
     }catch(e) {
       setTimeout(() => setError(e.message), 500);
       setTimeout(() => setError(null), 5000);
