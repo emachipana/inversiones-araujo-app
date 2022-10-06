@@ -2,7 +2,7 @@
 import { Container, IconStyle, Section} from "./styles";
 import { HiMenu } from "react-icons/hi";
 import NavItem from "./nav-item";
-import { IoHome, IoBagHandle } from "react-icons/io5";
+import { IoBagHandle } from "react-icons/io5";
 import { BiCategory, BiLogOut } from "react-icons/bi";
 import { HiDocumentSearch, HiDocumentDuplicate } from "react-icons/hi";
 import { TbUserCircle } from "react-icons/tb";
@@ -27,13 +27,6 @@ function AsideNav() {
         onClick={() => handleOpen()}
       />
       <Section>
-        <NavItem
-          Icon={IoHome}
-          to="/"
-          isOpen={isOpen}
-        >
-          Inicio
-        </NavItem>
         <NavItem
           Icon={BiCategory}
           to="/categories"
