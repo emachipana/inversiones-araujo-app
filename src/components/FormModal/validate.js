@@ -6,7 +6,7 @@ function validate(values, type) {
   }else {
     if (values.name === "") errors.name = "Este campo es obligatiorio";
 
-    if (values.sub_category === "") errors.sub_category = "Debes elegir uno";
+    if (values.sub_category_id === "") errors.sub_category_id = "Debes elegir uno";
     
     if (values.stock === "") {
       errors.stock = "Este campo es obligatorio";
