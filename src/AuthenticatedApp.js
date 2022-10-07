@@ -3,13 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import AsideNav from "./components/AsideNav";
 import NavbarAdmin from "./components/NavbarAdmin";
 import CategoriesPage from "./pages/admin/categories";
+import ProductsPage from "./pages/admin/products";
 
 function AuthenticatedApp() {
   const Container = styled.div`
-    display: grid;
+    display: flex;
     width: 100%;
-    height: 100vh;
-    grid-template-columns: auto 1fr;
   `;
 
   const Section = styled.div`
@@ -34,7 +33,8 @@ function AuthenticatedApp() {
       <AsideNav />
       <Section>
         <Routes>
-          <Route path="/categories" index element={<CategoriesPage />}/>
+          <Route path="/categories" index element={<CategoriesPage />} />
+          <Route path="/products" element={<ProductsPage />} />
         </Routes>
       </Section>
     </Container>

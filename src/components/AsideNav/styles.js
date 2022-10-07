@@ -10,8 +10,9 @@ export const Container = styled.nav`
   top: 0;
   z-index: 5;
   background-color: ${colors.green.normal};
-  width: ${({ isOpen }) => isOpen ? "195px" : "70px"};
+  width: ${({ isOpen }) => isOpen ? "220px" : "73px"};
   overflow: hidden;
+  height: 100vh;
   transition: .3s ease-in;
   
   @media screen and (max-width: 520px) {

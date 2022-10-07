@@ -79,6 +79,7 @@ function CategoriesPage() {
         modal
         &&
         <FormModal
+          type="category"
           title="Categoría"
           handleClose={() => setModal(!modal)}
           setParent={setCategories}
