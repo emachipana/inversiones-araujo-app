@@ -3,8 +3,9 @@ import { RiAddBoxFill } from "react-icons/ri";
 import { Spinner } from "reactstrap";
 import Button from "../../components/Button";
 import FormModal from "../../components/FormModal";
+import ProductCard from "../../components/ProductCard";
 import SearchInput from "../../components/SearchInput";
-import { get } from "../../services";
+import { destroy, get } from "../../services";
 import { Container, SearchContainer, Title } from "./styles";
 
 function ProductsPage() {
@@ -23,6 +24,13 @@ function ProductsPage() {
 
     fetch();
   }, []);
+
+  const handleDelete = async (id) => {
+    const newProducts = backup.filter(product => product.id !== id);
+    setProducts(newProducts);
+    setBackup(newProducts);
+    await destroy("products", id);
+  }
 
   return (
     <>
@@ -47,7 +55,21 @@ function ProductsPage() {
           ?
           <Spinner />
           :
-          "Productos"
+          products.map(product => (
+            <ProductCard
+              id={product.id}
+              handleDelete={handleDelete}
+              description={product.description}
+              brand={product.marca}
+              name={product.name}
+              image={product.photos[0].url}
+              key={product.id}
+              stock={product.stock}
+              price={product.price}
+              isAdmin
+              category={`${product.category_name}(${product.sub_category_name})`}
+            />
+          ))
         }
       </Container>
       {
@@ -59,6 +81,7 @@ function ProductsPage() {
           title="Producto"
           handleClose={() => setModal(!modal)}
           setParent={setProducts}
+          setBackParent={setBackup}
         />
       }
     </>
