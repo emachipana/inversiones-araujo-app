@@ -7,7 +7,7 @@ import CategoryForm from "./CategoryForm";
 import ProductForm from "./ProductForm";
 import validate from "./validate";
 
-function FormModal({ title, handleClose, type, setParent, size }) {
+function FormModal({ title, handleClose, type, setParent, size, setBackParent }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState("");
@@ -42,6 +42,7 @@ function FormModal({ title, handleClose, type, setParent, size }) {
         const photo_url = await uploadImage(image);
         const response = await post("products", { ...values, sub_category_id: values.sub_category_id * 1, photo_url: photo_url });
         setParent(old => [...old, response]);
+        setBackParent(old => [...old, response]);
       }
       setIsLoading(false);
       setImgMessage(null);

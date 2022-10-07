@@ -17,7 +17,7 @@ function SearchInput({ setParent, backup }) {
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    setParent(values => values.filter(value => value.name.toLowerCase().includes(e.target.value.toLowerCase())));
+    setParent(backup.filter(value => value.name.toLowerCase().includes(e.target.value.toLowerCase())));
   }
 
   return (
