@@ -29,3 +29,10 @@ export const SearchContainer = styled.div`
     justify-content: center;
   }
 `;
+
+export const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;

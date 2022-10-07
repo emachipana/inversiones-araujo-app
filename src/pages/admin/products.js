@@ -6,7 +6,8 @@ import FormModal from "../../components/FormModal";
 import ProductCard from "../../components/ProductCard";
 import SearchInput from "../../components/SearchInput";
 import { destroy, get } from "../../services";
-import { Container, SearchContainer, Title } from "./styles";
+import { Container, FlexColumn, SearchContainer, Title } from "./styles";
+import { BsSearch } from "react-icons/bs";
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -54,6 +55,16 @@ function ProductsPage() {
           isLoading
           ?
           <Spinner />
+          :
+          products.length <= 0
+          ?
+          <FlexColumn>
+            <BsSearch
+              style={{marginTop: "2.5rem"}}
+              size="60px"
+            />
+            <Title>Sin productos</Title>
+          </FlexColumn>
           :
           products.map(product => (
             <ProductCard
