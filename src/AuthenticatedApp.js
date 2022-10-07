@@ -7,10 +7,8 @@ import ProductsPage from "./pages/admin/products";
 
 function AuthenticatedApp() {
   const Container = styled.div`
-    display: grid;
+    display: flex;
     width: 100%;
-    height: 100vh;
-    grid-template-columns: auto 1fr;
   `;
 
   const Section = styled.div`
