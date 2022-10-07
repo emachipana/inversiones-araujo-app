@@ -68,6 +68,7 @@ function ProductsPage() {
           :
           products.map(product => (
             <ProductCard
+              isAdmin
               id={product.id}
               handleDelete={handleDelete}
               description={product.description}
@@ -77,7 +78,7 @@ function ProductsPage() {
               key={product.id}
               stock={product.stock}
               price={product.price}
-              isAdmin
+              unit_metric={product.unit_metric}
               category={`${product.category_name}(${product.sub_category_name})`}
             />
           ))

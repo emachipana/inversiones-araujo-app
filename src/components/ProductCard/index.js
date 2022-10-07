@@ -8,8 +8,9 @@ import { Badge, Button } from "reactstrap";
 import { IconStyle } from "../CategoryCard/styles";
 import { useState } from "react";
 import DeleteModal from "../DeleteModal";
+import { GiPencilRuler } from "react-icons/gi";
 
-function ProductCard({ id, name, image, brand, handleDelete, description, stock, price, category, isAdmin }) {
+function ProductCard({ id, name, image, brand, handleDelete, unit_metric, description, stock, price, category, isAdmin }) {
   const [modal, setModal] = useState(false);
 
   const modalDescription = `
@@ -66,6 +67,13 @@ function ProductCard({ id, name, image, brand, handleDelete, description, stock,
                 />
                 <span>S/. { price }</span>
               </Icon>
+              <Icon>
+                <GiPencilRuler 
+                  size="17px"
+                  color={colors.gray.bold}
+                />
+                <span style={{textTransform: "capitalize"}}>{ unit_metric }</span>
+              </Icon>
             </FlexRow>
             <Icon>
               <BiCategory 
@@ -81,7 +89,7 @@ function ProductCard({ id, name, image, brand, handleDelete, description, stock,
         isAdmin
         &&
         <Section
-          style={{marginTop: "0.5rem"}}
+          style={{margin: "0.5rem 0.2rem 0.2rem 0"}}
         >
           <FlexRow
             style={{alignSelf: "end"}}

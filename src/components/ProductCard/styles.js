@@ -57,7 +57,7 @@ export const FlexRow = styled.div`
 export const Icon = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   font-weight: 500;
   font-size: 1rem;
   color: #707070;
