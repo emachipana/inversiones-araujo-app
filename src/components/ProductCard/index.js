@@ -4,7 +4,7 @@ import { VscArchive } from "react-icons/vsc";
 import { colors } from "../../styles";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { BiCategory, BiEdit, BiTrash } from "react-icons/bi";
-import { Button } from "reactstrap";
+import { Badge, Button } from "reactstrap";
 import { IconStyle } from "../CategoryCard/styles";
 import { useState } from "react";
 import DeleteModal from "../DeleteModal";
@@ -29,11 +29,20 @@ function ProductCard({ id, name, image, brand, handleDelete, description, stock,
       </Section>
       <hr />
       <Section>
-        <Text
-          brand
+        <FlexRow
+          style={{justifyContent: "space-between"}}
         >
-          { brand || "desconocida" }
-        </Text>
+          <Text
+            brand
+          >
+            { brand || "desconocida" }
+          </Text>
+          <Badge
+              color={stock <= 0 ? "danger" : "success"}
+            >
+            { stock <= 0 ? "Agotado" : "Disponible" }
+          </Badge>
+        </FlexRow>
         <Text>{ name }</Text>
         <Description>
           { description }

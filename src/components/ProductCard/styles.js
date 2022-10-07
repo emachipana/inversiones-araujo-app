@@ -51,6 +51,7 @@ export const FlexRow = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
 `;
 
 export const Icon = styled.div`
