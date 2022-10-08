@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import AsideNav from "./components/AsideNav";
 import NavbarAdmin from "./components/NavbarAdmin";
 import CategoriesPage from "./pages/admin/categories";
+import EditProductPage from "./pages/admin/edit-product";
 import ProductsPage from "./pages/admin/products";
 
 function AuthenticatedApp() {
@@ -35,6 +36,7 @@ function AuthenticatedApp() {
         <Routes>
           <Route path="/categories" index element={<CategoriesPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/edit/:id" element={<EditProductPage />} />
         </Routes>
       </Section>
     </Container>
