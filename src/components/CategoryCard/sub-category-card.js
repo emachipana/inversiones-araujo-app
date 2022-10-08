@@ -23,7 +23,7 @@ function SubCategoryCard({ id, name, Check, Edit, Close, Trash, handleDelete }) 
     if(subName === "") return;
     setIsEditing(!isEditing);
     setBackup(subName);
-    await update("sub_categories", id, { name: subName });
+    await update("sub_categories", { name: subName }, id);
   }
 
   const handleChange = (e) => setSubName(e.target.value);

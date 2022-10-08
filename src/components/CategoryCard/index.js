@@ -31,7 +31,7 @@ function CategoryCard({ id, name, subCategories, handleDeleteCategory, handleDel
     if(categoryName === "") return;
     setIsEditing(!isEditing);
     setBackup(categoryName);
-    await update("categories", id, { name: categoryName });
+    await update("categories", { name: categoryName }, id);
   }
 
   const handleChange = (e) => setCategoryName(e.target.value);
