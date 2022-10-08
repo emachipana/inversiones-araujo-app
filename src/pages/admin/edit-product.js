@@ -21,11 +21,11 @@ function EditProductPage() {
   const handleSubmit = async (values) => {
     try{
       if(image === "") {
-        await update("products", params.id*1, values);
+        await update("products", values, params.id*1);
         navigate("/products");
       }else {
         const photo_url = await uploadImage(image);
-        await update("products", params.id*1, { ...values, photo_url: photo_url, photo_id: product.photos[0].id });
+        await update("products", { ...values, photo_url: photo_url, photo_id: product.photos[0].id }, params.id*1);
         navigate("/products");
       }
     }catch(e) {

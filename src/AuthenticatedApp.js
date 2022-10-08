@@ -5,6 +5,7 @@ import NavbarAdmin from "./components/NavbarAdmin";
 import CategoriesPage from "./pages/admin/categories";
 import EditProductPage from "./pages/admin/edit-product";
 import ProductsPage from "./pages/admin/products";
+import ProfilePage from "./pages/admin/profile";
 
 function AuthenticatedApp() {
   const Container = styled.div`
@@ -37,6 +38,7 @@ function AuthenticatedApp() {
           <Route path="/categories" index element={<CategoriesPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/edit/:id" element={<EditProductPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Section>
     </Container>

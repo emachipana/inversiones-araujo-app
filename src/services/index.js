@@ -8,7 +8,7 @@ export async function post(endpoint, data) {
   return await apiFetch(endpoint, { body: data });
 }
 
-export async function update(endpoint, id, data) {
+export async function update(endpoint, data, id) {
   return await apiFetch(
     ( id ? `${endpoint}/${id}` : endpoint ),
     { body: data, method: "PATCH" }

@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from "react";
-import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
+import { Alert, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 import { get } from "../../services";
-import { InputStyle } from "../SessionForm/styles";
+import { AlertStyles, InputStyle } from "../SessionForm/styles";
 import { Container, Image, Section } from "./styles";
 
-function ProductForm({ errors, values, handleBlur, handleChange, touched, imgMessage, setImage, setImgMessage, edit, image }) {
+function ProductForm({ errors, error, values, handleBlur, handleChange, touched, imgMessage, setImage, setImgMessage, edit, image }) {
   const [subCategories, setSubCategories] = useState([]);
 
   useEffect(() => {
@@ -243,6 +243,16 @@ function ProductForm({ errors, values, handleBlur, handleChange, touched, imgMes
             alt="product-photo"
           />
         </Container>
+      }
+      {
+        error
+        ?
+        <Alert
+          color="danger"
+          css={AlertStyles}
+        >{ error }</Alert>
+        :
+        null
       }
     </>
   );
