@@ -10,7 +10,7 @@ function validate(values, type) {
     
     if (values.stock === "") {
       errors.stock = "Este campo es obligatorio";
-    }else if (values.stock <= 0) {
+    }else if (values.stock < 0) {
       errors.stock = "Tiene que ser mayor que 0";
     }else if (typeof values.stock !== "number") {
       errors.stock = "Solo se aceptan numeros";
