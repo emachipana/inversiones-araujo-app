@@ -8,7 +8,7 @@ export const Form = styled.form`
   flex-direction: column;
   padding: 3rem;
   margin: 1rem;
-  width: 100%;
+  width: ${({ isProduct }) => isProduct ? "fit-content" : "100%"};
   height: fit-content;
   background-color: ${colors.white};
   border-radius: 1rem;
