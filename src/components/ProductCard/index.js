@@ -9,9 +9,12 @@ import { IconStyle } from "../CategoryCard/styles";
 import { useState } from "react";
 import DeleteModal from "../DeleteModal";
 import { GiPencilRuler } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 function ProductCard({ id, name, image, brand, handleDelete, unit_metric, description, stock, price, category, isAdmin }) {
   const [modal, setModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const modalDescription = `
     ¿Estas seguro de eliminar este producto?
@@ -97,6 +100,7 @@ function ProductCard({ id, name, image, brand, handleDelete, unit_metric, descri
             <Button
               style={{padding: "3px 5px"}}
               size="sm"
+              onClick={() => navigate(`edit/${id}`)}
               color="warning"
             >
               <BiEdit 

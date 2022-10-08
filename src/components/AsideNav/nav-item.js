@@ -15,7 +15,7 @@ function NavItem({ to, isOpen, children, Icon, click = "" }) {
       isOpen={isOpen}
     >
       <Icon
-        color={location === to ? colors.green.normal : "white"}
+        color={location.includes(to) ? colors.green.normal : "white"}
         css={IconNavBar}
       />
       <Text

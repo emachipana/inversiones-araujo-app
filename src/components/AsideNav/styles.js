@@ -33,7 +33,7 @@ export const IconStyle = css`
 `;
 
 export const Text = styled.h2`
-  color: ${({ location, path }) => location === path ? colors.green.normal : "white" };
+  color: ${({ location, path }) => location.includes(path) ? colors.green.normal : "white" };
   font-size: 1rem;
   position: absolute;
   left: 3.8rem;
@@ -56,7 +56,7 @@ export const Item = styled.div`
   border-bottom-left-radius: 30px;
   position: relative;
 
-  ${({ location, path }) => location === path ?
+  ${({ location, path }) => location.includes(path) ?
   `
     background-color: ${colors.gray.light};
 

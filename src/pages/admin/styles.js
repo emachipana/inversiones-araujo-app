@@ -36,3 +36,11 @@ export const FlexColumn = styled.div`
   align-items: center;
   gap: 1rem;
 `;
+
+export const FlexRow = styled.div`
+  width: 100%;
+  display: flex;
+  aling-items: center;
+  justify-content: space-batween;
+  gap: 1rem;
+`;

@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
 import { get } from "../../services";
 import { InputStyle } from "../SessionForm/styles";
-import { Section } from "./styles";
+import { Container, Image, Section } from "./styles";
 
-function ProductForm({ errors, values, handleBlur, handleChange, touched, imgMessage, setImage, setImgMessage }) {
+function ProductForm({ errors, values, handleBlur, handleChange, touched, imgMessage, setImage, setImgMessage, edit, image }) {
   const [subCategories, setSubCategories] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function ProductForm({ errors, values, handleBlur, handleChange, touched, imgMes
 
   const upload = (e) => {
     setImage(e.target.files[0]);
-    setImgMessage(null);
+    if(setImgMessage) setImgMessage(null);
   }
 
   return (
@@ -219,7 +219,7 @@ function ProductForm({ errors, values, handleBlur, handleChange, touched, imgMes
             id="image"
             name="image"
             accept="image/*"
-            invalid={imgMessage !== null }
+            invalid={!!imgMessage}
             css={InputStyle}
           />
           {
@@ -229,6 +229,21 @@ function ProductForm({ errors, values, handleBlur, handleChange, touched, imgMes
           }
         </FormGroup>
       </Section>
+      {
+        edit
+        &&
+        <Container>
+          <Label
+            style={{fontWeight: 700}}
+          >
+            Imagen actual:
+          </Label>
+          <Image
+            src={image}
+            alt="product-photo"
+          />
+        </Container>
+      }
     </>
   );
 }
