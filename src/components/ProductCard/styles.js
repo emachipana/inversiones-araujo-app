@@ -20,7 +20,7 @@ export const Section = styled.div`
 `;
 
 export const Image = styled.img`
-  width: fit-content;
+  max-width: 220px;
   height: 220px;
   object-fit: cover;
   transition: .3s linear;

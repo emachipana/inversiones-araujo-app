@@ -7,11 +7,12 @@ import EditProductPage from "./pages/admin/edit-product";
 import ProductsPage from "./pages/admin/products";
 import ProfilePage from "./pages/admin/profile";
 
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 function AuthenticatedApp() {
-  const Container = styled.div`
-    display: flex;
-    width: 100%;
-  `;
 
   const Section = styled.div`
     width: 100%;
