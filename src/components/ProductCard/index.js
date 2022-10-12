@@ -78,15 +78,15 @@ function ProductCard({ id, name, image, brand, handleDelete, unit_metric, descri
                 <span style={{textTransform: "capitalize"}}>{ unit_metric }</span>
               </Icon>
             </FlexRow>
-            <Icon>
-              <BiCategory 
-                size="17px"
-                color={colors.gray.bold}
-              />
-              <span>{ category }</span>
-            </Icon>
           </>
         }
+        <Icon>
+          <BiCategory 
+            size="17px"
+            color={colors.gray.bold}
+          />
+          <span>{ category }</span>
+        </Icon>
       </Section>
       {
         isAdmin
