@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Container, Description, FlexRow, Icon, Image, Section, Text } from "./styles";
+import { Category, Container, Description, FlexRow, Icon, Image, Section, Text } from "./styles";
 import { VscArchive } from "react-icons/vsc";
 import { colors } from "../../styles";
 import { BsCurrencyDollar } from "react-icons/bs";
@@ -85,7 +85,7 @@ function ProductCard({ id, name, image, brand, handleDelete, unit_metric, descri
             size="17px"
             color={colors.gray.bold}
           />
-          <span>{ category }</span>
+          <Category>{ category }</Category>
         </Icon>
       </Section>
       {

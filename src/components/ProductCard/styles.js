@@ -33,6 +33,7 @@ export const Image = styled.img`
 `;
 
 export const Text = styled.h2`
+  text-align: start;
   font-size: ${({ brand }) => brand ? 13 : 16}px;
   color: ${({ brand }) => brand ? "#837676" : colors.gray.bold};
   text-transform: ${({ brand }) => brand ? "uppercase" : "none"};
@@ -44,7 +45,9 @@ export const Text = styled.h2`
 export const Description = styled.p`
   margin: 0;
   font-size: 15px;
+  font-family: ${fonts.primary};
   font-weight: 500;
+  text-align: start;
 `;
 
 export const FlexRow = styled.div`
@@ -61,4 +64,9 @@ export const Icon = styled.div`
   font-weight: 500;
   font-size: 1rem;
   color: #707070;
+`;
+
+export const Category = styled.span`
+  font-size: 1rem;
+  font-family: ${fonts.primary};
 `;

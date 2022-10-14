@@ -1,12 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { colors } from "../../styles";
-import Button from "../Button";
 import CubeSlider from "../CubeSlider";
 import { Banner, Section, Text } from "./styles";
 
 function Hero() {
-  const navigate = useNavigate();
-
   const images = [
     {
       alt: "",
@@ -32,9 +28,6 @@ function Hero() {
         <Text>
           Los mejores <span style={{color: colors.green.normal}}>productos</span> a tu alcance.
         </Text>
-        <Button onClick={() => navigate("/products")}>
-          COTIZAR
-        </Button>
       </Section>
       <CubeSlider 
         images={images}

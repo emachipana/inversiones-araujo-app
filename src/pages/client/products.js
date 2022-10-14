@@ -4,6 +4,7 @@ import Categories from "../../components/Categories";
 import ProductCard from "../../components/ProductCard";
 import { get } from "../../services";
 import { Container } from "../admin/styles";
+import { Container as Wrapper } from "../../AuthenticatedApp";
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -22,7 +23,7 @@ function ProductsPage() {
   }, []);
   
   return (
-    <>
+    <Wrapper>
       <Categories
         backup={backup}
         setParent={setProducts}
@@ -46,7 +47,7 @@ function ProductsPage() {
           ))
         }
       </Container>
-    </>
+    </Wrapper>
   );
 }
 
