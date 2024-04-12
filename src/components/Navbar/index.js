@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
-import { IoSearchOutline, IoPersonSharp } from "react-icons/io5";
+import { IoSearchOutline, IoPersonSharp, IoClose } from "react-icons/io5";
 import { MdOutlineMailOutline, MdOutlinePhone, MdAlternateEmail } from "react-icons/md";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaBasketShopping } from "react-icons/fa6";
 import { CartItems, Container, Form, IconStyle, Info, Logo, Main, NavItem, Navigation } from "./styles";
@@ -23,6 +24,7 @@ function Navbar() {
   const [dropDown, setDropDown] = useState(false);
   const [current, setCurrent] = useState("login");
   const [menuDrop, setMenuDrop] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const cartItems = [];
 
   const handleChange = (e) => {
@@ -73,10 +75,32 @@ function Navbar() {
         </FlexRow>
       </Info>
       <Main>
-        <Logo 
+        {
+          isOpen
+          ?
+          <IoClose 
+            size={28}
+            color={COLORS.dim}
+            style={{cursor: "pointer"}}
+            className="activer"
+            onClick={() => setIsOpen(false)}
+          />
+          :
+          <HiOutlineMenuAlt2
+            size={28}
+            color={COLORS.dim}
+            style={{cursor: "pointer"}}
+            className="activer"
+            onClick={() => setIsOpen(true)}
+          />
+        }
+        <Logo
           src="/img/logo.png"
         />
-        <div style={{width: "300px"}}>
+        <div 
+          style={{width: "300px"}}
+          className="handler"
+        >
           <Input 
             id="search"
             Icon={IoSearchOutline}
@@ -88,12 +112,14 @@ function Navbar() {
         <FlexRow
           gap={1.8}
         >
-          <IoPersonSharp 
+          <IoPersonSharp
+            className="handler"
             css={IconStyle}
             onClick={handleToggle}
             color={userModal ? COLORS.persian: ""}
           />
           <Text
+            className="handler"
             color={COLORS.dim}
             size={26}
             weight={300}
@@ -102,7 +128,6 @@ function Navbar() {
           </Text>
           <DropDown
             isOpen={dropDown}
-            setIsOpen={setDropDown}
             Button={CartButton}
             buttonData={{counter: cartItems.length, dropDown, setDropDown}}
           >
@@ -132,6 +157,7 @@ function Navbar() {
       </Main>
       <Navigation>
         <Text
+          className="handler"
           weight={700}
           css={NavItem}
           color={COLORS.persian}
@@ -139,6 +165,7 @@ function Navbar() {
           INICIO
         </Text>
         <DropDown
+          className="handler"
           Button={TextItem}
           buttonData={{dropDown: menuDrop, setDropDown: setMenuDrop, weight: 700, css: NavItem, name: "TIENDA"}}
           isOpen={menuDrop}
@@ -148,24 +175,28 @@ function Navbar() {
         <Text
           weight={700}
           css={NavItem}
+          className="handler"
         >
           AGROINVITRO
         </Text>
         <Text
           weight={700}
           css={NavItem}
+          className="handler"
         >
           SERVICIOS
         </Text>
         <Text
           weight={700}
           css={NavItem}
+          className="handler"
         >
           CONTACTANOS
         </Text>
         <Text
           weight={700}
           css={NavItem}
+          className="handler"
         >
           SOBRE NOSOTROS
         </Text>

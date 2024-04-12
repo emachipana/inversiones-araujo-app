@@ -11,6 +11,18 @@ export const Container = styled.div`
   position: sticky;
   top: 0;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, .3);
+
+  .handler {
+    @media screen and (max-width: 810px) {
+      display: none;
+    }
+  }
+
+  .activer {
+    @media screen and (min-width: 810px) {
+      display: none;
+    }
+  }
 `;
 
 export const Info = styled.section`
@@ -31,6 +43,10 @@ export const Main = styled.section`
   padding: 0.8rem 3rem;
   width: 100%;
   height: 75px;
+
+  @media screen and (max-width: 540px) {
+    padding: 0.8rem 1.5rem;
+  }
 `;
 
 export const Logo = styled.img`

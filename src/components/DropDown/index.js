@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-function DropDown({ isOpen, children, Button, buttonData }) {
+function DropDown({ isOpen, children, Button, buttonData, ...props }) {
   return (
-    <div style={{position: "relative"}}>
+    <div style={{position: "relative"}} {...props}>
       <Button {...buttonData} />
       {
         isOpen
