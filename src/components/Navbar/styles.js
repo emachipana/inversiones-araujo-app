@@ -48,6 +48,10 @@ export const Navigation = styled.nav`
   width: 100%;
   height: 45px;
   background-color: ${COLORS.smoke};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem;
 `;
 
 export const IconStyle = css`
@@ -95,11 +99,20 @@ export const Form = styled.form`
 `;
 
 export const CartItems = styled.div`
-  width: 100%;
+  width: 250px;
   height: 380px;
   padding: 2.5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const NavItem = css`
+  cursor: pointer;
+  transition: .3s ease;
+
+  &:hover {
+    color: ${COLORS.persian};
+  }
 `;

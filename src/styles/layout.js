@@ -6,6 +6,7 @@ export const Text = styled.p`
   color: ${({ color }) => color || "inherit"};
   text-decoration: ${({ isLink }) => isLink ? "underline" : "none"};
   cursor: ${({ isLink }) => isLink ? "pointer" : "inherit"};
+  text-align: center;
 `;
 
 export const FlexRow = styled.div`

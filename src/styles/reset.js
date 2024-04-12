@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import { FONT } from "./font";
+import { COLORS } from "./colors";
 
 export const RESET = css`
   @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
@@ -22,6 +23,7 @@ export const RESET = css`
 
   body {
     font-family: ${FONT.primary};
+    color: ${COLORS.gray};
     font-size: 1rem;
   }
 `;

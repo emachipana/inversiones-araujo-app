@@ -4,7 +4,7 @@ import { IoSearchOutline, IoPersonSharp } from "react-icons/io5";
 import { MdOutlineMailOutline, MdOutlinePhone, MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaBasketShopping } from "react-icons/fa6";
-import { CartItems, Container, Form, IconStyle, Info, Logo, Main, Navigation } from "./styles";
+import { CartItems, Container, Form, IconStyle, Info, Logo, Main, NavItem, Navigation } from "./styles";
 import { COLORS, FlexColumn, FlexRow, Text } from "../../styles";
 import Input from "../Input";
 import Modal from "../Modal";
@@ -14,12 +14,15 @@ import validate from "./validate";
 import Button from "../Button";
 import DropDown from "../DropDown";
 import CartButton from "./CartButton";
+import TextItem from "./NavItem";
+import Menu from "./Menu";
 
 function Navbar() {
   const [param, setParam] = useState("");
   const [userModal, setUserModal] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [current, setCurrent] = useState("login");
+  const [menuDrop, setMenuDrop] = useState(false);
   const cartItems = [];
 
   const handleChange = (e) => {
@@ -36,6 +39,7 @@ function Navbar() {
 
   const handleToggle = () => {
     if(dropDown) setDropDown(false);
+    if(menuDrop) setMenuDrop(false);
 
     setUserModal(!userModal);
   }
@@ -127,7 +131,44 @@ function Navbar() {
         </FlexRow>
       </Main>
       <Navigation>
-
+        <Text
+          weight={700}
+          css={NavItem}
+          color={COLORS.persian}
+        >
+          INICIO
+        </Text>
+        <DropDown
+          Button={TextItem}
+          buttonData={{dropDown: menuDrop, setDropDown: setMenuDrop, weight: 700, css: NavItem, name: "TIENDA"}}
+          isOpen={menuDrop}
+        >
+          <Menu />
+        </DropDown>
+        <Text
+          weight={700}
+          css={NavItem}
+        >
+          AGROINVITRO
+        </Text>
+        <Text
+          weight={700}
+          css={NavItem}
+        >
+          SERVICIOS
+        </Text>
+        <Text
+          weight={700}
+          css={NavItem}
+        >
+          CONTACTANOS
+        </Text>
+        <Text
+          weight={700}
+          css={NavItem}
+        >
+          SOBRE NOSOTROS
+        </Text>
       </Navigation>
       <Modal
         isActive={userModal}
