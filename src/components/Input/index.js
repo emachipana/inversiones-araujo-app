@@ -9,20 +9,27 @@ function Input({
 
   const [focused, setFocused] = useState(false);
 
-  const onBlur = () => {
+  const onBlur = (e) => {
     setFocused(false);
 
-    handleBlur && handleBlur();
+    handleBlur && handleBlur(e);
   }
+
+  const color = error && touched
+    ? COLORS.red
+    : (touched && !error
+      ? COLORS.persian
+      : (focused
+          ? COLORS.persian
+          : COLORS.taupe));
 
   return (
     <Container>
       { label && <Label for={id}>{ label }</Label> }
       <Section
-        focused={focused}
-        error={error}
+        color={color}
       >
-        { Icon && <Icon size={25} color={error ? COLORS.red : (focused ? COLORS.persian : COLORS.gray)}/> }
+        { Icon && <Icon size={25} color={color} /> }
         <Main 
           id={id}
           disabled={disabled}

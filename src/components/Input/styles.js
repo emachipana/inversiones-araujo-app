@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { COLORS } from "../../styles";
+import { COLORS, FONT } from "../../styles";
 
 export const Container = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ export const Section = styled.section`
   justify-content: center;
   gap: 0.5rem;
   padding: 0.3rem 0.7rem;
-  outline: 1px solid  ${({ focused, error }) => error ? COLORS.red : (focused ? COLORS.persian : COLORS.gray)};
+  outline: 1px solid  ${({ color }) => color};
   border-radius: 0.5rem;
 `;
 
@@ -33,9 +33,12 @@ export const Main = styled.input`
   width: 100%;
   height: 100%;
   font-size: 1rem;
+  font-weight: 600;
   border: none;
   outline: none;
   color: ${COLORS.gray};
+  background-color: transparent;
+  font-family: ${FONT.primary};
 
   &::placeholder {
     color: ${COLORS.taupe};
@@ -47,10 +50,8 @@ export const TextError = styled.p`
   padding: 2px 6px;
   font-weight: 600;
   color: ${COLORS.white};
-  position: absolute;;
-  bottom: -32px;
   border-radius: 4px;
-  left: 5px;
+  margin-bottom: -8px;
   background-color: ${COLORS.red};
-  opacity: .85;
+  opacity: .8;
 `;
