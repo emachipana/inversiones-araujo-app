@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
 import { IoSearchOutline, IoPersonSharp } from "react-icons/io5";
 import { MdOutlineMailOutline, MdOutlinePhone, MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { Cart, Container, Counter, Form, IconStyle, Info, Logo, Main, Navigation } from "./styles";
+import { FaBasketShopping } from "react-icons/fa6";
+import { CartItems, Container, Form, IconStyle, Info, Logo, Main, Navigation } from "./styles";
 import { COLORS, FlexColumn, FlexRow, Text } from "../../styles";
 import Input from "../Input";
 import Modal from "../Modal";
@@ -12,12 +12,15 @@ import Header from "./Header";
 import { Formik } from "formik";
 import validate from "./validate";
 import Button from "../Button";
+import DropDown from "../DropDown";
+import CartButton from "./CartButton";
 
 function Navbar() {
   const [param, setParam] = useState("");
   const [userModal, setUserModal] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
   const [current, setCurrent] = useState("login");
-  const counter = 0;
+  const cartItems = [];
 
   const handleChange = (e) => {
     setParam(e.target.value);
@@ -29,6 +32,12 @@ function Navbar() {
     email: "",
     password: "",
     password_confirm: ""
+  }
+
+  const handleToggle = () => {
+    if(dropDown) setDropDown(false);
+
+    setUserModal(!userModal);
   }
 
   return (
@@ -73,11 +82,12 @@ function Navbar() {
           />
         </div>
         <FlexRow
-          gap={1.3}
+          gap={1.8}
         >
           <IoPersonSharp 
             css={IconStyle}
-            onClick={() => setUserModal(!userModal)}
+            onClick={handleToggle}
+            color={userModal ? COLORS.persian: ""}
           />
           <Text
             color={COLORS.dim}
@@ -86,20 +96,34 @@ function Navbar() {
           >
             |
           </Text>
-          <Cart>
-            <FaShoppingCart 
-              css={IconStyle}
-            />
-            <Counter>
-              <Text
-                size={14}
-                weight={800}
-                color={COLORS.white}
-              >
-                {counter}
-              </Text>
-            </Counter>
-          </Cart>
+          <DropDown
+            isOpen={dropDown}
+            setIsOpen={setDropDown}
+            Button={CartButton}
+            buttonData={{counter: cartItems.length, dropDown, setDropDown}}
+          >
+            {
+              cartItems.length === 0
+              ?
+              <CartItems>
+                <FaBasketShopping 
+                  size={100}
+                  color={COLORS.taupe}
+                />
+                <Text
+                  size={19}
+                  weight={700}
+                  color={COLORS.dim}
+                >
+                  El carrito esta vacío
+                </Text>
+                <Button>
+                  Ir a la tienda
+                </Button>
+              </CartItems>
+              : ""
+            }
+          </DropDown>
         </FlexRow>
       </Main>
       <Navigation>

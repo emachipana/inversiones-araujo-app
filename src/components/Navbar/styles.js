@@ -28,7 +28,7 @@ export const Main = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 2.5rem;
+  padding: 0.8rem 3rem;
   width: 100%;
   height: 75px;
 `;
@@ -75,7 +75,7 @@ export const Counter = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  background-color: ${COLORS.dim};
+  background-color: ${({ color }) => color || COLORS.dim};
   top: -10px;
   right: -15px;
   overflow: hidden;
@@ -92,4 +92,14 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+`;
+
+export const CartItems = styled.div`
+  width: 100%;
+  height: 380px;
+  padding: 2.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 `;
