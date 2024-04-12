@@ -10,7 +10,9 @@ export const COLORS = {
   taupe: "#8B8B92",
   platinium: "#E0E0E0",
   red: "#FF4747",
+  red_hover: "#FF0A0A",
   persian_hover: "#007A6C",
   dim: "#636369",
-  yellow: "#FFB829"
+  yellow: "#FFB829",
+  yellow_hover: "#F5A300"
 }
