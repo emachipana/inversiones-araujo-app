@@ -30,17 +30,18 @@ export const Container = styled.div`
 `;
 
 export const Section = styled.section`
-  padding: 1rem;
+  padding: 2.2rem 1.8rem;
   width: ${({ size }) => size === "lg" ? 750 : 400}px;
   min-height: 300px;
   background-color: ${COLORS.white};
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   border-radius: 1rem;
   z-index: 70;
+  gap: 2rem;
 
   animation: move .5s ease;
 
@@ -58,7 +59,7 @@ export const Close = css`
   font-size: 28px;
   color: ${COLORS.gray};
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 6px;
+  right: 6px;
   cursor: pointer;
 `;
