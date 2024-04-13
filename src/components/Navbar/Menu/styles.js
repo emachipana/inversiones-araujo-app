@@ -20,6 +20,8 @@ export const Item = styled.div`
   font-weight: 700;
   font-size: 16px;
   transition: .3s ease-in;
+  background-color: ${({ isActive }) => isActive ? COLORS.persian : "transparent"};
+  color: ${({ isActive }) => isActive ? COLORS.white : "inherit"};
 
   &:hover {
     background-color: ${COLORS.persian};
