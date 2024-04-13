@@ -12,7 +12,7 @@ export const RESET = css`
   }
 
   a {
-    text-decoration: color;
+    text-decoration: none;
     color: inherit;
   }
 

@@ -7,6 +7,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { FaBasketShopping } from "react-icons/fa6";
 import { CartItems, Container, Form, IconStyle, Info, Logo, Main, NavItem, Navigation } from "./styles";
 import { COLORS, FlexColumn, FlexRow, Text } from "../../styles";
+import { useNavigate, useLocation } from "react-router-dom";
 import Input from "../Input";
 import Modal from "../Modal";
 import Header from "./Header";
@@ -26,6 +27,8 @@ function Navbar() {
   const [current, setCurrent] = useState("login");
   const [menuDrop, setMenuDrop] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const cartItems = [];
 
   const handleSubmit = (values) => console.log(values); 
@@ -48,6 +51,13 @@ function Navbar() {
     if(dropDown) setDropDown(false);
 
     setIsOpen(!isOpen);
+  }
+
+  const redirect = (to) => {
+    if(dropDown) setDropDown(false);
+    if(menuDrop) setMenuDrop(false);
+
+    navigate(to);
   }
 
   return (
@@ -88,6 +98,7 @@ function Navbar() {
         />
         <Logo
           src="/img/logo.png"
+          onClick={() => redirect("/")}
         />
         <Search 
           className="handler"
@@ -129,7 +140,9 @@ function Navbar() {
                 >
                   El carrito esta vacío
                 </Text>
-                <Button>
+                <Button
+                  onClick={() => redirect("/tienda")}
+                >
                   Ir a la tienda
                 </Button>
               </CartItems>
@@ -144,7 +157,8 @@ function Navbar() {
           weight={700}
           size={17}
           css={NavItem}
-          color={COLORS.persian}
+          color={pathname === "/" ? COLORS.persian : ""}
+          onClick={() => redirect("/")}
         >
           Inicio
         </Text>
@@ -154,21 +168,31 @@ function Navbar() {
           buttonData={{dropDown: menuDrop, setDropDown: setMenuDrop, weight: 700, css: NavItem, name: "Tienda"}}
           isOpen={menuDrop}
         >
-          <Menu />
+          <Menu 
+            redirect={redirect}
+          />
         </DropDown>
-        <Text
-          weight={700}
-          css={NavItem}
-          size={17}
-          className="handler"
+        <a
+          href="http://localhost:3000/agroinvitro"
+          target="_blank"
+          rel="noreferrer"
         >
-          Agroinvitro
-        </Text>
+          <Text
+            weight={700}
+            css={NavItem}
+            size={17}
+            className="handler"
+          >
+            Agroinvitro
+          </Text>
+        </a>
         <Text
           weight={700}
           size={17}
           css={NavItem}
           className="handler"
+          onClick={() => redirect("/servicios")}
+          color={pathname === "/servicios" ? COLORS.persian : ""}
         >
           Servicios
         </Text>
@@ -177,6 +201,8 @@ function Navbar() {
           css={NavItem}
           size={17}
           className="handler"
+          onClick={() => redirect("/contactanos")}
+          color={pathname === "/contactanos" ? COLORS.persian : ""}
         >
           Contáctanos
         </Text>
@@ -185,6 +211,8 @@ function Navbar() {
           css={NavItem}
           size={17}
           className="handler"
+          onClick={() => redirect("/nosotros")}
+          color={pathname === "/nosotros" ? COLORS.persian : ""}
         >
           Sobre nosotros
         </Text>
