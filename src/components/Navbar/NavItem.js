@@ -11,6 +11,7 @@ function TextItem({ dropDown, setDropDown, weight, css, name }) {
     >
       <Text
         weight={weight}
+        size={17}
       >
         { name }
       </Text>

@@ -19,7 +19,7 @@ export const Container = styled.div`
   }
 
   .activer {
-    @media screen and (min-width: 810px) {
+    @media screen and (min-width: 811px) {
       display: none;
     }
   }
@@ -68,6 +68,10 @@ export const Navigation = styled.nav`
   align-items: center;
   justify-content: center;
   gap: 2.2rem;
+
+  @media screen and (max-width: 810px) {
+    height: 60px;
+  }
 `;
 
 export const IconStyle = css`
@@ -131,4 +135,52 @@ export const NavItem = css`
   &:hover {
     color: ${COLORS.persian};
   }
+`;
+
+export const AsideList = styled.aside`
+  width: 260px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${({ isOpen }) => isOpen ? 0 : -260}px;
+  transition: .3s ease-in;
+  z-index: 59;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.7rem 1.6rem;
+  gap: 1.7rem;
+`;
+
+export const BackDrop = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .5);
+  width: 100%;
+  height: 100vh;
+  z-index: 58;
+`;
+
+export const Close = css`
+  position: absolute;
+  font-size: 28px;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  color: ${COLORS.gray};
+`;
+
+export const ListItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 180px;
+  margin-top: -1.2rem;
 `;

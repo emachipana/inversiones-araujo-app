@@ -18,7 +18,7 @@ export const Item = styled.div`
   cursor: pointer;
   width: 100%;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16px;
   transition: .3s ease-in;
 
   &:hover {

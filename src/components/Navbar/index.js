@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
-import { IoSearchOutline, IoPersonSharp, IoClose } from "react-icons/io5";
+import { IoPersonSharp } from "react-icons/io5";
 import { MdOutlineMailOutline, MdOutlinePhone, MdAlternateEmail } from "react-icons/md";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -17,19 +17,16 @@ import DropDown from "../DropDown";
 import CartButton from "./CartButton";
 import TextItem from "./NavItem";
 import Menu from "./Menu";
+import Search from "../Search";
+import Aside from "./Aside";
 
 function Navbar() {
-  const [param, setParam] = useState("");
   const [userModal, setUserModal] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [current, setCurrent] = useState("login");
   const [menuDrop, setMenuDrop] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const cartItems = [];
-
-  const handleChange = (e) => {
-    setParam(e.target.value);
-  }
 
   const handleSubmit = (values) => console.log(values); 
 
@@ -42,8 +39,15 @@ function Navbar() {
   const handleToggle = () => {
     if(dropDown) setDropDown(false);
     if(menuDrop) setMenuDrop(false);
+    if(isOpen) setIsOpen(false);
 
     setUserModal(!userModal);
+  }
+
+  const handleOpen = () => {
+    if(dropDown) setDropDown(false);
+
+    setIsOpen(!isOpen);
   }
 
   return (
@@ -75,40 +79,19 @@ function Navbar() {
         </FlexRow>
       </Info>
       <Main>
-        {
-          isOpen
-          ?
-          <IoClose 
-            size={28}
-            color={COLORS.dim}
-            style={{cursor: "pointer"}}
-            className="activer"
-            onClick={() => setIsOpen(false)}
-          />
-          :
-          <HiOutlineMenuAlt2
-            size={28}
-            color={COLORS.dim}
-            style={{cursor: "pointer"}}
-            className="activer"
-            onClick={() => setIsOpen(true)}
-          />
-        }
+        <HiOutlineMenuAlt2
+          size={28}
+          color={COLORS.dim}
+          style={{cursor: "pointer"}}
+          className="activer"
+          onClick={handleOpen}
+        />
         <Logo
           src="/img/logo.png"
         />
-        <div 
-          style={{width: "300px"}}
+        <Search 
           className="handler"
-        >
-          <Input 
-            id="search"
-            Icon={IoSearchOutline}
-            handleChange={handleChange}
-            placeholder="Buscar productos"
-            value={param}
-          />
-        </div>
+        />
         <FlexRow
           gap={1.8}
         >
@@ -159,15 +142,16 @@ function Navbar() {
         <Text
           className="handler"
           weight={700}
+          size={17}
           css={NavItem}
           color={COLORS.persian}
         >
-          INICIO
+          Inicio
         </Text>
         <DropDown
           className="handler"
           Button={TextItem}
-          buttonData={{dropDown: menuDrop, setDropDown: setMenuDrop, weight: 700, css: NavItem, name: "TIENDA"}}
+          buttonData={{dropDown: menuDrop, setDropDown: setMenuDrop, weight: 700, css: NavItem, name: "Tienda"}}
           isOpen={menuDrop}
         >
           <Menu />
@@ -175,31 +159,38 @@ function Navbar() {
         <Text
           weight={700}
           css={NavItem}
+          size={17}
           className="handler"
         >
-          AGROINVITRO
+          Agroinvitro
+        </Text>
+        <Text
+          weight={700}
+          size={17}
+          css={NavItem}
+          className="handler"
+        >
+          Servicios
         </Text>
         <Text
           weight={700}
           css={NavItem}
+          size={17}
           className="handler"
         >
-          SERVICIOS
+          Contáctanos
         </Text>
         <Text
           weight={700}
           css={NavItem}
+          size={17}
           className="handler"
         >
-          CONTACTANOS
+          Sobre nosotros
         </Text>
-        <Text
-          weight={700}
-          css={NavItem}
-          className="handler"
-        >
-          SOBRE NOSOTROS
-        </Text>
+        <Search 
+          className="activer"
+        />
       </Navigation>
       <Modal
         isActive={userModal}
@@ -314,6 +305,12 @@ function Navbar() {
           )}
         </Formik>
       </Modal>
+      <Aside
+        handleToggle={handleToggle}
+        isOpen={isOpen}
+        onClick={handleOpen}
+        className="activer"
+      />
     </Container>
   )
 }
