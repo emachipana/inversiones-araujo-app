@@ -26,4 +26,18 @@ export const RESET = css`
     color: ${COLORS.gray};
     font-size: 1rem;
   }
+
+  // styling scrollbar
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${COLORS.white};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${COLORS.dim};
+  }
 `;
