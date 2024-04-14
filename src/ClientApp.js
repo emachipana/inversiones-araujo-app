@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Home from "./pages/Client/Home";
 
-function MainApp() {
+function ClientApp() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route index exact path="/" element={<h1>home page</h1>} />
+        <Route index exact path="/" element={<Home />} />
         <Route path="tienda" element={<h1>tienda page</h1>} />
         <Route path="servicios" element={<h1>services page</h1>} />
         <Route path="contactanos" element={<h1>contactanos page</h1>} />
@@ -17,4 +18,4 @@ function MainApp() {
   )
 }
 
-export default MainApp;
+export default ClientApp;
