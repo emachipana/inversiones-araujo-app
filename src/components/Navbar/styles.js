@@ -10,6 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   position: sticky;
   top: 0;
+  z-index: 20;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, .3);
 
   .handler {
@@ -27,7 +28,7 @@ export const Container = styled.div`
 
 export const Info = styled.section`
   width: 100%;
-  height: 30px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -42,7 +43,8 @@ export const Main = styled.section`
   justify-content: space-between;
   padding: 0.8rem 3rem;
   width: 100%;
-  height: 75px;
+  height: 70px;
+  background-color: white;
 
   @media screen and (max-width: 540px) {
     padding: 0.8rem 1.5rem;
@@ -50,7 +52,7 @@ export const Main = styled.section`
 `;
 
 export const Logo = styled.img`
-  height: 70px;
+  height: 68px;
   object-fit: cover;
   cursor: pointer;
   transition: transform .3s ease-in-out;
@@ -62,7 +64,7 @@ export const Logo = styled.img`
 
 export const Navigation = styled.nav`
   width: 100%;
-  height: 45px;
+  height: 40px;
   background-color: ${COLORS.smoke};
   display: flex;
   align-items: center;

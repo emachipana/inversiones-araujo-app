@@ -66,10 +66,10 @@ function Navbar() {
         <FlexRow>
           <MdOutlineMailOutline 
             color={COLORS.persian}
-            size={20}
+            size={18}
           />
           <Text
-            size={15}
+            size={14}
             color={COLORS.white}
           >
             inversionesaraujojl@gmail.com
@@ -78,10 +78,10 @@ function Navbar() {
         <FlexRow>
           <MdOutlinePhone 
             color={COLORS.persian}
-            size={20}
+            size={18}
           />
           <Text
-            size={15}
+            size={14}
             color={COLORS.white}
           >
             +51 990849369
@@ -155,7 +155,6 @@ function Navbar() {
         <Text
           className="handler"
           weight={700}
-          size={17}
           css={NavItem}
           color={pathname === "/" ? COLORS.persian : ""}
           onClick={() => redirect("/")}
@@ -180,7 +179,7 @@ function Navbar() {
           <Text
             weight={700}
             css={NavItem}
-            size={17}
+
             className="handler"
           >
             Agroinvitro
@@ -188,7 +187,6 @@ function Navbar() {
         </a>
         <Text
           weight={700}
-          size={17}
           css={NavItem}
           className="handler"
           onClick={() => redirect("/servicios")}
@@ -199,7 +197,6 @@ function Navbar() {
         <Text
           weight={700}
           css={NavItem}
-          size={17}
           className="handler"
           onClick={() => redirect("/contactanos")}
           color={pathname === "/contactanos" ? COLORS.persian : ""}
@@ -209,7 +206,6 @@ function Navbar() {
         <Text
           weight={700}
           css={NavItem}
-          size={17}
           className="handler"
           onClick={() => redirect("/nosotros")}
           color={pathname === "/nosotros" ? COLORS.persian : ""}
