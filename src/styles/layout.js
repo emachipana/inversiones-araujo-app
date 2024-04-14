@@ -7,10 +7,6 @@ export const Text = styled.p`
   text-decoration: ${({ isLink }) => isLink ? "underline" : "none"};
   cursor: ${({ isLink }) => isLink ? "pointer" : "inherit"};
   text-align: center;
-
-  @media screen and (max-width: 430px) {
-    font-size: 12px;
-  }
 `;
 
 export const FlexRow = styled.div`

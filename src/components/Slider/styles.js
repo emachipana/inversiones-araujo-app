@@ -15,6 +15,10 @@ export const Container = styled.div`
   position: relative;
   z-index: 1;
   color: ${COLORS.white};
+
+  @media screen and (max-width: 1130px) {
+    height: auto;
+  }
 `;
 
 export const IconStyle = css`
@@ -57,7 +61,16 @@ export const Section = styled.section`
   align-items: center;
   justify-content: space-between;;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
+
+  @media screen and (max-width: 1130px) {
+    height: auto;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 680px) {
+    padding: 2rem 4rem;
+  }
 `;
 
 export const Info = styled.div`
@@ -67,6 +80,10 @@ export const Info = styled.div`
   justify-content: center;
   gap: 1rem;
   width: 45%;
+
+  @media screen and (max-width: 1130px) {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -79,10 +96,30 @@ export const Title = styled.h1`
   .marked {
     color: ${COLORS.persian};
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: 60px;
+    line-height: 80px;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: 50px;
+    line-height: 70px;
+  }
 `;
 
 export const Image = styled.img`
   width: 500px;
   height: 500px;
   object-fit: contain;
+
+  @media screen and (max-width: 600px) {
+    width: 350px;
+    height: 350px;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 300px;
+    height: 300px;
+  }
 `;

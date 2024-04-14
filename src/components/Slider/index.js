@@ -58,12 +58,12 @@ function Slider({ elements = [] }) {
       </Section>
       <BsChevronCompactLeft 
         css={IconStyle}
-        style={{left: "1rem"}}
+        style={{left: "10px"}}
         onClick={() => setPage((page - 1 + size) % size)}
       />
       <BsChevronCompactRight
         css={IconStyle}
-        style={{right: "1rem"}}
+        style={{right: "10px"}}
         onClick={() => setPage((page + 1) % size)}
       />
       <Pagination>

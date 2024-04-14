@@ -1,5 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import { IoPersonSharp, IoPersonAddSharp } from "react-icons/io5";
-import { Container, Handler } from "./styles";
+import { Container, Handler, TextManager } from "./styles";
 import { Text } from "../../../styles";
 
 function Header({ current, setCurrent }) {
@@ -14,6 +15,7 @@ function Header({ current, setCurrent }) {
         />
         <Text
           size={18}
+          css={TextManager}
           weight={600}
         >
           Iniciar sesión
@@ -30,6 +32,7 @@ function Header({ current, setCurrent }) {
         <Text
           size={18}
           weight={600}
+          css={TextManager}
         >
           Registrarse
         </Text>
