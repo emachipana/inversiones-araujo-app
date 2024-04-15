@@ -1,5 +1,6 @@
 import styled from "@emotion/styled/macro";
 import { COLORS } from "../../../styles";
+import { css } from "@emotion/react";
 
 export const Categories = styled.div`
   width: 100%;
@@ -92,4 +93,24 @@ export const Banner = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center 90%;
+`;
+
+export const Contact = styled.div`
+  width: 100%;
+  height: 320px;
+  background-image: linear-gradient(rgba(32, 32, 32, 0.8), rgba(32, 32, 32, 0.8)), url("/img/business.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+`;
+
+export const TextManager = css`
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `;

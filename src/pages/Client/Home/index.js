@@ -1,13 +1,16 @@
+/** @jsxImportSource @emotion/react */
 import { useNavigate } from "react-router-dom";
 import Slider from "../../../components/Slider";
-import { COLORS, FlexColumn, Text } from "../../../styles";
+import { COLORS, FlexColumn, FlexRow, Text } from "../../../styles";
 import { Title } from "../styles";
-import { Banner, Categories, Category, Description, Image, Info, Service, Services, SubTitle } from "./styles";
+import { Banner, Categories, Category, Contact, Description, Image, Info, Service, Services, SubTitle, TextManager } from "./styles";
 import { FaMapLocationDot } from "react-icons/fa6";
-import { MdSmartDisplay } from "react-icons/md";
+import { MdOutlineMailOutline, MdSmartDisplay } from "react-icons/md";
+import { TbBrandWhatsapp } from "react-icons/tb";
 import { IoDocumentText } from "react-icons/io5";
 import ProductCard from "../../../components/ProductCard";
 import { useData } from "../../../context/data";
+import Button from "../../../components/Button";
 
 function Home() {
   const { getTrendProducts } = useData();
@@ -234,6 +237,63 @@ function Home() {
           ))
         }
       </Categories>
+      <Contact>
+        <div>
+          <Title
+            color={COLORS.white}
+          >
+            Realice aquí su consulta o cotización
+          </Title>
+          <Text
+            color={COLORS.white}
+            weight={600}
+          >
+            ¿Está buscando productos agrícolas para su proyecto?
+          </Text>
+        </div>
+        <FlexRow 
+          gap={2}
+          style={{flexWrap: "wrap"}}
+        >
+          <FlexColumn>
+            <FlexRow>
+              <MdOutlineMailOutline
+                color={COLORS.persian}
+                size={22}
+              />
+              <Text
+                color={COLORS.white}
+              >
+                inversionesaraujojl@gmail.com
+              </Text>
+            </FlexRow>
+            <FlexRow>
+              <TbBrandWhatsapp
+                color={COLORS.persian}
+                size={22}
+              />
+              <Text
+                color={COLORS.white}
+              >
+                990849369
+              </Text>
+            </FlexRow>
+          </FlexColumn>
+          <Text
+            color={COLORS.dim}
+            size={50}
+            weight={100}
+            css={TextManager}
+          >
+            |
+          </Text>
+          <Button
+            onClick={() => navigate("/contactanos")}
+          >
+            Realizar consulta
+          </Button>
+        </FlexRow>
+      </Contact>
     </>
   )
 }
