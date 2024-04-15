@@ -25,6 +25,7 @@ function Button({ Icon, color, fontSize, children, ...props }) {
     <Container 
       {...props}
       color={colorList[color || "primary"]}
+      fontSize={fontSize}
     >
       { Icon && <Icon size={(fontSize || 18) + 2}/> }
       { children }

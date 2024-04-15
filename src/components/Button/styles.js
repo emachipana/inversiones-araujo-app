@@ -5,7 +5,7 @@ export const Container = styled.button`
   border: none;
   font-family: ${FONT.primary};
   color: ${COLORS.white};
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   background-color: ${({ color }) => color.background};
   font-size: ${({ fontSize }) => fontSize || 18}px;
   font-weight: 700;
