@@ -2,7 +2,10 @@ import { useNavigate } from "react-router-dom";
 import Slider from "../../../components/Slider";
 import { COLORS, FlexColumn, Text } from "../../../styles";
 import { Title } from "../styles";
-import { Categories, Category, Description, Image, SubTitle } from "./styles";
+import { Categories, Category, Description, Image, Info, Service, Services, SubTitle } from "./styles";
+import { FaMapLocationDot } from "react-icons/fa6";
+import { MdSmartDisplay } from "react-icons/md";
+import { IoDocumentText } from "react-icons/io5";
 
 function Home() {
   const navigate = useNavigate();
@@ -128,6 +131,80 @@ function Home() {
           </Category>
         </a>
       </Categories>
+      <FlexColumn 
+        align="center"
+        style={{marginTop: "1.5rem", padding: "1rem"}}
+      >
+        <Title>
+          Nuestros servicios
+        </Title>
+        <Text
+          color={COLORS.taupe}
+        >
+          Nos respaldan nuestra amplia experiencia y personal calificado
+        </Text>
+      </FlexColumn>
+      <Services>
+        <Service>
+          <FaMapLocationDot 
+            size={50}
+            color={COLORS.persian}
+          />
+          <Info>
+            <SubTitle>
+              Envío de productos a todo destino
+            </SubTitle>
+            <Text
+              color={COLORS.taupe}
+              align="start"
+              size={15}
+            >
+              Envío de productos y paquetes
+              a nivel nacional, enviamos con
+              las empresas de transportes
+              más confiables.
+            </Text>
+          </Info>
+        </Service>
+        <Service>
+          <MdSmartDisplay 
+            size={50}
+            color={COLORS.persian}
+          />
+          <Info>
+            <SubTitle>
+              Talleres y asesoramiento
+            </SubTitle>
+            <Text
+              color={COLORS.taupe}
+              align="start"
+              size={15}
+            >
+              Contamos con una amplia experiencia en el rubro agrícola, 
+              realizamos talleres gratuitos y de pago.
+            </Text>
+          </Info>
+        </Service>
+        <Service>
+          <IoDocumentText 
+            size={50}
+            color={COLORS.persian}
+          />
+          <Info>
+            <SubTitle>
+              Certificados y fichas técnicas
+            </SubTitle>
+            <Text
+              color={COLORS.taupe}
+              align="start"
+              size={15}
+            >
+              Por la compra de cualquiera de nuestros productos le 
+              otorgamos la ficha técnica del producto deseado.
+            </Text>
+          </Info>
+        </Service>
+      </Services>
     </>
   )
 }

@@ -53,4 +53,30 @@ export const SubTitle = styled.h3`
   text-align: start;
   font-weight: 700;
   margin-bottom: 5px;
+  line-height: 22px;
+`;
+
+export const Services = styled.div`
+  width: 100%;
+  padding: 3rem;
+  margin: 2rem 0;
+  display: flex;
+  align-items: flex-start;;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  background-color: ${COLORS.smoke};
+`;
+
+export const Service = styled.div`
+  width: 350px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+export const Info = styled.section`
+  width: 100%;
+  height: 100%;
 `;
