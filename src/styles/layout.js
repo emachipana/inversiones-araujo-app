@@ -6,11 +6,7 @@ export const Text = styled.p`
   color: ${({ color }) => color || "inherit"};
   text-decoration: ${({ isLink }) => isLink ? "underline" : "none"};
   cursor: ${({ isLink }) => isLink ? "pointer" : "inherit"};
-  text-align: center;
-
-  @media screen and (max-width: 430px) {
-    font-size: 12px;
-  }
+  text-align: ${({ align }) => align || "center"};
 `;
 
 export const FlexRow = styled.div`
@@ -23,7 +19,7 @@ export const FlexRow = styled.div`
 export const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: ${({ align }) => align || "flex-start"};
   justify-content: center;
   gap: ${({ gap }) => gap || 0.5}rem;
 `;

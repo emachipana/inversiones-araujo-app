@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { COLORS } from "../../../styles";
+import { css } from "@emotion/react";
 
 export const Container = styled.div`
   width: 100%;
@@ -30,5 +31,11 @@ export const Handler = styled.div`
 
   &:hover {
     background-color: ${COLORS.persian_hover};
+  }
+`;
+
+export const TextManager = css`
+  @media screen and (max-width: 450px) {
+    font-size: 17px;
   }
 `;
