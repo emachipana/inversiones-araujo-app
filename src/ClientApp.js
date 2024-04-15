@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Client/Home";
+import Footer from "./components/Footer";
 
 function ClientApp() {
   return (
@@ -15,6 +16,7 @@ function ClientApp() {
         <Route path="nosotros" element={<h1>nostros page</h1>} />
         <Route path="carrito" element={<h1>carrito page</h1>} />
       </Routes>
+      <Footer />
     </>
   )
 }

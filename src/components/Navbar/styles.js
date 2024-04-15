@@ -31,7 +31,7 @@ export const Info = styled.section`
   height: 25px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: ${({ justify }) => justify || "flex-end"};
   padding: 0.5rem 1rem;
   gap: 1rem;
   background-color: ${COLORS.gray};
