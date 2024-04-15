@@ -7,7 +7,7 @@ export const Container = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/slider.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center 90%;
+  background-position: center bottom;
   display: flex;
   flex-direction: column;
   gap: 2rem;
