@@ -6,9 +6,9 @@ export const Categories = styled.div`
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;;
+  justify-content: ${({ justify }) => justify || "space-between"};
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: ${({ gap }) => gap || 2}rem;
   margin: 2rem 0;
 
   @media screen and (max-width: 680px) {
@@ -59,7 +59,7 @@ export const SubTitle = styled.h3`
 export const Services = styled.div`
   width: 100%;
   padding: 3rem;
-  margin: 2rem 0;
+  margin: 2rem 0 0 0;
   display: flex;
   align-items: flex-start;;
   justify-content: center;
@@ -79,4 +79,17 @@ export const Service = styled.div`
 export const Info = styled.section`
   width: 100%;
   height: 100%;
+`;
+
+export const Banner = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/slider.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 90%;
 `;

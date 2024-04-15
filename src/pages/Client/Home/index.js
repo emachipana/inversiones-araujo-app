@@ -2,12 +2,15 @@ import { useNavigate } from "react-router-dom";
 import Slider from "../../../components/Slider";
 import { COLORS, FlexColumn, Text } from "../../../styles";
 import { Title } from "../styles";
-import { Categories, Category, Description, Image, Info, Service, Services, SubTitle } from "./styles";
+import { Banner, Categories, Category, Description, Image, Info, Service, Services, SubTitle } from "./styles";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { MdSmartDisplay } from "react-icons/md";
 import { IoDocumentText } from "react-icons/io5";
+import ProductCard from "../../../components/ProductCard";
+import { useData } from "../../../context/data";
 
 function Home() {
+  const { getTrendProducts } = useData();
   const navigate = useNavigate();
 
   const elements = [
@@ -40,6 +43,8 @@ function Home() {
       textButton: "Cotizar"
     },
   ];
+
+  const trendProducts = getTrendProducts();
 
   return (
     <>
@@ -205,6 +210,30 @@ function Home() {
           </Info>
         </Service>
       </Services>
+      <Banner>
+        <Title color={COLORS.white}>EN TENDENCIA</Title>
+      </Banner>
+      <Categories 
+        justify="center"
+        gap={3}
+      >
+        {
+          trendProducts.length <= 0
+          ? 
+          <Title>No hay productos disponibles</Title>
+          :
+          trendProducts.map((product, index) => (
+            <ProductCard
+              id={product.id}
+              key={index}
+              name={product.name}
+              img={product.images[0].image_url}
+              category_id={product.category_id}
+              price={product.price}
+            />
+          ))
+        }
+      </Categories>
     </>
   )
 }
