@@ -4,20 +4,15 @@ import { COLORS } from "../../styles";
 export const Container = styled.div`
   width: 220px;
   height: 320px;
-  border: 1px solid ${COLORS.taupe};
+  border: 1px solid ${COLORS.platinium};
   border-radius: 1rem;
   cursor: pointer;
-  transition: transform .3s ease-out;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, .2);
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   padding: 0.5rem 1rem;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
 `;
 
 export const Image = styled.img`
