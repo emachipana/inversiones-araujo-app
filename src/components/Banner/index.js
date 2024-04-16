@@ -4,7 +4,7 @@ import { Title } from "../../pages/Client/styles";
 import { COLORS, Text } from "../../styles";
 import { Container, IconStyle } from "./styles";
 
-function Banner({ title, subTitle }) {
+function Banner({ title, subTitle, withoutIcon }) {
   return (
     <Container>
       <div>
@@ -15,11 +15,15 @@ function Banner({ title, subTitle }) {
           { subTitle }
         </Text>
       </div>
-      <IoArrowDownOutline
-        size={45}
-        color={COLORS.white}
-        css={IconStyle}
-      />
+      {
+        !withoutIcon
+        &&
+        <IoArrowDownOutline
+          size={45}
+          color={COLORS.white}
+          css={IconStyle}
+        />
+      }
     </Container>
   );
 }

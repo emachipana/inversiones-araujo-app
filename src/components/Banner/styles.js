@@ -3,7 +3,6 @@ import { css } from "@emotion/react";
 
 export const Container = styled.div`
   width: 100%;
-  height: 250px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/slider.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -13,7 +12,7 @@ export const Container = styled.div`
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
 `;
 
 export const IconStyle = css`
