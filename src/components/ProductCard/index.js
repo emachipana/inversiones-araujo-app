@@ -3,6 +3,7 @@ import { useData } from "../../context/data";
 import { COLORS, Text } from "../../styles";
 import Button from "../Button";
 import { Container, Description, Image, Name } from "./styles";
+import { TiShoppingCart } from "react-icons/ti";
 
 function ProductCard({ id, img, name, category_id, price }) {
   const { categories } = useData();
@@ -39,6 +40,8 @@ function ProductCard({ id, img, name, category_id, price }) {
           color="secondary"
           style={{alignSelf: "center", marginTop: "9px"}}
           fontSize={16}
+          size="full"
+          Icon={TiShoppingCart}
         >
           Agregar al carrito
         </Button>
