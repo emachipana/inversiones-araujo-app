@@ -18,14 +18,13 @@ function Item({ category, num, withIcon, isActive, redirectTo }) {
     >
       <Section>
         <Text
-          size={17}
           weight={700}
         >
           { category }
         </Text>
         <FlexRow>
           <Text
-            size={15}
+            size={14}
             color={COLORS.taupe}
           >
             ({num})
@@ -34,7 +33,7 @@ function Item({ category, num, withIcon, isActive, redirectTo }) {
             withIcon 
             &&
             <FaAngleDown
-              size={15}
+              size={14}
               color={COLORS.taupe}
             />
           }

@@ -23,19 +23,21 @@ function InputRange({ min, max }) {
       />
       <Section>
         <Button
-          fontSize={15}
+          fontSize={14}
           color="secondary"
         >
           Filtrar
         </Button>
         <FlexRow>
           <Text
+            size={15}
             weight={600}
             color={COLORS.taupe}
           >
             Precio:
           </Text>
           <Text
+            size={15}
             weight={600}
             color={COLORS.gray}
           >
