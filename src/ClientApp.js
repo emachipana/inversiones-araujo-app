@@ -4,6 +4,7 @@ import Home from "./pages/Client/Home";
 import Footer from "./components/Footer";
 import Contact from "./pages/Client/Contact";
 import Services from "./pages/Client/Services";
+import About from "./pages/Client/About";
 
 function ClientApp() {
   return (
@@ -15,7 +16,7 @@ function ClientApp() {
         <Route path="tienda/producto/:id" element={<h1>tienda page producto detail</h1>} />
         <Route path="servicios" element={<Services />} />
         <Route path="contactanos" element={<Contact />} />
-        <Route path="nosotros" element={<h1>nostros page</h1>} />
+        <Route path="nosotros" element={<About />} />
         <Route path="carrito" element={<h1>carrito page</h1>} />
       </Routes>
       <Footer />
