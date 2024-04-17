@@ -1,7 +1,7 @@
 import { FaAngleDown } from "react-icons/fa6";
-import { COLORS, FlexRow, Text } from "../../../../styles";
 import { Container, Line, Section } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { COLORS, FlexRow, Text } from "../../../styles";
 
 function Item({ category, num, withIcon, isActive, redirectTo }) {
   const navigate = useNavigate();
