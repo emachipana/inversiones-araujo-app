@@ -6,14 +6,21 @@ import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { COLORS, Text } from "../../../styles";
 import Button from "../../../components/Button";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: ""
   }
 
-  const handleSubmit = (values) => console.log(values); 
+  const handleSubmit = (values) => {
+    console.log(values);
+
+    navigate("/admin");
+  }
 
   return (
     <Container>
@@ -51,6 +58,7 @@ function Login() {
               />
               <Input 
                 id="password"
+                type="password"
                 placeholder="Ingresa tu correo"
                 Icon={RiLockPasswordFill}
                 error={errors.password}
