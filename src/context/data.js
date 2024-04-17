@@ -28,12 +28,12 @@ const DataProvider = ({ children }) => {
     fetch();
   }, []);
 
-  const getTrendProducts = () => {
+  const getTrendProducts = (num) => {
     if(!products.data) return [];
 
     const arr = products.data.slice();
     const result = [];
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < num; i++) {
       const index = Math.floor(Math.random() * arr.length);
       result.push(arr[index]);
       arr.splice(index, 1);
