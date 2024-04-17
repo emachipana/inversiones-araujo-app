@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { COLORS } from "./colors";
 
 export const Text = styled.p`
   font-size: ${({ size }) => size || 16}px;
@@ -22,4 +23,14 @@ export const FlexColumn = styled.div`
   align-items: ${({ align }) => align || "flex-start"};
   justify-content: center;
   gap: ${({ gap }) => gap || 0.5}rem;
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 70px 1fr;
+  background-color: ${COLORS.smoke};
+  position: relative;
 `;
