@@ -33,4 +33,7 @@ export const Container = styled.div`
   grid-template-rows: 70px 1fr;
   background-color: ${COLORS.smoke};
   position: relative;
+  grid-template-areas: 
+            "navbar navbar"
+            "aside main";
 `;

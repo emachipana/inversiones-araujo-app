@@ -27,6 +27,7 @@ export const Section = styled.section`
   padding: 0.3rem 0.7rem;
   outline: 1px solid  ${({ color }) => color};
   border-radius: 0.5rem;
+  background-color: ${({ backgroundColor }) => backgroundColor || "transparent"};
 `;
 
 export const Main = styled.input`

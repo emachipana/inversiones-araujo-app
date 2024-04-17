@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import Input from "../Input";
 
-function Search({ ...props }) {
+function Search({ placeholder, backgroundColor, ...props }) {
   const [param, setParam] = useState("");
 
   const handleChange = (e) => {
@@ -15,10 +15,11 @@ function Search({ ...props }) {
       style={{width: "300px"}}
     >
       <Input
+        backgroundColor={backgroundColor}
         id="search"
         Icon={IoSearchOutline}
         handleChange={handleChange}
-        placeholder="Buscar productos"
+        placeholder={placeholder || "Buscar productos"}
         value={param}
       />
     </div>
