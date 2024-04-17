@@ -5,7 +5,7 @@ import { Container, Label, Main, Section, TextError } from "./styles";
 function Input({ 
   id, disabled, label, placeholder,
   type, value, handleChange, handleBlur,
-  error, touched, Icon}) {
+  error, touched, Icon, backgroundColor}) {
 
   const [focused, setFocused] = useState(false);
 
@@ -28,6 +28,7 @@ function Input({
       { label && <Label for={id}>{ label }</Label> }
       <Section
         color={color}
+        backgroundColor={backgroundColor}
       >
         { Icon && <Icon size={25} color={color} /> }
         <Main 
