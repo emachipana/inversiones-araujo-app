@@ -4,12 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { COLORS, FlexRow, Text } from "../../styles";
 import Search from "../Search";
 import { Container, Logo, Notification, Point, Profile } from "./styles";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
 
-function AdminNavbar() {
+function AdminNavbar({ setIsOpen }) {
   const navigate = useNavigate();
 
   return (
     <Container>
+      <HiOutlineMenuAlt2
+        size={28}
+        color={COLORS.white}
+        style={{cursor: "pointer"}}
+        className="activer"
+        onClick={() => setIsOpen(true)}
+      />
       <FlexRow
         gap={3.5}
       >

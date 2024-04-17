@@ -3,7 +3,7 @@ import { COLORS } from "../../styles";
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 70px;
   background-color: ${COLORS.persian};
   display: flex;
   align-items: center;
@@ -12,7 +12,13 @@ export const Container = styled.div`
   grid-area: navbar;
 
   .handler {
-    @media screen and (max-width: 790px) {
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+  }
+
+  .activer {
+    @media screen and (min-width: 800px) {
       display: none;
     }
   }
