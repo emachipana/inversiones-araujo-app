@@ -36,4 +36,14 @@ export const Container = styled.div`
   grid-template-areas: 
             "navbar navbar"
             "aside main";
+
+  @media screen and (max-width: 800px) {
+    display: block;
+  }
+`;
+
+export const Section = styled.section`
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
 `;

@@ -1,6 +1,6 @@
 import { COLORS } from "./colors";
 import { FONT } from "./font";
-import { FlexColumn, FlexRow, Text, Container } from "./layout";
+import { FlexColumn, FlexRow, Text, Container, Section } from "./layout";
 import { RESET } from "./reset";
 
 export {
@@ -10,5 +10,6 @@ export {
   RESET,
   FlexRow,
   FlexColumn,
-  Container
+  Container,
+  Section
 }
