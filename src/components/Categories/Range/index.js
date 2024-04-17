@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Slider from 'rc-slider';
 import { Container, Section } from './styles';
-import Button from '../../../../components/Button';
 import 'rc-slider/assets/index.css';
-import { COLORS, FlexRow, Text } from '../../../../styles';
+import Button from '../../Button';
+import { COLORS, FlexRow, Text } from '../../../styles';
 
 function InputRange({ min, max }) {
   const [values, setValues] = useState([min, max]);

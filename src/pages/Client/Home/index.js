@@ -47,7 +47,7 @@ function Home() {
     },
   ];
 
-  const trendProducts = getTrendProducts();
+  const trendProducts = getTrendProducts(5);
 
   return (
     <>

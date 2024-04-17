@@ -6,6 +6,7 @@ import Contact from "./pages/Client/Contact";
 import Services from "./pages/Client/Services";
 import About from "./pages/Client/About";
 import Store from "./pages/Client/Store";
+import Product from "./pages/Client/Product";
 
 function ClientApp() {
   return (
@@ -14,7 +15,7 @@ function ClientApp() {
       <Routes>
         <Route index exact path="/" element={<Home />} />
         <Route path="tienda" element={<Store />} />
-        <Route path="tienda/producto/:id" element={<h1>tienda page producto detail</h1>} />
+        <Route path="tienda/producto/:id" element={<Product />} />
         <Route path="servicios" element={<Services />} />
         <Route path="contactanos" element={<Contact />} />
         <Route path="nosotros" element={<About />} />
