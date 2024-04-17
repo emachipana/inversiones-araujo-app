@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Container } from "./styles";
 import Login from "./pages/Admin/Login";
+import AdminNavbar from "./components/AdminNavbar";
 
 function AdminApp() {
   const { pathname } = useLocation();
@@ -10,7 +11,10 @@ function AdminApp() {
       {
         !pathname.includes("login")
         &&
-        <h1>admin navbar</h1>
+        <>
+          <aside>aside</aside>
+          <AdminNavbar />
+        </>
       }
       <Routes>
         <Route path="login" element={<Login />} />
