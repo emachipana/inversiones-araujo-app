@@ -1,11 +1,19 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { Container } from "./styles";
+import Login from "./pages/Admin/Login";
 
 function AdminApp() {
+  const { pathname } = useLocation();
+
   return (
-    <>
-      <h1>admin navbar</h1>
+    <Container>
+      {
+        !pathname.includes("login")
+        &&
+        <h1>admin navbar</h1>
+      }
       <Routes>
-        <Route path="login" element={<h1>Admin login page</h1>} />
+        <Route path="login" element={<Login />} />
         <Route index exact path="/" element={<h1>Admin home page</h1>} />
         <Route path="calendario" element={<h1>Admin calendario page</h1>} />
         <Route path="invitro" element={<h1>Admin invitro page</h1>} />
@@ -21,7 +29,7 @@ function AdminApp() {
         <Route path="mensajes" element={<h1>Admin mensajes page</h1>} />
         <Route path="perfil" element={<h1>Admin perfil page</h1>} />
       </Routes>
-    </>
+    </Container>
   );
 }
 
