@@ -8,6 +8,8 @@ const DataProvider = ({ children }) => {
   const [products, setProducts] = useState({});
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cartItems")) || []);
   const [categories, setCategories] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [vitroOrders, setVitroOrders] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -17,6 +19,10 @@ const DataProvider = ({ children }) => {
         setCategories(categories.data);
         const products = await apiFetch("products");
         setProducts(products);
+        const orders = await apiFetch("orders");
+        setOrders(orders);
+        const vitroOrders = await apiFetch("vitro_orders");
+        setVitroOrders(vitroOrders);
         setIsLoading(false);
       }catch(e) {
         console.error(e);
@@ -42,13 +48,19 @@ const DataProvider = ({ children }) => {
     return result;
   }
 
-  const addProduct = async (data) => {
+  const addProduct = (data) => {
     const newProducts = [data].concat(products.data);
     newProducts.pop();
 
     setProducts((prev) => ({...prev, data: newProducts}));
   }
 
+  const addVitroOrder = (data) => {
+    const newVitrOrders = [data].concat(vitroOrders.data);
+
+    setVitroOrders((prev) => ({...prev, data: newVitrOrders}));
+  }
+  
   return (
     <DataContext.Provider
       value={{
@@ -57,13 +69,18 @@ const DataProvider = ({ children }) => {
         cartItems,
         error,
         categories,
+        orders,
+        vitroOrders,
+        setOrders,
         setCategories,
         getTrendProducts,
         setCartItems,
         setError,
         addProduct,
         setIsLoading,
-        setProducts
+        setProducts,
+        setVitroOrders,
+        addVitroOrder
       }}
     >
       { children }

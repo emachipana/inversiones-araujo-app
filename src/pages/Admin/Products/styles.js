@@ -17,7 +17,7 @@ export const Filter = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: ${({ gap }) => gap || 1}rem;
   flex-wrap: wrap;
 `;
 
@@ -27,5 +27,5 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.8rem;
 `;
