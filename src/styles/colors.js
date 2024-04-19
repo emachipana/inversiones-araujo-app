@@ -14,5 +14,6 @@ export const COLORS = {
   persian_hover: "#007A6C",
   dim: "#636369",
   yellow: "#FFB829",
-  yellow_hover: "#F5A300"
+  yellow_hover: "#F5A300",
+  emerald: "#00CC76"
 }
