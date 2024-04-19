@@ -6,6 +6,8 @@ import AdminNavbar from "./components/AdminNavbar";
 import Aside from "./components/Aside";
 import Products from "./pages/Admin/Products";
 import Product from "./pages/Admin/Product";
+import Orders from "./pages/Admin/Orders";
+import VitroOrders from "./pages/Admin/VitroOrders";
 
 function AdminApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,11 +33,11 @@ function AdminApp() {
           <Route path="login" element={<Login />} />
           <Route index exact path="/" element={<h1>Admin home page</h1>} />
           <Route path="calendario" element={<h1>Admin calendario page</h1>} />
-          <Route path="invitro" element={<h1>Admin invitro page</h1>} />
+          <Route path="invitro" element={<VitroOrders />} />
           <Route path="invitro/:id" element={<h1>Admin invitro id page</h1>} />
           <Route path="productos" element={<Products />} />
           <Route path="productos/:id" element={<Product />} />
-          <Route path="pedidos" element={<h1>Admin pedidos page</h1>} />
+          <Route path="pedidos" element={<Orders />} />
           <Route path="pedidos/:id" element={<h1>Admin pedidos id page</h1>} />
           <Route path="facturas" element={<h1>Admin facturas page</h1>} />
           <Route path="facturas/:id" element={<h1>Admin facturas id page</h1>} />
