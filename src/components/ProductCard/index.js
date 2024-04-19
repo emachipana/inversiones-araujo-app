@@ -5,15 +5,21 @@ import Button from "../Button";
 import { Container, Description, Image, Name } from "./styles";
 import { TiShoppingCart } from "react-icons/ti";
 
-function ProductCard({ id, img, name, category_id, price }) {
+function ProductCard({ id, img, name, category_id, price, isInAdmin }) {
   const { categories } = useData();
   const navigate = useNavigate();
 
   const category = categories.find((category) => category.id === category_id);
 
+  const handleClick = () => {
+    if(isInAdmin) return navigate(`/admin/productos/${id}`);
+
+    navigate(`/tienda/producto/${id}`);
+  }
+
   return (
     <Container
-      onClick={() => navigate(`/tienda/producto/${id}`)}
+      onClick={handleClick}
     >
       <Image 
         alt={`${name}-image`}
