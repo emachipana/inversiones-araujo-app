@@ -16,11 +16,9 @@ import { useNavigate } from "react-router-dom";
 
 function Products() {
   const [ isOpen, setIsOpen ] = useState(false);
-  const { products, isLoading, setIsLoading, setError, error, addProduct } = useData();
+  const { products, isLoading, setIsLoading, setError, addProduct } = useData();
 
   const navigate = useNavigate();
-
-  console.log(error);
 
   const initialValues = {
     name: "",

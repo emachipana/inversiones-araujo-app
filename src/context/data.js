@@ -62,7 +62,8 @@ const DataProvider = ({ children }) => {
         setCartItems,
         setError,
         addProduct,
-        setIsLoading
+        setIsLoading,
+        setProducts
       }}
     >
       { children }
