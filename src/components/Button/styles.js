@@ -4,7 +4,7 @@ import { COLORS, FONT } from "../../styles";
 export const Container = styled.button`
   border: none;
   font-family: ${FONT.primary};
-  color: ${COLORS.white};
+  color: ${({ color }) => color.background === "white" ? COLORS.gray : COLORS.white};
   padding: 0.4rem 0.8rem;
   background-color: ${({ color }) => color.background};
   font-size: ${({ fontSize }) => fontSize || 18}px;
@@ -20,6 +20,7 @@ export const Container = styled.button`
 
   &:hover {
     background-color: ${({ color }) => color.hover};
+    color: ${COLORS.white};
   }
 
   &:disabled {

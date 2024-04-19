@@ -18,6 +18,10 @@ function Button({ Icon, color, fontSize, children, ...props }) {
     warning: {
       background: COLORS.yellow,
       hover: COLORS.yellow_hover
+    },
+    white: {
+      background: "white",
+      hover: COLORS.persian
     }
   }
 
@@ -27,7 +31,7 @@ function Button({ Icon, color, fontSize, children, ...props }) {
       color={colorList[color || "primary"]}
       fontSize={fontSize}
     >
-      { Icon && <Icon size={(fontSize || 18) + 2}/> }
+      { Icon && <Icon size={(fontSize || 18) + 4}/> }
       { children }
     </Container>
   );

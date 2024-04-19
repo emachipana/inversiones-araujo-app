@@ -13,6 +13,7 @@ export const Container = styled.div`
   align-content: center;
   justify-content: center;
   padding: 0.5rem 1rem;
+  background-color: white;
 `;
 
 export const Image = styled.img`

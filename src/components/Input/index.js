@@ -25,7 +25,7 @@ function Input({
 
   return (
     <Container>
-      { label && <Label for={id}>{ label }</Label> }
+      { label && <Label htmlFor={id}>{ label }</Label> }
       <Section
         color={color}
         backgroundColor={backgroundColor}
