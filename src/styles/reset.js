@@ -31,7 +31,7 @@ export const RESET = css`
   // styling scrollbar
 
   ::-webkit-scrollbar {
-    width: 7px;
+    width: 5px;
   }
 
   ::-webkit-scrollbar-track {
@@ -40,5 +40,6 @@ export const RESET = css`
 
   ::-webkit-scrollbar-thumb {
     background-color: ${COLORS.dim};
+    border-radius: 6px;
   }
 `;

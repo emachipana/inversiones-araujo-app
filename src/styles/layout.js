@@ -45,5 +45,10 @@ export const Container = styled.div`
 export const Section = styled.section`
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2rem;
 `;
