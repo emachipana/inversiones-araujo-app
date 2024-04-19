@@ -13,7 +13,7 @@ import { FaTrashAlt } from "react-icons/fa";
 function Product() {
   const [product, setProduct] = useState(undefined);
   const [category, setCategory] = useState({});
-  const { isLoading, setIsLoading, categories, setProducts, setError } = useData();
+  const { isLoading, setIsLoading, categories, setProducts } = useData();
   const { id } = useParams();
   const navigate = useNavigate();
 

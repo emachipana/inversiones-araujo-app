@@ -12,6 +12,7 @@ export const Container = styled.div`
   grid-area: navbar;
   position: sticky;
   top: 0;
+  z-index: 30;
 
   .handler {
     @media screen and (max-width: 800px) {
