@@ -32,7 +32,7 @@ function AdminNavbar({ setIsOpen }) {
           <Text
             color={COLORS.white}
             weight={800}
-            size={19}
+            size={18}
           >
             Inversiones Araujo
           </Text>

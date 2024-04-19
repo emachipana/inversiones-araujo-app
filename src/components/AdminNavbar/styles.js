@@ -10,6 +10,8 @@ export const Container = styled.div`
   justify-content: space-between;
   padding: 0.5rem 2rem;
   grid-area: navbar;
+  position: sticky;
+  top: 0;
 
   .handler {
     @media screen and (max-width: 800px) {
@@ -32,6 +34,10 @@ export const Logo = styled.img`
   height: 35px;
   object-fit: cover;
   margin-top: -5px;
+
+  @media screen and (max-width: 440px) {
+    height: 20px;
+  }
 `;
 
 export const Point = styled.div`
