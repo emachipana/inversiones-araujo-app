@@ -12,8 +12,8 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: ${({ size }) => size || 16}px;
-  font-weight: 500;
+  font-size: ${({ size }) => size || 18}px;
+  font-weight: 700;
   text-align: start;
 `;
 
@@ -47,8 +47,8 @@ export const Main = styled.input`
 `;
 
 export const TextError = styled.p`
-  font-size: 15px;
-  padding: 2px 6px;
+  font-size: 14px;
+  padding: 1px 4px;
   font-weight: 600;
   color: ${COLORS.white};
   border-radius: 4px;
