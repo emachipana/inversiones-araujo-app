@@ -42,6 +42,13 @@ const DataProvider = ({ children }) => {
     return result;
   }
 
+  const addProduct = async (data) => {
+    const newProducts = [data].concat(products.data);
+    newProducts.pop();
+
+    setProducts((prev) => ({...prev, data: newProducts}));
+  }
+
   return (
     <DataContext.Provider
       value={{
@@ -53,7 +60,9 @@ const DataProvider = ({ children }) => {
         setCategories,
         getTrendProducts,
         setCartItems,
-        setError
+        setError,
+        addProduct,
+        setIsLoading
       }}
     >
       { children }
