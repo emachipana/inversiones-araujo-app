@@ -1,7 +1,7 @@
 import { COLORS } from "../../styles";
 import { Container } from "./styles";
 
-function Button({ Icon, color, fontSize, children, ...props }) {
+function Button({ Icon, color, fontSize, iconSize, children, ...props }) {
   const colorList = {
     primary: {
       background: COLORS.persian,
@@ -31,7 +31,7 @@ function Button({ Icon, color, fontSize, children, ...props }) {
       color={colorList[color || "primary"]}
       fontSize={fontSize}
     >
-      { Icon && <Icon size={(fontSize || 18) + 4}/> }
+      { Icon && <Icon size={(iconSize || 22)}/> }
       { children }
     </Container>
   );

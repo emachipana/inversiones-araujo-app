@@ -5,6 +5,7 @@ import Login from "./pages/Admin/Login";
 import AdminNavbar from "./components/AdminNavbar";
 import Aside from "./components/Aside";
 import Products from "./pages/Admin/Products";
+import Product from "./pages/Admin/Product";
 
 function AdminApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +34,7 @@ function AdminApp() {
           <Route path="invitro" element={<h1>Admin invitro page</h1>} />
           <Route path="invitro/:id" element={<h1>Admin invitro id page</h1>} />
           <Route path="productos" element={<Products />} />
-          <Route path="productos/:id" element={<h1>Admin productos id page</h1>} />
+          <Route path="productos/:id" element={<Product />} />
           <Route path="pedidos" element={<h1>Admin pedidos page</h1>} />
           <Route path="pedidos/:id" element={<h1>Admin pedidos id page</h1>} />
           <Route path="facturas" element={<h1>Admin facturas page</h1>} />

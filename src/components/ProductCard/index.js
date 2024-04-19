@@ -48,6 +48,7 @@ function ProductCard({ id, img, name, category_id, price, isInAdmin }) {
           fontSize={16}
           size="full"
           Icon={TiShoppingCart}
+          iconSize={18}
         >
           Agregar al carrito
         </Button>
