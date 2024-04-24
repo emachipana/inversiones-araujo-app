@@ -13,24 +13,12 @@ import Input from "../../../components/Input";
 import { COLORS, FlexRow } from "../../../styles";
 import apiFetch from "../../../services/apiFetch";
 
-const baseInfo = {
-  document: "",
-  first_name: "",
-  last_name: "",
-  error: {
-    document: null
-  },
-  blur: {
-    document: false
-  }
-}
-
 function VitroOrders() {
-  const [info, setInfo] = useState(baseInfo);
   const [ isOpen, setIsOpen ] = useState(false);
   const { vitroOrders, isLoading, setIsLoading, setError, addVitroOrder } = useData();
 
   const initialValues = {
+    document: "",
     first_name: "",
     last_name: "",
     destination: "",
@@ -45,9 +33,9 @@ function VitroOrders() {
     try {
       const body = {
         ...values,
-        first_name: info.first_name,
-        last_name: info.last_name,
-        document: info.document,
+        first_name: values.first_name,
+        last_name: values.last_name,
+        document: values.document,
         variety_id: 2,
         document_type: "dni",
         init_date: "2024-04-10 17:18:43",
@@ -59,7 +47,6 @@ function VitroOrders() {
       setIsLoading(false);
       setIsOpen(false);
       setError(null);
-      setInfo(baseInfo);
     }catch(e) {
       setError("Hubo un error, vuelve a intentarlo");
 
@@ -67,58 +54,25 @@ function VitroOrders() {
     }
   }
 
-  const handleChangeInfo = async (e) => {
-    if(e.target.value.length > 8) return;
+  const onDocumentChange = async (e, setFieldValue) => {
+    const value = e.target.value;
+    setFieldValue("document", value);
 
-    setInfo((info) => ({
-      ...info,
-      document: e.target.value,
-      error: {
-        document: e.target.value.trim().length > 0 ? null : info.error.document
+    if(value.length === 8 && !isNaN(value * 1)) {
+      try {
+        const data = await getPersonData(value);
+
+        if(!data.success) throw new Error("Sin datos encontrados");
+
+        setFieldValue("first_name", data.nombres);
+        setFieldValue("last_name", `${data.apellidoPaterno} ${data.apellidoMaterno}`);
+      }catch(e) {
+        console.error(e);
+
+        setFieldValue("first_name", "");
+        setFieldValue("last_name", "");
       }
-    }));
-
-    if((e.target.value * 1).toString() === "NaN") setInfo((info) => ({
-      ...info,
-      error: {
-        document: "Solo se aceptan números"
-      }
-    }));
-
-    if(e.target.value.length === 8) {
-      const data = await getPersonData(e.target.value);
-
-      if(data.success) {
-        setInfo((info) => ({
-          ...info,
-          first_name: data.nombres,
-          last_name: `${data.apellidoPaterno} ${data.apellidoMaterno}`
-        }));
-      }else {
-        setInfo((info) => ({
-          ...info,
-          first_name: "",
-          last_name: ""
-        }));
-      }
-
     }
-  }
-
-  const handleBlurInfo = (e) => {
-    setInfo((info) => ({
-      ...info,
-      blur: {
-        document: true
-      }
-    }));
-
-    if(!e.target.value) setInfo((info) => ({
-      ...info,
-      error: {
-        document: "Este campo es obligatorio"
-      }
-    }));
   }
 
   return (
@@ -187,7 +141,7 @@ function VitroOrders() {
       >
         <Formik
           initialValues={initialValues}
-          validate={(values) => validate(values, info)}
+          validate={validate}
           onSubmit={handleSubmit}
         >
           {({
@@ -197,7 +151,8 @@ function VitroOrders() {
             isValid,
             handleChange,
             handleBlur,
-            handleSubmit
+            handleSubmit,
+            setFieldValue
           }) => (
             <Form onSubmit={handleSubmit}>
               <Title
@@ -211,33 +166,31 @@ function VitroOrders() {
                 id="document"
                 label="DNI"
                 placeholder="Ingresa el dni"
-                value={info.document}
-                handleChange={handleChangeInfo}
-                handleBlur={handleBlurInfo}
-                error={info.error.document}
-                touched={info.blur.document}
+                value={values.document}
+                handleChange={(e) => onDocumentChange(e, setFieldValue, errors.document)}
+                handleBlur={handleBlur}
+                error={errors.document}
+                touched={touched.document}
               />
               <Input 
                 id="first_name"
                 label="Nombres"
                 placeholder="Ingresa el nombre"
-                value={info.first_name || values.first_name}
+                value={values.first_name}
                 handleChange={handleChange}
                 handleBlur={handleBlur}
                 error={errors.first_name}
                 touched={touched.first_name}
-                disabled={!!info.first_name}
               />
               <Input 
                 id="last_name"
                 label="Apellidos"
                 placeholder="Ingresa los apellidos"
-                value={info.last_name || values.last_name}
+                value={values.last_name}
                 handleChange={handleChange}
                 handleBlur={handleBlur}
                 error={errors.last_name}
                 touched={touched.last_name}
-                disabled={!!info.last_name}
               />
               <FlexRow gap={1}>
                 <Input
