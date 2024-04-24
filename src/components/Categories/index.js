@@ -1,7 +1,6 @@
 import { Title } from "../../pages/Client/styles";
 import { Line } from "../Navbar/Menu/styles";
 import Item from "./Item";
-import InputRange from "./Range";
 import { Container, Wrapper } from "./styles";
 
 function Categories({ category }) {
@@ -55,7 +54,6 @@ function Categories({ category }) {
           style={{position: "relative"}}
           />
       </Wrapper>
-      <InputRange min={35} max={950}/>
     </Container>
   )
 }
