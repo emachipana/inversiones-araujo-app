@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { IoClose, IoPersonSharp } from "react-icons/io5";
-import { AsideList, BackDrop, Close, IconStyle, ListItems, NavItem } from "./styles";
+import { AsideList, BackDrop, Close, IconStyle, ListItems, NavStyle } from "./styles";
 import { COLORS, Text } from "../../styles";
 import { Item, Line } from "./Menu/styles";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -37,7 +37,7 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
         <Text
           weight={700}
           size={18}
-          css={NavItem}
+          css={NavStyle}
           onClick={() => redirect("/")}
           color={pathname === "/" ? COLORS.persian : ""}
         >
@@ -46,7 +46,7 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
         <Text
           weight={700}
           size={18}
-          css={NavItem}
+          css={NavStyle}
           onClick={() => redirect("/tienda")}
           color={pathname === "/tienda" ? COLORS.persian : ""}
         >
@@ -97,7 +97,7 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
           <Text
             weight={700}
             size={18}
-            css={NavItem}
+            css={NavStyle}
           >
             Agroinvitro
           </Text>
@@ -105,7 +105,7 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
         <Text
           weight={700}
           size={18}
-          css={NavItem}
+          css={NavStyle}
           onClick={() => redirect("/servicios")}
           color={pathname === "/servicios" ? COLORS.persian : ""}
         >
@@ -114,7 +114,7 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
         <Text
           weight={700}
           size={18}
-          css={NavItem}
+          css={NavStyle}
           onClick={() => redirect("/contactanos")}
           color={pathname === "/contactanos" ? COLORS.persian : ""}
         >
@@ -123,7 +123,7 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
         <Text
           weight={700}
           size={18}
-          css={NavItem}
+          css={NavStyle}
           onClick={() => redirect("/nosotros")}
           color={pathname === "/nosotros" ? COLORS.persian : ""}
         >
