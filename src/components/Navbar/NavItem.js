@@ -2,20 +2,21 @@
 import { FaAngleDown } from "react-icons/fa6";
 import { COLORS, FlexRow, Text } from "../../styles"
 import { useLocation } from "react-router-dom"; 
+import { NavStyle } from "./styles";
 
-function TextItem({ dropDown, setDropDown, weight, css, name }) {
+function NavItem({ dropDown, redirect }) {
   const { pathname } = useLocation();
 
   return (
     <FlexRow
-      onClick={() => setDropDown(!dropDown)}
+      onClick={() => redirect("/tienda")}
       style={{color: (dropDown || pathname === "/tienda") ? COLORS.persian : ""}}
-      css={css}
+      css={NavStyle}
     >
       <Text
-        weight={weight}
+        weight={700}
       >
-        { name }
+        Tienda
       </Text>
       <FaAngleDown
         size={15}
@@ -24,4 +25,4 @@ function TextItem({ dropDown, setDropDown, weight, css, name }) {
   );
 }
 
-export default TextItem
+export default NavItem

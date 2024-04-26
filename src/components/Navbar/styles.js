@@ -130,7 +130,7 @@ export const CartItems = styled.div`
   justify-content: space-between;
 `;
 
-export const NavItem = css`
+export const NavStyle = css`
   cursor: pointer;
   transition: .3s ease;
 
