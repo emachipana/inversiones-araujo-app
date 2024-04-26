@@ -1,17 +1,21 @@
-import { Container } from "./styles";
+import { Container, Section } from "./styles";
 
-function DropDown({ isOpen, children, Button, buttonData, ...props }) {
+function DropDown({ isOpen, setIsOpen, children, Button, buttonData, ...props }) {
   return (
-    <div style={{position: "relative"}} {...props}>
+    <Container
+      {...props}
+      onMouseOver={() => setIsOpen(true)}
+      onMouseOut={() => setIsOpen(false)}
+    >
       <Button {...buttonData} />
       {
         isOpen
         &&
-        <Container>
+        <Section>
           {children}
-        </Container>
+        </Section>
       }
-    </div>
+    </Container>
   )
 }
 

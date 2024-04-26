@@ -3,11 +3,9 @@ import { FaShoppingCart } from "react-icons/fa";
 import { COLORS, Text } from "../../styles";
 import { Cart, Counter, IconStyle } from "./styles";
 
-function CartButton({ dropDown, setDropDown, counter }) {
+function CartButton({ dropDown, counter }) {
   return (
-    <Cart
-      onClick={() => setDropDown(!dropDown)}
-    >
+    <Cart>
       <FaShoppingCart
         css={IconStyle}
         color={dropDown ? COLORS.persian : ""}

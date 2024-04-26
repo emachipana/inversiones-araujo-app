@@ -5,7 +5,7 @@ import { MdOutlineMailOutline, MdOutlinePhone, MdAlternateEmail } from "react-ic
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaBasketShopping } from "react-icons/fa6";
-import { CartItems, Container, Form, IconStyle, Info, Logo, Main, NavItem, Navigation } from "./styles";
+import { CartItems, Container, Form, IconStyle, Info, Logo, Main, NavStyle, Navigation } from "./styles";
 import { COLORS, FlexColumn, FlexRow, Text } from "../../styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import Input from "../Input";
@@ -16,7 +16,7 @@ import validate from "./validate";
 import Button from "../Button";
 import DropDown from "../DropDown";
 import CartButton from "./CartButton";
-import TextItem from "./NavItem";
+import NavItem from "./NavItem";
 import Menu from "./Menu";
 import Search from "../Search";
 import Aside from "./Aside";
@@ -123,7 +123,11 @@ function Navbar() {
           <DropDown
             isOpen={dropDown}
             Button={CartButton}
-            buttonData={{counter: cartItems.length, dropDown, setDropDown}}
+            buttonData={{
+              counter: cartItems.length,
+              dropDown
+            }}
+            setIsOpen={setDropDown}
           >
             {
               cartItems.length === 0
@@ -155,7 +159,7 @@ function Navbar() {
         <Text
           className="handler"
           weight={700}
-          css={NavItem}
+          css={NavStyle}
           color={pathname === "/" ? COLORS.persian : ""}
           onClick={() => redirect("/")}
         >
@@ -163,11 +167,15 @@ function Navbar() {
         </Text>
         <DropDown
           className="handler"
-          Button={TextItem}
-          buttonData={{dropDown: menuDrop, setDropDown: setMenuDrop, weight: 700, css: NavItem, name: "Tienda"}}
+          Button={NavItem}
+          buttonData={{
+            dropDown: menuDrop,
+            redirect,
+          }}
           isOpen={menuDrop}
+          setIsOpen={setMenuDrop}
         >
-          <Menu 
+          <Menu
             redirect={redirect}
           />
         </DropDown>
@@ -178,7 +186,7 @@ function Navbar() {
         >
           <Text
             weight={700}
-            css={NavItem}
+            css={NavStyle}
 
             className="handler"
           >
@@ -187,7 +195,7 @@ function Navbar() {
         </a>
         <Text
           weight={700}
-          css={NavItem}
+          css={NavStyle}
           className="handler"
           onClick={() => redirect("/servicios")}
           color={pathname === "/servicios" ? COLORS.persian : ""}
@@ -196,7 +204,7 @@ function Navbar() {
         </Text>
         <Text
           weight={700}
-          css={NavItem}
+          css={NavStyle}
           className="handler"
           onClick={() => redirect("/contactanos")}
           color={pathname === "/contactanos" ? COLORS.persian : ""}
@@ -205,7 +213,7 @@ function Navbar() {
         </Text>
         <Text
           weight={700}
-          css={NavItem}
+          css={NavStyle}
           className="handler"
           onClick={() => redirect("/nosotros")}
           color={pathname === "/nosotros" ? COLORS.persian : ""}
