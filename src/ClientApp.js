@@ -7,10 +7,11 @@ import Services from "./pages/Client/Services";
 import About from "./pages/Client/About";
 import Store from "./pages/Client/Store";
 import Product from "./pages/Client/Product";
+import { ClientProvider } from "./context/client";
 
 function ClientApp() {
   return (
-    <>
+    <ClientProvider>
       <Navbar />
       <Routes>
         <Route index exact path="/" element={<Home />} />
@@ -22,7 +23,7 @@ function ClientApp() {
         <Route path="carrito" element={<h1>carrito page</h1>} />
       </Routes>
       <Footer />
-    </>
+    </ ClientProvider>
   )
 }
 
