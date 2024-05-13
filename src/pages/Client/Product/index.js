@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Categories from "../../../components/Categories";
 import { Container } from "../Store/styles";
-import { useData } from "../../../context/data";
 import { Content, Description, Image, ImageContainer, Info, Products, Section } from "./styles";
 import { Title } from "../styles";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
@@ -11,11 +10,12 @@ import Button from "../../../components/Button";
 import { TiShoppingCart } from "react-icons/ti";
 import Control from "../../../components/Control";
 import ProductCard from "../../../components/ProductCard";
+import { useClient } from "../../../context/client";
 
 function Product() {
   const [number, setNumber] = useState(1);
   const [relProducts, setRelProducts] = useState([]);
-  const { products, categories, isLoading, getTrendProducts } = useData();
+  const { products, categories, isLoading } = useClient();
   const { id } = useParams();
 
   const product = 
@@ -26,10 +26,10 @@ function Product() {
   const category = !product ? "todo" : categories.find((category) => category.id === product.category_id);
 
   useEffect(() => {
-    const products = getTrendProducts(4);
+    const products = [];
 
     setRelProducts(products)
-  }, [getTrendProducts]); 
+  }, []); 
 
 
   return (
@@ -52,7 +52,7 @@ function Product() {
                     />
                     <Image 
                       alt="product-image"
-                      src={product.images[0].image_url}
+                      src={product.images[0]?.image_url}
                     />
                     <FaChevronRight 
                       className="handle"
@@ -132,7 +132,7 @@ function Product() {
                           key={index}
                           category_id={product.category_id}
                           id={product.id}
-                          img={product.images[0].image_url}
+                          img={product.images}
                           name={product.name}
                           price={product.price}
                         />

@@ -195,12 +195,8 @@ function Home() {
           :
           trendProducts.map((product, index) => (
             <ProductCard
-              id={product.id}
+              product={product}
               key={index}
-              name={product.name}
-              img={product.images}
-              category_id={product.category_id}
-              price={product.price}
             />
           ))
         }

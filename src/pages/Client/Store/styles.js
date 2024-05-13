@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   @media screen and (max-width: 900px) {
     grid-template-columns: 100%;
-    padding: 1rem;
+    padding: 1.5rem 0.7rem;
   }
 `;
 
@@ -24,5 +24,6 @@ export const Products = styled.div`
 
   @media screen and (max-width: 1080px) {
     justify-content: center;
+    gap: 1.5rem;
   }
 `;
