@@ -4,8 +4,7 @@ import { IoPersonSharp } from "react-icons/io5";
 import { MdOutlineMailOutline, MdOutlinePhone, MdAlternateEmail } from "react-icons/md";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { FaBasketShopping } from "react-icons/fa6";
-import { CartItems, Container, Form, IconStyle, Info, Logo, Main, NavStyle, Navigation } from "./styles";
+import { Container, Form, IconStyle, Info, Logo, Main, NavStyle, Navigation } from "./styles";
 import { COLORS, FlexColumn, FlexRow, Text } from "../../styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import Input from "../Input";
@@ -20,6 +19,8 @@ import NavItem from "./NavItem";
 import Menu from "./Menu";
 import Search from "../Search";
 import Aside from "./Aside";
+import Cart from "../Cart";
+import { useClient } from "../../context/client";
 
 function Navbar() {
   const [userModal, setUserModal] = useState(false);
@@ -29,7 +30,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const cartItems = [];
+  const { cartItems } = useClient();
 
   const handleSubmit = (values) => console.log(values); 
 
@@ -40,24 +41,9 @@ function Navbar() {
   }
 
   const handleToggle = () => {
-    if(dropDown) setDropDown(false);
-    if(menuDrop) setMenuDrop(false);
     if(isOpen) setIsOpen(false);
 
     setUserModal(!userModal);
-  }
-
-  const handleOpen = () => {
-    if(dropDown) setDropDown(false);
-
-    setIsOpen(!isOpen);
-  }
-
-  const redirect = (to) => {
-    if(dropDown) setDropDown(false);
-    if(menuDrop) setMenuDrop(false);
-
-    navigate(to);
   }
 
   return (
@@ -94,11 +80,11 @@ function Navbar() {
           color={COLORS.dim}
           style={{cursor: "pointer"}}
           className="activer"
-          onClick={handleOpen}
+          onClick={() => setIsOpen(!isOpen)}
         />
         <Logo
           src="/img/logo.png"
-          onClick={() => redirect("/")}
+          onClick={() => navigate("/")}
         />
         <Search 
           className="handler"
@@ -129,29 +115,7 @@ function Navbar() {
             }}
             setIsOpen={setDropDown}
           >
-            {
-              cartItems.length === 0
-              ?
-              <CartItems>
-                <FaBasketShopping 
-                  size={100}
-                  color={COLORS.taupe}
-                />
-                <Text
-                  size={19}
-                  weight={700}
-                  color={COLORS.dim}
-                >
-                  El carrito esta vacío
-                </Text>
-                <Button
-                  onClick={() => redirect("/tienda")}
-                >
-                  Ir a la tienda
-                </Button>
-              </CartItems>
-              : ""
-            }
+            <Cart />
           </DropDown>
         </FlexRow>
       </Main>
@@ -161,22 +125,18 @@ function Navbar() {
           weight={700}
           css={NavStyle}
           color={pathname === "/" ? COLORS.persian : ""}
-          onClick={() => redirect("/")}
+          onClick={() => navigate("/")}
         >
           Inicio
         </Text>
         <DropDown
           className="handler"
           Button={NavItem}
-          buttonData={{
-            dropDown: menuDrop,
-            redirect,
-          }}
           isOpen={menuDrop}
           setIsOpen={setMenuDrop}
         >
           <Menu
-            redirect={redirect}
+            navigate={navigate}
           />
         </DropDown>
         <a
@@ -197,7 +157,7 @@ function Navbar() {
           weight={700}
           css={NavStyle}
           className="handler"
-          onClick={() => redirect("/servicios")}
+          onClick={() => navigate("/servicios")}
           color={pathname === "/servicios" ? COLORS.persian : ""}
         >
           Servicios
@@ -206,7 +166,7 @@ function Navbar() {
           weight={700}
           css={NavStyle}
           className="handler"
-          onClick={() => redirect("/contactanos")}
+          onClick={() => navigate("/contactanos")}
           color={pathname === "/contactanos" ? COLORS.persian : ""}
         >
           Contáctanos
@@ -215,7 +175,7 @@ function Navbar() {
           weight={700}
           css={NavStyle}
           className="handler"
-          onClick={() => redirect("/nosotros")}
+          onClick={() => navigate("/nosotros")}
           color={pathname === "/nosotros" ? COLORS.persian : ""}
         >
           Sobre nosotros
@@ -340,7 +300,7 @@ function Navbar() {
       <Aside
         handleToggle={handleToggle}
         isOpen={isOpen}
-        onClick={handleOpen}
+        onClick={() => setIsOpen(!isOpen)}
         className="activer"
       />
     </Container>

@@ -31,6 +31,27 @@ const ClientProvider = ({ children }) => {
 
     fetch();
   }, []);
+
+  const addCartProduct = (product, quantity) => {
+    const price = product.discount ? product.discount.price : product.price;
+    const saveData = {
+      id: product.id,
+      name: product.name,
+      images: product.images,
+      quantity,
+      price,
+      subTotal: quantity * price
+    }
+    const newItems = [...cartItems, saveData];
+    setCartItems(newItems);
+    localStorage.setItem("cart", JSON.stringify(newItems));
+  }
+
+  const emptyCart = () => {
+    const newItems = [];
+    setCartItems(newItems);
+    localStorage.removeItem("cart");
+  }
   
   return (
     <ClientContext.Provider
@@ -46,7 +67,9 @@ const ClientProvider = ({ children }) => {
         setCartItems,
         setError,
         setIsLoading,
-        setProducts
+        setProducts,
+        addCartProduct,
+        emptyCart
       }}
     >
       { children }

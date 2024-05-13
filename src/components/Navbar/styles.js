@@ -120,16 +120,6 @@ export const Form = styled.form`
   gap: 1.5rem;
 `;
 
-export const CartItems = styled.div`
-  width: 250px;
-  height: 380px;
-  padding: 2.5rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 export const NavStyle = css`
   cursor: pointer;
   transition: .3s ease;
