@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "../../../components/Button";
 import Pagination from "../../../components/Pagination";
 import ProductCard from "../../../components/ProductCard";
-import { useData } from "../../../context/data";
 import { Title } from "../styles";
 import { Filter, Form, Section } from "./styles";
 import { MdAdd } from "react-icons/md";
@@ -16,7 +15,12 @@ import { useNavigate } from "react-router-dom";
 
 function Products() {
   const [ isOpen, setIsOpen ] = useState(false);
-  const { products, isLoading, setIsLoading, setError, addProduct } = useData();
+  // const { products, isLoading, setIsLoading, setError, addProduct } = useData();
+  const products = [];
+  const isLoading = false;
+  const setIsLoading = () => {};
+  const setError = () => {};
+  const addProduct = () => {};
 
   const navigate = useNavigate();
 
