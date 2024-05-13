@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import { COLORS } from "../../styles";
 
 export const CartItems = styled.div`
   width: 250px;
@@ -20,7 +21,7 @@ export const Products = styled.div`
   gap: 0.5rem;
   overflow: auto;
   padding: 0 0.8rem 0 0;
-  box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: ${({ items }) => items.length >= 3 ? "inset 0 -12px 10px -12px rgba(0, 0, 0, 0.5)" : "none"};
 `;
 
 export const Section = styled.div`
@@ -54,6 +55,8 @@ export const Product = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 0.5rem;
+  position: relative;
+  border-bottom: 1px solid ${COLORS.platinium};
 `;
 
 export const Img = styled.img`

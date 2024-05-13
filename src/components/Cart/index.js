@@ -36,38 +36,32 @@ function Cart() {
         </>
         :
         <>
-          <Products>
+          <Products items={cartItems}>
             {
               cartItems.map((item, index) => (
-                <div 
-                  style={{width: "100%", position: "relative"}}
-                  key={index}
-                >
-                  <Product>
-                    <Img
-                      alt={item.name}
-                      src={item.images[0] ? item.images[0]?.image_url : "/img/default_product.png"}
-                    />
-                    <ProductSection
-                      gap={0.2}
+                <Product key={index}>
+                  <Img
+                    alt={item.name}
+                    src={item.images[0] ? item.images[0]?.image_url : "/img/default_product.png"}
+                  />
+                  <ProductSection
+                    gap={0.2}
+                  >
+                    <Text
+                      style={{maxWidth: "118px", overflow: "hidden", whiteSpace: "nowrap"}}
+                      align="start"
+                      weight={700}
                     >
-                      <Text
-                        style={{maxWidth: "118px", overflow: "hidden", whiteSpace: "nowrap"}}
-                        align="start"
-                        weight={700}
-                      >
-                        {item.name}
-                      </Text>
-                      <Text
-                        color={COLORS.taupe}
-                        weight={600}
-                      >
-                        {item.quantity} X S/.{item.price}
-                      </Text>
-                    </ProductSection>
-                  </Product>
-                  <hr />
-                </div>
+                      {item.name}
+                    </Text>
+                    <Text
+                      color={COLORS.taupe}
+                      weight={600}
+                    >
+                      {item.quantity} X S/.{item.price}
+                    </Text>
+                  </ProductSection>
+                </Product>
               ))
             }
           </Products>
