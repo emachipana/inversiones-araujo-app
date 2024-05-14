@@ -1,4 +1,5 @@
 import { useClient } from "../../../context/client";
+import { capitalize } from "../../../helpers/capitalize";
 import { Container, Item, Line } from "./styles";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -24,7 +25,7 @@ function Menu() {
             isActive={query === category.name}
             onClick={() => navigate(`/tienda?category=${category.name}`)}
           >
-            {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+            {capitalize(category.name)}
             <Line width={(category.name.length + 1) * 2} />
           </Item>
         ))
