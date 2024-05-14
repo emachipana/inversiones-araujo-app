@@ -1,5 +1,5 @@
 import { FaAngleDown } from "react-icons/fa6";
-import { Container, Line, Section, FlexColumn } from "./styles";
+import { Container, Section, FlexColumn } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { COLORS, FlexRow, Text } from "../../../styles";
 import { capitalize } from "../../../helpers/capitalize";
@@ -8,7 +8,6 @@ import { FaCaretRight } from "react-icons/fa";
 function Item({ category, num, withIcon, isActive, subCategories = [], isOpen, onClick }) {
   const navigate = useNavigate();
   const height = isOpen ? 55 + (subCategories.length * 28) + ((subCategories.length - 1) * 12) : 30;
-  console.log(height);
 
   const handleClick = () => {
     window.scrollTo(0, 0);
