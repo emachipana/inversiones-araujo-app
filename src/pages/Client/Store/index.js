@@ -23,12 +23,18 @@ function Store() {
 
   useEffect(() => {
     const fetch = async () => {
-      if(category === "todo") return setProducts(productBackup);
-      setIsLoading(true);
-      const found = categories.find(item => item.name === category);
-      const products = await apiFetch(`products?category_id[eq]=${found?.id}`);
-      setProducts(products);
-      setIsLoading(false);
+      try {
+        if(category === "todo") return setProducts(productBackup);
+        setIsLoading(true);
+        const found = categories.find(item => item.name === category);
+        const products = await apiFetch(`products?category_id[eq]=${found?.id}`);
+        setProducts(products);
+        setIsLoading(false);
+      }catch(e) {
+        setIsLoading(false);
+        
+        console.error(e);
+      }
     }
 
     fetch();
