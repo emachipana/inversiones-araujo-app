@@ -16,7 +16,8 @@ function ClientApp() {
       <Routes>
         <Route index exact path="/" element={<Home />} />
         <Route path="tienda" element={<Store />} />
-        <Route path="tienda/producto/:id" element={<Product />} />
+        <Route path="tienda/:category" element={<Store />} />
+        <Route path="tienda/:category/:id" element={<Product />} />
         <Route path="servicios" element={<Services />} />
         <Route path="contactanos" element={<Contact />} />
         <Route path="nosotros" element={<About />} />

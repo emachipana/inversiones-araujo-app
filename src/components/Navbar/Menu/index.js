@@ -6,27 +6,27 @@ import { useLocation, useNavigate } from "react-router-dom";
 function Menu() {
   const { categories } = useClient();
   const navigate = useNavigate();
-  const { pathname, search } = useLocation();
-  const query = search.split("=")[1];
+  const { pathname } = useLocation();
+  const category = pathname.split("/")[2] || "todo";
 
   return (
     <Container>
       <Item 
         onClick={() => navigate("/tienda")}
-        isActive={pathname === "/tienda" && !query}
+        isActive={category === "todo"}
       >
         Todo
         <Line width={10} />
       </Item>
       {
-        categories.map((category, index) => (
+        categories.map((item, index) => (
           <Item
             key={index}
-            isActive={query === category.name}
-            onClick={() => navigate(`/tienda?category=${category.name}`)}
+            isActive={category === item.name}
+            onClick={() => navigate(`/tienda/${item.name}`)}
           >
-            {capitalize(category.name)}
-            <Line width={(category.name.length + 1) * 2} />
+            {capitalize(item.name)}
+            <Line width={(item.name.length + 1) * 2} />
           </Item>
         ))
       }

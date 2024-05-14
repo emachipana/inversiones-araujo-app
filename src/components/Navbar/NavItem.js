@@ -11,7 +11,7 @@ function NavItem({ dropDown }) {
   return (
     <FlexRow
       onClick={() => navigate("/tienda")}
-      style={{color: (dropDown || pathname === "/tienda") ? COLORS.persian : ""}}
+      style={{color: (dropDown || pathname.includes("tienda")) ? COLORS.persian : ""}}
       css={NavStyle}
     >
       <Text

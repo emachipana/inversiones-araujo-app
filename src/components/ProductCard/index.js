@@ -18,7 +18,7 @@ function ProductCard({ product, isInAdmin }) {
     window.scrollTo(0, 0);
     if(isInAdmin) return navigate(`/admin/productos/${id}`);
 
-    navigate(`/tienda/producto/${id}`);
+    navigate(`/tienda/${category.name}/${id}`);
   }
 
   const handleCartButtonClick = (e) => {

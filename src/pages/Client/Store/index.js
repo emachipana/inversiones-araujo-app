@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Banner from "../../../components/Banner";
 import { Container, Products } from "./styles";
 import { Title } from "../styles";
@@ -7,19 +7,32 @@ import Pagination from "../../../components/Pagination";
 import Categories from "../../../components/Categories";
 import { useClient } from "../../../context/client";
 import apiFetch from "../../../services/apiFetch";
+import { useEffect } from "react";
 
 function Store() {
-  const { search } = useLocation();
-  const { products, isLoading, setIsLoading, setProducts } = useClient();
-  
-  const category = search.split("category=")[1] || "todo";
+  const { products, isLoading, setIsLoading, setProducts, categories, productBackup } = useClient();
+  const params = useParams();
+  const category = params.category || "todo";
 
   const handlePaginationClick = async (link) => {
     setIsLoading(true);
     const products = await apiFetch(link, { isFull: true });
     setProducts(products);
-    setTimeout(() => setIsLoading(false), 5000);
+    setIsLoading(false);
   }
+
+  useEffect(() => {
+    const fetch = async () => {
+      if(category === "todo") return setProducts(productBackup);
+      setIsLoading(true);
+      const found = categories.find(item => item.name === category);
+      const products = await apiFetch(`products?category_id[eq]=${found?.id}`);
+      setProducts(products);
+      setIsLoading(false);
+    }
+
+    fetch();
+  }, [ category, categories, setIsLoading, setProducts, productBackup ]);
 
   return (
     <>

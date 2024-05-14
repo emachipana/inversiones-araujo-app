@@ -10,8 +10,8 @@ import { capitalize } from "../../helpers/capitalize";
 function Aside({ isOpen, handleToggle, onClick, ...props }) {
   const { categories } = useClient();
   const navigate = useNavigate();
-  const { pathname, search } = useLocation();
-  const query = search.split("=")[1];
+  const { pathname } = useLocation();
+  const category = pathname.split("/")[2] || "todo";
 
   const redirect = (to) => {
     onClick();
@@ -58,20 +58,20 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
         <ListItems>
           <Item
             onClick={() => redirect("/tienda")}
-            isActive={pathname === "/tienda" && !query}
+            isActive={category === "todo"}
           >
             Todo
             <Line width={8} />
           </Item>
           {
-            categories.map((category, index) => (
+            categories.map((item, index) => (
               <Item
                 key={index}
-                onClick={() => redirect(`/tienda?category=${category.name}`)}
-                isActive={query === category.name}
+                onClick={() => redirect(`/tienda/${item.name}`)}
+                isActive={category === item.name}
               >
-                {capitalize(category.name)}
-                <Line width={(category.name.length + 1) * 2} />
+                {capitalize(item.name)}
+                <Line width={(item.name.length + 1) * 2} />
               </Item>
             ))
           }

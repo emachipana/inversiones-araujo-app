@@ -11,6 +11,7 @@ const ClientProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
+  const [productBackup, setProductBackup] = useState({});
 
   useEffect(() => {
     const fetch = async () => {
@@ -21,6 +22,7 @@ const ClientProvider = ({ children }) => {
         setCategories(categories.data);
         const products = await apiFetch("products");
         setProducts(products);
+        setProductBackup(products);
         setIsLoading(false);
       }catch(e) {
         console.error(e);
@@ -69,7 +71,8 @@ const ClientProvider = ({ children }) => {
         setIsLoading,
         setProducts,
         addCartProduct,
-        emptyCart
+        emptyCart,
+        productBackup
       }}
     >
       { children }
