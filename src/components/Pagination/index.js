@@ -3,12 +3,32 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { Text } from "../../styles";
 import { Container, Item, TextManager } from "./styles";
 
-function Pagination({ currentPage, pages, nextLink, prevLink }) {
-  console.log(pages, nextLink, prevLink);
+function Pagination({ currentPage, lastPage, links, pageLinks, onClick }) {
+  const { prev, next } = links;
+  const items = [];
+
+  for(let i = 1; i <= lastPage; i++) {
+    items.push({ 
+      page: i,
+      link: pageLinks.find(link => (link.label * 1) === i)?.url
+    });
+  }
+
+  const handleClick = (link) => {
+    if(!link) return;
+
+    window.scrollTo(0, 0);
+    onClick(link);
+  }
+
+  const toRender = items.length > 5 ? items.slice(0, 3) : items;
+  const lasItem = items.length > 5 ? items[items.length - 1] : {};
 
   return (
     <Container>
-      <Item>
+      <Item
+        onClick={() => handleClick(prev)}
+      >
         <FaChevronLeft 
         />
         <Text
@@ -18,50 +38,46 @@ function Pagination({ currentPage, pages, nextLink, prevLink }) {
           Anterior
         </Text>
       </Item>
+        {
+          toRender.map((item, index) => (
+            <Item
+              key={index}
+              isActive={currentPage === item.page}
+              onClick={() => handleClick(item.link)}
+            >
+              <Text
+                weight={700}
+              >
+                { item.page }
+              </Text>
+            </Item>
+          ))
+        }
+        {
+          items.length > 5 &&
+          <>
+            <Item>
+              <Text
+                weight={700}
+              >
+                ...
+              </Text>
+            </Item>
+            <Item
+              isActive={currentPage === lasItem.page}
+              onClick={() => handleClick(lasItem.link)}
+            >
+              <Text
+                weight={700}
+              >
+                { lasItem.page }
+              </Text>
+            </Item>
+          </>
+        }
       <Item
-        isActive={currentPage === 1}
+        onClick={() => handleClick(next)}
       >
-        <Text
-          weight={700}
-        >
-          1
-        </Text>
-      </Item>
-      <Item
-        isActive={currentPage === 2}
-      >
-        <Text
-          weight={700}
-        >
-          2
-        </Text>
-      </Item>
-      <Item
-        isActive={currentPage === 3}
-      >
-        <Text
-          weight={700}
-        >
-          3
-        </Text>
-      </Item>
-      <Item>
-        <Text
-          weight={700}
-        >
-          ...
-        </Text>
-      </Item>
-      <Item
-        isActive={currentPage === 6}
-      >
-        <Text
-          weight={700}
-        >
-          6
-        </Text>
-      </Item>
-      <Item>
         <Text
           weight={700}
           css={TextManager}

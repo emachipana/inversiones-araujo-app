@@ -6,12 +6,20 @@ import ProductCard from "../../../components/ProductCard";
 import Pagination from "../../../components/Pagination";
 import Categories from "../../../components/Categories";
 import { useClient } from "../../../context/client";
+import apiFetch from "../../../services/apiFetch";
 
 function Store() {
   const { search } = useLocation();
-  const { products, isLoading } = useClient();
+  const { products, isLoading, setIsLoading, setProducts } = useClient();
   
   const category = search.split("category=")[1] || "todo";
+
+  const handlePaginationClick = async (link) => {
+    setIsLoading(true);
+    const products = await apiFetch(link, { isFull: true });
+    setProducts(products);
+    setTimeout(() => setIsLoading(false), 5000);
+  }
 
   return (
     <>
@@ -20,7 +28,7 @@ function Store() {
         withoutIcon
       />
       <Container>
-        <Categories 
+        <Categories
           category={category}
         />
         <Products>
@@ -43,10 +51,12 @@ function Store() {
                         />
                       ))
                     }
-                    <Pagination 
-                      currentPage={2}
-                      nextLink={""}
-                      prevLink={""}
+                    <Pagination
+                      onClick={handlePaginationClick}
+                      currentPage={products.meta.current_page}
+                      lastPage={products.meta.last_page}
+                      links={products.links}
+                      pageLinks={products.meta.links}
                     />
                   </>
           )}
