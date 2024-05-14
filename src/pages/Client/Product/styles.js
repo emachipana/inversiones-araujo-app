@@ -52,6 +52,7 @@ export const Image = styled.img`
   width: 90%;
   height: 100%;
   object-fit: contain;
+  mix-blend-mode: multiply;
 `;
 
 export const Info = styled.section`

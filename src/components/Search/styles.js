@@ -47,4 +47,5 @@ export const Img = styled.img`
   height: 80px;
   width: 80px;
   object-fit: contain;
+  mix-blend-mode: multiply;
 `;

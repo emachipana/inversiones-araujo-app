@@ -22,6 +22,7 @@ export const Image = styled.img`
   cursor: pointer;
   object-fit: contain;
   transition: transform .3s ease-out;
+  mix-blend-mode: multiply;
 
   &:hover {
     transform: scale(1.05);
