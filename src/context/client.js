@@ -65,14 +65,14 @@ const ClientProvider = ({ children }) => {
         categories,
         orders,
         trendProducts,
+        productBackup,
         setOrders,
         setCartItems,
         setError,
         setIsLoading,
         setProducts,
         addCartProduct,
-        emptyCart,
-        productBackup
+        emptyCart
       }}
     >
       { children }
