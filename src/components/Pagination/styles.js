@@ -8,6 +8,9 @@ export const Container = styled.div`
   justify-content: center;
   gap: 0.8rem;
   margin: 1rem auto;
+  position: absolute;
+  bottom: -1rem;
+  right: 10px;
 `;
 
 export const Item = styled.div`
