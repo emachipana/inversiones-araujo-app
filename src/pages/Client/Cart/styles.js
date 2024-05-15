@@ -49,11 +49,14 @@ export const Section = styled.section`
   width: ${({ width }) => width || 50}%;
   display: flex;
   flex-direction: column;
-  align-items: ${({ align }) => align || "flex-start"};
+  align-items: flex-start;
   justify-content: flex-start;
   gap: ${({ gap }) => gap || 2}rem;
   position: sticky;
   top: 160px;
+  background-color: ${({ bgColor }) => bgColor || "transparent"};
+  padding: ${({ padding }) => padding || 0};
+  border-radius: 0.5rem;
 
   @media screen and (max-width: 990px) {
     width: 100%;
@@ -102,5 +105,26 @@ export const FlexRow = styled.div`
 
   @media screen and (max-width: 875px) {
     display: ${({ isActive }) => isActive ? "flex" : "none"};
+  }
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+export const FormSection = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  @media screen and (max-width: 700px) {
+    flex-wrap: wrap;
   }
 `;
