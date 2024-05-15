@@ -48,7 +48,7 @@ function Cart() {
                     gap={0.2}
                   >
                     <Text
-                      style={{maxWidth: "118px", overflow: "hidden", whiteSpace: "nowrap"}}
+                      style={{maxWidth: "118px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}
                       align="start"
                       weight={700}
                     >

@@ -51,6 +51,7 @@ function Product() {
     if(foundProduct) return;
     
     addCartProduct(product, number);
+    setNumber(1);
   }
 
   return (

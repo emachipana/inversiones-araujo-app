@@ -8,6 +8,7 @@ import About from "./pages/Client/About";
 import Store from "./pages/Client/Store";
 import Product from "./pages/Client/Product";
 import { ClientProvider } from "./context/client";
+import Cart from "./pages/Client/Cart";
 
 function ClientApp() {
   return (
@@ -21,7 +22,7 @@ function ClientApp() {
         <Route path="servicios" element={<Services />} />
         <Route path="contactanos" element={<Contact />} />
         <Route path="nosotros" element={<About />} />
-        <Route path="carrito" element={<h1>carrito page</h1>} />
+        <Route path="carrito" element={<Cart />} />
       </Routes>
       <Footer />
     </ ClientProvider>

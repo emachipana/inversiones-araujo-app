@@ -33,7 +33,7 @@ export const Product = styled.div`
   justify-content: flex-start;
   border-bottom: 1px solid ${COLORS.platinium};
   padding: 0.3rem 0;
-  gap: 1rem;
+  gap: 0.5rem;
   cursor: pointer;
   transition: background-color .3s ease;
   border-radius: 0.5rem;
@@ -44,8 +44,8 @@ export const Product = styled.div`
 `;
 
 export const Img = styled.img`
-  height: 80px;
-  width: 80px;
+  height: 75px;
+  min-width: 75px;
   object-fit: contain;
   mix-blend-mode: multiply;
 `;
