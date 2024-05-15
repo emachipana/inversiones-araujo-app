@@ -14,6 +14,7 @@ export const Container = styled.div`
   justify-content: center;
   padding: 0.5rem 1rem;
   background-color: white;
+  position: relative;
 `;
 
 export const Image = styled.img`
@@ -44,4 +45,17 @@ export const Name = styled.h4`
   line-height: 19px;
   height: 40px;
   overflow: hidden;
+`;
+
+export const Discount = styled.div`
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .95);
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

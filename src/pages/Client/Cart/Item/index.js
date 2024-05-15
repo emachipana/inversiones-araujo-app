@@ -11,12 +11,12 @@ function Item({ item }) {
 
   useEffect(() => {
     setCounter(item.quantity);
-  }, [ item ])
+  }, [ item ]);
 
   return (
     <tr>
       <td style={{maxWidth: "200px"}}>
-        <FlexRow 
+        <FlexRow
           justify="flex-start"
           gap={0.2}
         >

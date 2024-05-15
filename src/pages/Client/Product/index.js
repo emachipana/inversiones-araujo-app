@@ -98,13 +98,27 @@ function Product() {
                       >
                         { product.name }
                       </Title>
-                      <Text
-                        size={17}
-                        color={COLORS.orange}
-                        weight={700}
-                      >
-                        S/. { product.price }
-                      </Text>
+                      <FlexRow>
+                        <Text
+                          size={17}
+                          color={product.discount ? COLORS.taupe : COLORS.persian}
+                          weight={700}
+                          style={{textDecoration: product.discount ? "line-through" : "none"}}
+                        >
+                          S/. { product.price }
+                        </Text>
+                        {
+                          product.discount
+                          &&
+                          <Text
+                            size={17}
+                            color={COLORS.orange}
+                            weight={700}
+                          >
+                            S/. { product.discount.price }
+                          </Text>
+                        }
+                      </FlexRow>
                       <Text
                         align="start"
                         size={17}
