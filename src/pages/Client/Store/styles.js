@@ -20,7 +20,9 @@ export const Products = styled.div`
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 5rem;
 
   @media screen and (max-width: 1080px) {
     justify-content: center;
