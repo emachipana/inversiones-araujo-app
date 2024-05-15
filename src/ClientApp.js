@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Client/Home";
@@ -11,9 +12,14 @@ import { ClientProvider } from "./context/client";
 import Cart from "./pages/Client/Cart";
 
 function ClientApp() {
+  const [userModal, setUserModal] = useState(false);
+
   return (
     <ClientProvider>
-      <Navbar />
+      <Navbar 
+        userModal={userModal}
+        setUserModal={setUserModal}
+      />
       <Routes>
         <Route index exact path="/" element={<Home />} />
         <Route path="tienda" element={<Store />} />
@@ -22,7 +28,7 @@ function ClientApp() {
         <Route path="servicios" element={<Services />} />
         <Route path="contactanos" element={<Contact />} />
         <Route path="nosotros" element={<About />} />
-        <Route path="carrito" element={<Cart />} />
+        <Route path="carrito" element={<Cart setUserModal={setUserModal} />} />
       </Routes>
       <Footer />
     </ ClientProvider>
