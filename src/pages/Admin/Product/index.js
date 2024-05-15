@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useData } from "../../../context/data";
 import apiFetch from "../../../services/apiFetch";
 import { Title } from "../styles";
 import { Container, FlexRow, Image, ImageCard, Section } from "./styles";
@@ -13,9 +12,13 @@ import { FaTrashAlt } from "react-icons/fa";
 function Product() {
   const [product, setProduct] = useState(undefined);
   const [category, setCategory] = useState({});
-  const { isLoading, setIsLoading, categories, setProducts } = useData();
   const { id } = useParams();
   const navigate = useNavigate();
+  // const { isLoading, setIsLoading, categories, setProducts } = useData();
+  const isLoading= false;
+  const setIsLoading = () => {}
+  const categories = [];
+  const setProducts = () => {}
 
   useEffect(() => {
     const fetch = async () => {

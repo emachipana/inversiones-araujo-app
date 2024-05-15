@@ -3,12 +3,13 @@ import { MdAdd } from "react-icons/md";
 import Button from "../../../components/Button";
 import { Filter, Section } from "../Products/styles";
 import { Title } from "../styles";
-import { useData } from "../../../context/data";
 import OrderCard from "../../../components/OrderCard";
 
 function Orders() {
   const [ isOpen, setIsOpen ] = useState(false);
-  const { orders, isLoading, setIsLoading, setError } = useData();
+  const orders = [];
+  const isLoading = false;
+  // const { orders, isLoading, setIsLoading, setError } = useData();
 
   return (
     <>

@@ -2,40 +2,61 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Categories from "../../../components/Categories";
 import { Container } from "../Store/styles";
-import { useData } from "../../../context/data";
 import { Content, Description, Image, ImageContainer, Info, Products, Section } from "./styles";
 import { Title } from "../styles";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { FaCheck, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { COLORS, FlexColumn, FlexRow, Text } from "../../../styles";
 import Button from "../../../components/Button";
 import { TiShoppingCart } from "react-icons/ti";
 import Control from "../../../components/Control";
 import ProductCard from "../../../components/ProductCard";
+import apiFetch from "../../../services/apiFetch";
+import { useClient } from "../../../context/client";
 
 function Product() {
   const [number, setNumber] = useState(1);
   const [relProducts, setRelProducts] = useState([]);
-  const { products, categories, isLoading, getTrendProducts } = useData();
-  const { id } = useParams();
-
-  const product = 
-    (!products.data || products.data.length <= 0)
-    ? undefined
-    : products.data.find((product) => product.id === (id * 1));
-
-  const category = !product ? "todo" : categories.find((category) => category.id === product.category_id);
+  const [product, setProduct] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(true);
+  const [imageIndex, setImageIndex] = useState(0);
+  const { id, category } = useParams();
+  const { addCartProduct, cartItems } = useClient();
 
   useEffect(() => {
-    const products = getTrendProducts(4);
+    const fetch = async () => {
+      try {
+        const product = await apiFetch(`products/${id}`);
+        const relProducts = await apiFetch(`products?category_id[eq]=${product.data.category_id}`);
+        const found = relProducts.data.find(item => item.id === product.data.id);
+        if(found) {
+          const index = relProducts.data.indexOf(found);
+          relProducts.data.splice(index, 1);
+        }
+        setRelProducts(relProducts.data.slice(0, 4));
+        setProduct(product.data);
+        setIsLoading(false);
+      }catch(e) {
+        setIsLoading(false);
+        console.error(e);
+      }
+    }
 
-    setRelProducts(products)
-  }, [getTrendProducts]); 
+    fetch();
+  }, [ id ]);
+  
+  const imagesSize = product?.images.length || 0;
+  const foundProduct = cartItems.find(item => item.id === product?.id);
 
+  const handleClick = () => {
+    if(foundProduct) return;
+    
+    addCartProduct(product, number);
+  }
 
   return (
     <Container>
       <Categories 
-        category={category?.name}
+        category={category}
       />
       <Section>
         {
@@ -49,14 +70,16 @@ function Product() {
                     <FaChevronLeft 
                       className="handle"
                       style={{left: "10px"}}
+                      onClick={() => setImageIndex((imageIndex - 1 + imagesSize) % imagesSize)}
                     />
                     <Image 
-                      alt="product-image"
-                      src={product.images[0].image_url}
+                      alt={product.name}
+                      src={product.images[imageIndex] ? product.images[imageIndex]?.image_url : "/img/default_product.png"}
                     />
                     <FaChevronRight 
                       className="handle"
                       style={{right: "10px"}}
+                      onClick={() => setImageIndex((imageIndex + 1) % imagesSize)}
                     />
                   </ImageContainer>
                   <Info>
@@ -66,7 +89,7 @@ function Product() {
                         color={COLORS.taupe}
                         weight={700}
                       >
-                        TIENDA / { category?.name.toUpperCase() }
+                        TIENDA / { category.toUpperCase() }
                       </Text>
                       <Title
                         align="start"
@@ -101,15 +124,24 @@ function Product() {
                       <FlexRow
                         gap={2}
                       >
-                        <Control 
-                          number={number}
-                          setNumber={setNumber}
-                          stock={product.stock}
-                        />
+                        {
+                          !foundProduct
+                          &&
+                          <Control
+                            number={number}
+                            setNumber={setNumber}
+                            stock={product.stock}
+                          />
+                        }
                         <Button
-                          Icon={TiShoppingCart}
+                          Icon={foundProduct ? FaCheck : TiShoppingCart}
+                          onClick={handleClick}
                         >
-                          Agregar al carrito
+                          {
+                            foundProduct
+                            ? "En el carrito"
+                            : "Agregar al carrito"
+                          }
                         </Button>
                       </FlexRow>
                     </FlexColumn>
@@ -130,11 +162,7 @@ function Product() {
                       relProducts.map((product, index) => (
                         <ProductCard 
                           key={index}
-                          category_id={product.category_id}
-                          id={product.id}
-                          img={product.images[0].image_url}
-                          name={product.name}
-                          price={product.price}
+                          product={product}
                         />
                       ))
                     }

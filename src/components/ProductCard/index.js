@@ -1,20 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import { useData } from "../../context/data";
 import { COLORS, Text } from "../../styles";
 import Button from "../Button";
 import { Container, Description, Image, Name } from "./styles";
 import { TiShoppingCart } from "react-icons/ti";
+import { useClient } from "../../context/client";
+import { FaCheck } from "react-icons/fa6";
 
-function ProductCard({ id, img, name, category_id, price, isInAdmin }) {
-  const { categories } = useData();
+function ProductCard({ product, isInAdmin }) {
+  const { id, images, name, category_id, price } = product;
+  const { categories, addCartProduct, cartItems } = useClient();
   const navigate = useNavigate();
 
   const category = categories.find((category) => category.id === category_id);
+  const foundProduct = cartItems.find(item => item.id === id);
 
   const handleClick = () => {
+    window.scrollTo(0, 0);
     if(isInAdmin) return navigate(`/admin/productos/${id}`);
 
-    navigate(`/tienda/producto/${id}`);
+    navigate(`/tienda/${category.name}/${id}`);
+  }
+
+  const handleCartButtonClick = (e) => {
+    e.stopPropagation();
+    if(foundProduct) return;
+
+    addCartProduct(product, 1);
   }
 
   return (
@@ -23,7 +34,7 @@ function ProductCard({ id, img, name, category_id, price, isInAdmin }) {
     >
       <Image 
         alt={`${name}-image`}
-        src={img}
+        src={images[0] ? images[0]?.image_url : "/img/default_product.png"}
       />
       <Description>
         <Text 
@@ -43,14 +54,19 @@ function ProductCard({ id, img, name, category_id, price, isInAdmin }) {
           S/. { price }
         </Text>
         <Button
-          color="secondary"
+          color={foundProduct ? "primary" : "secondary"}
           style={{alignSelf: "center", marginTop: "9px"}}
           fontSize={16}
           size="full"
-          Icon={TiShoppingCart}
+          Icon={foundProduct ? FaCheck : TiShoppingCart}
           iconSize={18}
+          onClick={handleCartButtonClick}
         >
-          Agregar al carrito
+          {
+            foundProduct
+            ? "En el carrito"
+            : "Agregar al carrito"
+          }
         </Button>
       </Description>
     </Container>

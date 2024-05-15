@@ -4,11 +4,14 @@ import { AsideList, BackDrop, Close, IconStyle, ListItems, NavStyle } from "./st
 import { COLORS, Text } from "../../styles";
 import { Item, Line } from "./Menu/styles";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useClient } from "../../context/client";
+import { capitalize } from "../../helpers/capitalize";
 
 function Aside({ isOpen, handleToggle, onClick, ...props }) {
+  const { categories } = useClient();
   const navigate = useNavigate();
-  const { pathname, search } = useLocation();
-  const query = search.split("=")[1];
+  const { pathname } = useLocation();
+  const category = pathname.split("/")[2] || "todo";
 
   const redirect = (to) => {
     onClick();
@@ -55,39 +58,23 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
         <ListItems>
           <Item
             onClick={() => redirect("/tienda")}
-            isActive={pathname === "/tienda" && !query}
+            isActive={category === "todo"}
           >
             Todo
             <Line width={8} />
           </Item>
-          <Item
-            onClick={() => redirect("/tienda?category=campo")}
-            isActive={query === "campo"}
-          >
-            Campo
-            <Line width={13} />
-          </Item>
-          <Item
-            onClick={() => redirect("/tienda?category=laboratorio")}
-            isActive={query === "laboratorio"}
-          >
-            Laboratorio
-            <Line width={18} />
-          </Item>
-          <Item
-            onClick={() => redirect("/tienda?category=invernadero")}
-            isActive={query === "invernadero"}
-          >
-            Invernadero
-            <Line width={22} />
-          </Item>
-          <Item
-            onClick={() => redirect("/tienda?category=riego")}
-            isActive={query === "riego"}
-          >
-            Riego tecnificado
-            <Line width={30} />
-          </Item>
+          {
+            categories.map((item, index) => (
+              <Item
+                key={index}
+                onClick={() => redirect(`/tienda/${item.name}`)}
+                isActive={category === item.name}
+              >
+                {capitalize(item.name)}
+                <Line width={(item.name.length + 1) * 2} />
+              </Item>
+            ))
+          }
         </ListItems>
         <a
           href="http://localhost:3000/agroinvitro"

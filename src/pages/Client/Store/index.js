@@ -1,17 +1,44 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Banner from "../../../components/Banner";
-import { useData } from "../../../context/data";
 import { Container, Products } from "./styles";
 import { Title } from "../styles";
 import ProductCard from "../../../components/ProductCard";
 import Pagination from "../../../components/Pagination";
 import Categories from "../../../components/Categories";
+import { useClient } from "../../../context/client";
+import apiFetch from "../../../services/apiFetch";
+import { useEffect } from "react";
 
 function Store() {
-  const { search } = useLocation();
-  const { products, isLoading } = useData();
-  
-  const category = search.split("category=")[1] || "todo";
+  const { products, isLoading, setIsLoading, setProducts, categories, productBackup } = useClient();
+  const params = useParams();
+  const category = params.category || "todo";
+
+  const handlePaginationClick = async (link) => {
+    setIsLoading(true);
+    const products = await apiFetch(link, { isFull: true });
+    setProducts(products);
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        if(category === "todo") return setProducts(productBackup);
+        setIsLoading(true);
+        const found = categories.find(item => item.name === category);
+        const products = await apiFetch(`products?category_id[eq]=${found?.id}`);
+        setProducts(products);
+        setIsLoading(false);
+      }catch(e) {
+        setIsLoading(false);
+        
+        console.error(e);
+      }
+    }
+
+    fetch();
+  }, [ category, categories, setIsLoading, setProducts, productBackup ]);
 
   return (
     <>
@@ -20,7 +47,7 @@ function Store() {
         withoutIcon
       />
       <Container>
-        <Categories 
+        <Categories
           category={category}
         />
         <Products>
@@ -39,18 +66,16 @@ function Store() {
                       products.data.map((product, index) => (
                         <ProductCard
                           key={index}
-                          id={product.id}
-                          img={product.images[0].image_url}
-                          category_id={product.category_id}
-                          name={product.name}
-                          price={product.price}
+                          product={product}
                         />
                       ))
                     }
-                    <Pagination 
-                      currentPage={2}
-                      nextLink={""}
-                      prevLink={""}
+                    <Pagination
+                      onClick={handlePaginationClick}
+                      currentPage={products.meta.current_page}
+                      lastPage={products.meta.last_page}
+                      links={products.links}
+                      pageLinks={products.meta.links}
                     />
                   </>
           )}

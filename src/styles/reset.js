@@ -11,18 +11,20 @@ export const RESET = css`
     margin: 0;
     box-sizing: border-box;
   }
-
+  
   a {
     text-decoration: none;
     color: inherit;
   }
-
+  
   p {
     margin: 0;
     padding: 0;
   }
-
+  
   body {
+    overflow-x: hidden;
+    overflow-y: auto;
     font-family: ${FONT.primary};
     color: ${COLORS.gray};
     font-size: 1rem;

@@ -9,45 +9,13 @@ import { MdOutlineMailOutline, MdSmartDisplay } from "react-icons/md";
 import { TbBrandWhatsapp } from "react-icons/tb";
 import { IoDocumentText } from "react-icons/io5";
 import ProductCard from "../../../components/ProductCard";
-import { useData } from "../../../context/data";
 import Button from "../../../components/Button";
+import { useClient } from "../../../context/client";
+import { elements } from "../../../data/home";
 
 function Home() {
-  const { getTrendProducts } = useData();
+  const { trendProducts } = useClient();
   const navigate = useNavigate();
-
-  const elements = [
-    {
-      title: `Materiales e insumos para tu <span class='marked'>laboratorio</span>`,
-      subtitle: "Todo lo que necesitas para implementar tu laboratorio",
-      category: "laboratorio",
-      img: "/img/lab.png",
-      textButton: "Comprar"
-    },
-    {
-      title: "Sustratos y herramientas para tu <span class='marked'>invernadero</span>",
-      subtitle: "Los mejores abonos, sustratos y herramientas ideales para tu invernadero",
-      category: "invernadero",
-      img: "/img/inv.png",
-      textButton: "Comprar"
-    },
-    {
-      title: "<span class='marked'>Accesorios</span> y herramientas de <span class='marked'>riego</span> tecnificado",
-      subtitle: "Las mejores herramientas y accesorios para tu próximo proyecto de riego tecnificado",
-      category: "riego",
-      img: "/img/riego.png",
-      textButton: "Comprar"
-    },
-    {
-      title: "<span class='marked'>Plantulas</span> in vitro de la mejor calidad",
-      subtitle: "Plantulas in vitro de la más alta calidad con certificación y plantas madres de CIP",
-      category: "agroinvitro",
-      img: "/img/vitro.png",
-      textButton: "Cotizar"
-    },
-  ];
-
-  const trendProducts = getTrendProducts(5);
 
   return (
     <>
@@ -214,7 +182,7 @@ function Home() {
         </Service>
       </Services>
       <Banner>
-        <Title color={COLORS.white}>EN TENDENCIA</Title>
+        <Title color={COLORS.white}>🔥 EN OFERTA 🔥</Title>
       </Banner>
       <Categories 
         justify="center"
@@ -227,12 +195,8 @@ function Home() {
           :
           trendProducts.map((product, index) => (
             <ProductCard
-              id={product.id}
+              product={product}
               key={index}
-              name={product.name}
-              img={product.images[0].image_url}
-              category_id={product.category_id}
-              price={product.price}
             />
           ))
         }

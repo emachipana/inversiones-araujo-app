@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useData } from "../../../context/data";
 import { Title } from "../styles";
 import { Filter, Form, Section } from "../Products/styles";
 import Button from "../../../components/Button";
@@ -15,7 +14,12 @@ import apiFetch from "../../../services/apiFetch";
 
 function VitroOrders() {
   const [ isOpen, setIsOpen ] = useState(false);
-  const { vitroOrders, isLoading, setIsLoading, setError, addVitroOrder } = useData();
+  // const { vitroOrders, isLoading, setIsLoading, setError, addVitroOrder } = useData();
+  const vitroOrders = [];
+  const isLoading = false;
+  const setIsLoading = () => {}
+  const setError = () => {}
+  const addVitroOrder = () => {}
 
   const initialValues = {
     document: "",

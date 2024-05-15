@@ -8,8 +8,12 @@ import { FaMapLocation, FaPhone } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 import Button from "../../../components/Button";
 import validate from "./validate";
+import { useState } from "react";
+import apiFetch from "../../../services/apiFetch";
 
 function Contact() {
+  const [isLoading, setIsLoding] = useState(false);
+  const [textButton, setTextButton] = useState("Enviar");
   const initialValues = {
     full_name: "",
     email: "",
@@ -18,7 +22,19 @@ function Contact() {
     content: ""
   }
 
-  const handleSubmit = (values) => console.log(values);
+  const handleSubmit = async (values) => {
+    try {
+      setIsLoding(true);
+      setTextButton("Enviando...");
+      const body = { ...values, origin: "inversiones" };
+      await apiFetch("messages", { body });
+      setTextButton("Enviado");
+    }catch(e) {
+      console.error(e);
+      setIsLoding(false);
+      setTextButton("Enviar");
+    }
+  }
 
   return (
     <>
@@ -162,10 +178,10 @@ function Contact() {
                 </div>
                 <Button
                   type="submit"
-                  disabled={!isValid}
+                  disabled={!isValid || isLoading}
                   style={{alignSelf: "flex-start"}}
                 >
-                  Enviar
+                  { textButton }
                 </Button>
               </Form>
             )}

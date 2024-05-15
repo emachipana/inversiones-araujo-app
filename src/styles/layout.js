@@ -8,6 +8,11 @@ export const Text = styled.p`
   text-decoration: ${({ isLink }) => isLink ? "underline" : "none"};
   cursor: ${({ isLink }) => isLink ? "pointer" : "inherit"};
   text-align: ${({ align }) => align || "center"};
+  transition: color .2s ease;
+
+  &:hover {
+    color: ${({ hColor, color }) => hColor || color};
+  }
 `;
 
 export const FlexRow = styled.div`
