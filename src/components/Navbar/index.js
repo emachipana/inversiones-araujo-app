@@ -22,8 +22,7 @@ import Aside from "./Aside";
 import Cart from "../Cart";
 import { useClient } from "../../context/client";
 
-function Navbar() {
-  const [userModal, setUserModal] = useState(false);
+function Navbar({ userModal, setUserModal }) {
   const [dropDown, setDropDown] = useState(false);
   const [current, setCurrent] = useState("login");
   const [menuDrop, setMenuDrop] = useState(false);
@@ -188,7 +187,7 @@ function Navbar() {
         isActive={userModal}
         setIsActive={setUserModal}
       >
-        <Header 
+        <Header
           current={current}
           setCurrent={setCurrent}
         />

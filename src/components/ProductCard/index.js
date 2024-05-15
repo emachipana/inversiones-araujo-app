@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { COLORS, Text } from "../../styles";
+import { COLORS, FlexRow, Text } from "../../styles";
 import Button from "../Button";
-import { Container, Description, Image, Name } from "./styles";
+import { Container, Description, Discount, Image, Name } from "./styles";
 import { TiShoppingCart } from "react-icons/ti";
 import { useClient } from "../../context/client";
 import { FaCheck } from "react-icons/fa6";
 
 function ProductCard({ product, isInAdmin }) {
-  const { id, images, name, category_id, price } = product;
+  const { id, images, name, category_id, price, discount } = product;
   const { categories, addCartProduct, cartItems } = useClient();
   const navigate = useNavigate();
 
@@ -32,6 +32,18 @@ function ProductCard({ product, isInAdmin }) {
     <Container
       onClick={handleClick}
     >
+      {
+        discount
+        &&
+        <Discount>
+          <Text
+            color="white"
+            weight={700}
+          >
+            -{discount.percentage}%
+          </Text>
+        </Discount>
+      }
       <Image 
         alt={`${name}-image`}
         src={images[0] ? images[0]?.image_url : "/img/default_product.png"}
@@ -47,12 +59,25 @@ function ProductCard({ product, isInAdmin }) {
         <Name>
           { name }
         </Name>
-        <Text
-          color={COLORS.persian}
-          weight={700}
-        >
-          S/. { price }
-        </Text>
+        <FlexRow>
+          <Text
+            color={discount ? COLORS.taupe : COLORS.persian}
+            weight={700}
+            style={{textDecoration: discount ? "line-through" : "none"}}
+          >
+            S/. { price }
+          </Text>
+          {
+            discount
+            &&
+            <Text
+              color={COLORS.orange}
+              weight={700}
+            >
+              S/. { discount.price }
+            </Text>
+          }
+        </FlexRow>
         <Button
           color={foundProduct ? "primary" : "secondary"}
           style={{alignSelf: "center", marginTop: "9px"}}

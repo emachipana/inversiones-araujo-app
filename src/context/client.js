@@ -40,6 +40,7 @@ const ClientProvider = ({ children }) => {
       id: product.id,
       name: product.name,
       images: product.images,
+      stock: product.stock,
       quantity,
       price,
       subTotal: quantity * price
@@ -47,6 +48,21 @@ const ClientProvider = ({ children }) => {
     const newItems = [...cartItems, saveData];
     setCartItems(newItems);
     localStorage.setItem("cart", JSON.stringify(newItems));
+  }
+
+  const deleteCartProduct = (product) => {
+    const index = cartItems.indexOf(product);
+    cartItems.splice(index, 1);
+    setCartItems([...cartItems]);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }
+
+  const updateCartProduct = (product, quantity) => {
+    const subTotal = product.price * quantity;
+    const index = cartItems.indexOf(product);
+    cartItems[index] = { ...cartItems[index], subTotal, quantity };
+    setCartItems([...cartItems]);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
   }
 
   const emptyCart = () => {
@@ -72,7 +88,9 @@ const ClientProvider = ({ children }) => {
         setIsLoading,
         setProducts,
         addCartProduct,
-        emptyCart
+        emptyCart,
+        deleteCartProduct,
+        updateCartProduct
       }}
     >
       { children }
