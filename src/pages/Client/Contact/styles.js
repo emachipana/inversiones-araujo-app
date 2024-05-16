@@ -6,7 +6,7 @@ export const Container = styled.div`
   padding: 2rem 4rem;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 2rem;
   flex-wrap: wrap;
 

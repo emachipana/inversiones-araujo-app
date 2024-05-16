@@ -45,7 +45,7 @@ function Slider({ elements = [] }) {
             </a>
             :
             <Button
-              onClick={() => navigate(`/tienda?category=${elements[page].category}`)}
+              onClick={() => navigate(`/tienda/${elements[page].category}`)}
             >
               { elements[page].textButton }
             </Button>

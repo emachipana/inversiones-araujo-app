@@ -35,8 +35,8 @@ function Home() {
           Contamos con productos para riego, laboratorio e invernadero
         </Text>
       </FlexColumn>
-      <Categories>
-        <Category onClick={() => navigate("/tienda?category=laboratorio")}>
+      <Categories justify="center">
+        <Category onClick={() => navigate("/tienda/laboratorio")}>
           <Image 
             alt="laboratorio"
             src="/img/lab.jpeg"
@@ -52,7 +52,7 @@ function Home() {
             </Text>
           </Description>
         </Category>
-        <Category onClick={() => navigate("/tienda?category=invernadero")}>
+        <Category onClick={() => navigate("/tienda/invernadero")}>
           <Image 
             alt="invernadero"
             src="/img/slider.jpg"
@@ -68,7 +68,7 @@ function Home() {
             </Text>
           </Description>
         </Category>
-        <Category onClick={() => navigate("/tienda?category=riego")}>
+        <Category onClick={() => navigate("/tienda/riego")}>
           <Image 
             alt="riego"
             src="/img/riego.jpg"
