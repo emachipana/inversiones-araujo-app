@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { COLORS, FlexRow, Text } from "../../styles";
 import Button from "../Button";
-import { Container, Description, Discount, Image, Name } from "./styles";
+import { Container, Description, Discount, Image, Name, TextDescription } from "./styles";
 import { TiShoppingCart } from "react-icons/ti";
 import { useClient } from "../../context/client";
 import { FaCheck } from "react-icons/fa6";
 
 function ProductCard({ product, isInAdmin }) {
-  const { id, images, name, category_id, price, discount } = product;
+  const { id, images, name, category_id, price, discount, description } = product;
   const { categories, addCartProduct, cartItems } = useClient();
   const navigate = useNavigate();
 
@@ -50,15 +50,15 @@ function ProductCard({ product, isInAdmin }) {
       />
       <Description>
         <Text 
-          size={14}
+          size={13}
           color={COLORS.taupe}
           weight={600}
+          style={{lineHeight: "12px"}}
         >
           { category?.name.toUpperCase() }
         </Text>
-        <Name>
-          { name }
-        </Name>
+        <Name>{ name }</Name>
+        <TextDescription>{ description }</TextDescription>
         <FlexRow>
           <Text
             color={discount ? COLORS.taupe : COLORS.persian}
@@ -80,7 +80,6 @@ function ProductCard({ product, isInAdmin }) {
         </FlexRow>
         <Button
           color={foundProduct ? "primary" : "secondary"}
-          style={{alignSelf: "center", marginTop: "9px"}}
           fontSize={16}
           size="full"
           Icon={foundProduct ? FaCheck : TiShoppingCart}
