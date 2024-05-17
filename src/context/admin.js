@@ -10,6 +10,7 @@ const AdminProvider = ({ children }) => {
   const [events, setEvents] = useState([]);
   const [orders, setOrders] = useState({});
   const [messages, setMessages] = useState({});
+  const [clients, setClients] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -19,6 +20,8 @@ const AdminProvider = ({ children }) => {
         setOrders(orders);
         const vitroOrders = await apiFetch("vitro_orders");
         setVitroOrders(vitroOrders);
+        const clients = await apiFetch("clients");
+        setClients(clients);
         setIsLoading(false);
       }catch(e) {
         console.error(e)
@@ -40,13 +43,15 @@ const AdminProvider = ({ children }) => {
         orders,
         messages,
         error,
+        clients,
         setIsLoading,
         setProducts,
         setVitroOrders,
         setEvents,
         setOrders,
         setMessages,
-        setError
+        setError,
+        setClients
       }}
     >
       { children }
