@@ -34,6 +34,7 @@ export const RESET = css`
 
   ::-webkit-scrollbar {
     width: 5px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-track {
@@ -43,5 +44,10 @@ export const RESET = css`
   ::-webkit-scrollbar-thumb {
     background-color: ${COLORS.dim};
     border-radius: 6px;
+    cursor: grab;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    cursor: grabbing;
   }
 `;
