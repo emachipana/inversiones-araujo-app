@@ -15,6 +15,7 @@ export const Container = styled.div`
   background-color: white;
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, .3);
   border-radius: 0.6rem;
+  padding: ${({ withPadding }) => withPadding ? "1rem 2rem" : 0};
 `;
 
 export const Table = styled.table`
@@ -24,7 +25,7 @@ export const Table = styled.table`
 
   th, td {
     padding: 6px;
-    border: 1px solid ${COLORS.taupe};
+    border: 1px solid ${COLORS.platinium};
     border-left: none;
   }
 

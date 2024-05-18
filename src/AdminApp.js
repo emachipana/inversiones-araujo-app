@@ -11,6 +11,7 @@ import VitroOrders from "./pages/Admin/VitroOrders";
 import { AdminProvider } from "./context/admin";
 import Home from "./pages/Admin/Home";
 import Clients from "./pages/Admin/Clients";
+import Messages from "./pages/Admin/Messages";
 
 function AdminApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +48,7 @@ function AdminApp() {
             <Route path="facturas/:id" element={<h1>Admin facturas id page</h1>} />
             <Route path="clientes" element={<Clients />} />
             <Route path="ofertas" element={<h1>Admin ofertas page</h1>} />
-            <Route path="mensajes" element={<h1>Admin mensajes page</h1>} />
+            <Route path="mensajes" element={<Messages />} />
             <Route path="perfil" element={<h1>Admin perfil page</h1>} />
           </Routes>
         </Section>
