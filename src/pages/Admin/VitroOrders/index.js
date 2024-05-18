@@ -142,6 +142,7 @@ function VitroOrders() {
       <Modal
         setIsActive={setIsOpen}
         isActive={isOpen}
+        size="lg"
       >
         <Formik
           initialValues={initialValues}
@@ -166,37 +167,45 @@ function VitroOrders() {
               >
                 Crear pedido
               </Title>
-              <Input 
-                id="document"
-                label="DNI"
-                placeholder="Ingresa el dni"
-                value={values.document}
-                handleChange={(e) => onDocumentChange(e, setFieldValue, errors.document)}
-                handleBlur={handleBlur}
-                error={errors.document}
-                touched={touched.document}
-              />
-              <Input 
-                id="first_name"
-                label="Nombres"
-                placeholder="Ingresa el nombre"
-                value={values.first_name}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                error={errors.first_name}
-                touched={touched.first_name}
-              />
-              <Input 
-                id="last_name"
-                label="Apellidos"
-                placeholder="Ingresa los apellidos"
-                value={values.last_name}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                error={errors.last_name}
-                touched={touched.last_name}
-              />
-              <FlexRow gap={1}>
+              <FlexRow
+                width="100%"
+                gap={1}
+              >
+                <Input 
+                  id="document"
+                  label="DNI"
+                  placeholder="Ingresa el dni"
+                  value={values.document}
+                  handleChange={(e) => onDocumentChange(e, setFieldValue, errors.document)}
+                  handleBlur={handleBlur}
+                  error={errors.document}
+                  touched={touched.document}
+                />
+                <Input 
+                  id="first_name"
+                  label="Nombres"
+                  placeholder="Ingresa el nombre"
+                  value={values.first_name}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  error={errors.first_name}
+                  touched={touched.first_name}
+                />
+                <Input 
+                  id="last_name"
+                  label="Apellidos"
+                  placeholder="Ingresa los apellidos"
+                  value={values.last_name}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  error={errors.last_name}
+                  touched={touched.last_name}
+                />
+              </FlexRow>
+              <FlexRow 
+                width="100%"
+                gap={1}
+              >
                 <Input
                   id="destination"
                   label="Destino"
@@ -217,18 +226,21 @@ function VitroOrders() {
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                 />
-              </FlexRow>
-              <FlexRow gap={1}>
                 <Input
                   id="price"
                   label="Precio"
-                  placeholder="S/."
+                  placeholder="S/. 0.00"
                   value={values.price}
                   touched={touched.price}
                   error={errors.price}
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                 />
+              </FlexRow>
+              <FlexRow 
+                gap={1}
+                width="100%"
+              >
                 <Input
                   id="quantity"
                   label="Cantidad"
@@ -239,12 +251,10 @@ function VitroOrders() {
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                 />
-              </FlexRow>
-              <FlexRow gap={1}>
                 <Input
                   id="advance"
                   label="Adelanto"
-                  placeholder="S/."
+                  placeholder="S/. 0.00"
                   value={values.advance}
                   touched={touched.advance}
                   error={errors.advance}
