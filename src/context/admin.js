@@ -22,6 +22,8 @@ const AdminProvider = ({ children }) => {
         setVitroOrders(vitroOrders);
         const clients = await apiFetch("clients");
         setClients(clients);
+        const messages = await apiFetch("messages");
+        setMessages(messages);
         setIsLoading(false);
       }catch(e) {
         console.error(e)
@@ -32,6 +34,18 @@ const AdminProvider = ({ children }) => {
 
     fetch();
   }, []);
+
+  const deleteMessage = async (id, currentPage) => {
+    try {
+      await apiFetch(`messages/${id}`, { method: "DELETE" });
+      let newMessages = await apiFetch(`messages?page=${currentPage}`);
+      if(newMessages.data.length <= 0) newMessages = await apiFetch("messages"); 
+      setMessages(newMessages);
+    }catch(e) {
+      console.error(e);
+      setError(e.message);
+    };
+  }
 
   return (
     <AdminContext.Provider
@@ -51,7 +65,8 @@ const AdminProvider = ({ children }) => {
         setOrders,
         setMessages,
         setError,
-        setClients
+        setClients,
+        deleteMessage
       }}
     >
       { children }

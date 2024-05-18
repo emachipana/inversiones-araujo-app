@@ -2,7 +2,7 @@
 import { IoClose } from "react-icons/io5";
 import { Close, Container, Section } from "./styles";
 
-function Modal({ isActive, setIsActive, children, size }) {
+function Modal({ isActive, setIsActive, children, size, padding }) {
   // size: sm, lg
 
   return (
@@ -13,6 +13,7 @@ function Modal({ isActive, setIsActive, children, size }) {
       isActive={isActive}
     >
       <Section
+        padding={padding}
         onClick={(e) => e.stopPropagation()}
         size={size}
       >

@@ -30,9 +30,9 @@ export const Container = styled.div`
 `;
 
 export const Section = styled.section`
-  padding: 2rem 1.8rem;
+  padding: ${({ padding }) => padding || "2rem 1.8rem"};
   width: ${({ size }) => size === "lg" ? 750 : 420}px;
-  min-height: 300px;
+  // min-height: 300px;
   background-color: ${COLORS.white};
   display: flex;
   flex-direction: column;
