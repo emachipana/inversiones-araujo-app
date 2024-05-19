@@ -9,8 +9,9 @@ import Modal from "../../../components/Modal";
 import { Formik } from "formik";
 import validate from "./validate";
 import Input from "../../../components/Input";
-import { COLORS, FlexRow } from "../../../styles";
+import { COLORS } from "../../../styles";
 import apiFetch from "../../../services/apiFetch";
+import { FlexRow } from "./styles";
 
 function VitroOrders() {
   const [ isOpen, setIsOpen ] = useState(false);
