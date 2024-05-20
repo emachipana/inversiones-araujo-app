@@ -12,6 +12,7 @@ import { AdminProvider } from "./context/admin";
 import Home from "./pages/Admin/Home";
 import Clients from "./pages/Admin/Clients";
 import Messages from "./pages/Admin/Messages";
+import Calendar from "./pages/Admin/Calendar";
 
 function AdminApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +38,7 @@ function AdminApp() {
           <Routes>
             <Route path="login" element={<Login />} />
             <Route index exact path="/" element={<Home />} />
-            <Route path="calendario" element={<h1>Admin calendario page</h1>} />
+            <Route path="calendario" element={<Calendar />} />
             <Route path="invitro" element={<VitroOrders />} />
             <Route path="invitro/:id" element={<h1>Admin invitro id page</h1>} />
             <Route path="productos" element={<Products />} />
