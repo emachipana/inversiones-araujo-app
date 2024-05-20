@@ -9,10 +9,16 @@ import { IoMdAdd } from "react-icons/io";
 import apiFetch from "../../../services/apiFetch";
 import Event from "./Event";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import Modal from "../../../components/Modal";
+import { Formik } from "formik";
+import { Form } from "../Products/styles";
+import { validate } from "./validate";
+import Input from "../../../components/Input";
 
 function Calendar() {
   const ref = new Date();
   const [curMonth, setCurMonth] = useState(ref.getMonth());
+  const [modalOpen, setModalOpen] = useState(false);
   const { events, setEvents } = useAdmin();
   const firstDay = new Date(ref.getFullYear(), curMonth, 1);  
   const lastDay = new Date(ref.getFullYear(), curMonth + 1, 0);
@@ -32,12 +38,32 @@ function Calendar() {
     fetch();
   }, [ curMonth, monthName, setEvents ]);
 
+  const initialValues = {
+    name: "",
+    description: "",
+    date: "",
+    event_type: ""
+  };
+
+  const handleSubmit = async (values) => {
+    try {
+      await apiFetch("events", { body: values });
+      const events = await apiFetch(`events?month[eq]=${monthName}`);
+      setEvents(events);
+      setModalOpen(false);
+
+    }catch(e) {
+      console.error(e.message);
+    }
+  }
+
   return (
     <>
       <Title>Calendario</Title>
       <Container>
         <Info>
           <Button
+            onClick={() => setModalOpen(true)}
             size="full"
             Icon={IoMdAdd}
           >
@@ -248,6 +274,83 @@ function Calendar() {
           </CalendarContainer>
         </Main>
       </Container>
+      <Modal
+        isActive={modalOpen}
+        setIsActive={setModalOpen}
+      >
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validate={validate}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            isValid,
+            handleChange,
+            handleBlur,
+            handleSubmit
+          }) => (
+            <Form onSubmit={handleSubmit}>
+              <Title
+                color={COLORS.persian}
+                size={1.8}
+                style={{marginBottom: "0.5rem"}}
+              >
+                Crear evento
+              </Title>
+              <Input 
+                id="name"
+                label="Actividad"
+                placeholder="Ingresa el nombre de la actividad"
+                value={values.name}
+                touched={touched.name}
+                error={errors.name}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <Input 
+                id="description"
+                label="Descripción"
+                placeholder="Describe la actividad"
+                value={values.description}
+                touched={touched.description}
+                error={errors.description}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <Input 
+                id="date"
+                label="Fecha"
+                type="date"
+                value={values.date}
+                touched={touched.date}
+                error={errors.date}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <Input 
+                id="event_type"
+                label="Tipo de la actividad"
+                placeholder="invitro / viaje / cotidiano"
+                value={values.event_type}
+                touched={touched.event_type}
+                error={errors.event_type}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <Button
+                size="full"
+                style={{marginTop: "0.5rem"}}
+                type="submit"
+              >
+                Agregar
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Modal>
     </>
   );
 }

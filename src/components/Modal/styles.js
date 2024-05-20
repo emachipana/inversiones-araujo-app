@@ -18,7 +18,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem 1rem 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   @keyframes modal {
     from {
