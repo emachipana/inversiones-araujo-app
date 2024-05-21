@@ -6,11 +6,13 @@ const AdminContext = createContext();
 const AdminProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState({});
+  const [productsBackup, setProductsBackup] = useState({});
   const [vitroOrders, setVitroOrders] = useState({});
   const [events, setEvents] = useState([]);
   const [orders, setOrders] = useState({});
   const [messages, setMessages] = useState({});
   const [clients, setClients] = useState({});
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -24,6 +26,11 @@ const AdminProvider = ({ children }) => {
         setClients(clients);
         const messages = await apiFetch("messages");
         setMessages(messages);
+        const categories = await apiFetch("categories");
+        setCategories(categories);
+        const products = await apiFetch("products");
+        setProducts(products);
+        setProductsBackup(products);
         setIsLoading(false);
       }catch(e) {
         console.error(e)
@@ -58,6 +65,9 @@ const AdminProvider = ({ children }) => {
         messages,
         error,
         clients,
+        categories,
+        productsBackup,
+        setCategories,
         setIsLoading,
         setProducts,
         setVitroOrders,
@@ -66,7 +76,8 @@ const AdminProvider = ({ children }) => {
         setMessages,
         setError,
         setClients,
-        deleteMessage
+        deleteMessage,
+        setProductsBackup
       }}
     >
       { children }
