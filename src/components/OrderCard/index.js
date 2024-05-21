@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { capitalize } from "../../helpers/capitalize";
 import { COLORS, FlexColumn, FlexRow, Text } from "../../styles";
 import Badge from "../Badge";
 import { Container, Header, Section } from "./styles";
 import { FaCalendarAlt } from "react-icons/fa";
 
-function OrderCard({ client_name, destination, status, varieties, ship_type, date }) {
+function OrderCard({ id, client_name, destination, status, varieties, ship_type, date }) {
+  const navigate = useNavigate();
   const parsedDate = new Date(date);
   const options = {
     day: "numeric",
@@ -12,8 +14,10 @@ function OrderCard({ client_name, destination, status, varieties, ship_type, dat
     year: "numeric"
   }
 
+  const handleRedirect = () => navigate(`/admin/${ship_type ? "pedidos" : "invitro"}/${id}`);
+
   return (
-    <Container>
+    <Container onClick={handleRedirect}>
       <Header>
         <Text
           color={COLORS.white}
