@@ -181,7 +181,7 @@ function Product() {
               <FlexRow>
                 {
                   product.discount
-                  ? <Row>
+                  ? <Row style={{alignSelf: "center"}}>
                       <Text
                         weight={800}
                       >
@@ -259,7 +259,7 @@ function Product() {
                 size={24}
                 weight={700}
               >
-                ¿Estas seguro de eliminar el mensaje?
+                ¿Estas seguro de eliminar el producto?
               </Text>
               <Row
                 gap={2}

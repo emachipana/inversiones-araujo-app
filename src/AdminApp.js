@@ -13,6 +13,7 @@ import Home from "./pages/Admin/Home";
 import Clients from "./pages/Admin/Clients";
 import Messages from "./pages/Admin/Messages";
 import Calendar from "./pages/Admin/Calendar";
+import VitroOrder from "./pages/Admin/VitroOrder";
 
 function AdminApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,7 @@ function AdminApp() {
             <Route index exact path="/" element={<Home />} />
             <Route path="calendario" element={<Calendar />} />
             <Route path="invitro" element={<VitroOrders />} />
-            <Route path="invitro/:id" element={<h1>Admin invitro id page</h1>} />
+            <Route path="invitro/:id" element={<VitroOrder />} />
             <Route path="productos" element={<Products />} />
             <Route path="productos/:id" element={<Product />} />
             <Route path="pedidos" element={<Orders />} />

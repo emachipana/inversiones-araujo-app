@@ -113,7 +113,7 @@ function Home() {
                             weight={700}
                             align="start"
                           >
-                            { order.first_name }
+                            { capitalize(order.first_name) }
                           </Text>
                           <Text
                             size={14}

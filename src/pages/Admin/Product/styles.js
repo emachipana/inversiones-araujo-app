@@ -7,11 +7,14 @@ export const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 2rem;
+
+  @media screen and (max-width: 960px) {
+    flex-wrap:  wrap;
+  }
 `;
 
 export const Section = styled.section`
-  width: 100%;
-  // height: 300px;
+  width: ${({ width }) => width || "100%"};
   background-color: white;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, .2);
   border-radius: 1rem;
@@ -26,7 +29,7 @@ export const Section = styled.section`
 export const FlexRow = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: ${({ justify }) => justify || "space-between"};
   gap: ${({ gap }) => gap || 1}rem;
 `;

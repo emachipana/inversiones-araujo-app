@@ -14,10 +14,12 @@ import apiFetch from "../../../services/apiFetch";
 import { FlexRow } from "./styles";
 import { useAdmin } from "../../../context/admin";
 import Pagination from "../../../components/Pagination";
+import { useNavigate } from "react-router-dom";
 
 function VitroOrders() {
   const [ isOpen, setIsOpen ] = useState(false);
   const { vitroOrders, isLoading, setIsLoading, setError, setVitroOrders } = useAdmin();
+  const navigate = useNavigate();
 
   const initialValues = {
     document: "",
@@ -56,6 +58,7 @@ function VitroOrders() {
       await apiFetch("order_varieties", { body: data });
       const vitroOrders = await apiFetch("vitro_orders");
       setVitroOrders(vitroOrders);
+      navigate(`/admin/invitro/${newOrder.id}`);
       setIsLoading(false);
       setIsOpen(false);
       setError(null);
@@ -125,6 +128,7 @@ function VitroOrders() {
                   {
                     vitroOrders.data.map((order, index) => (
                       <OrderCard
+                        id={order.id}
                         destination={order.destination}
                         key={index}
                         client_name={order.first_name}
