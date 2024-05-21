@@ -14,7 +14,7 @@ import { useClient } from "../../../context/client";
 import { elements } from "../../../data/home";
 
 function Home() {
-  const { trendProducts } = useClient();
+  const { trendProducts, categories, addCartProduct, cartItems } = useClient();
   const navigate = useNavigate();
 
   return (
@@ -195,6 +195,9 @@ function Home() {
           :
           trendProducts.map((product, index) => (
             <ProductCard
+              addCartProduct={addCartProduct}
+              cartItems={cartItems}
+              categories={categories}
               product={product}
               key={index}
             />

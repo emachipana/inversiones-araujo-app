@@ -3,12 +3,10 @@ import { COLORS, FlexRow, Text } from "../../styles";
 import Button from "../Button";
 import { Container, Description, Discount, Image, Name, TextDescription } from "./styles";
 import { TiShoppingCart } from "react-icons/ti";
-import { useClient } from "../../context/client";
 import { FaCheck } from "react-icons/fa6";
 
-function ProductCard({ product, isInAdmin }) {
+function ProductCard({ product, isInAdmin, categories = [], addCartProduct, cartItems = [] }) {
   const { id, images, name, category_id, price, discount, description } = product;
-  const { categories, addCartProduct, cartItems } = useClient();
   const navigate = useNavigate();
 
   const category = categories.find((category) => category.id === category_id);
@@ -22,6 +20,8 @@ function ProductCard({ product, isInAdmin }) {
   }
 
   const handleCartButtonClick = (e) => {
+    if(isInAdmin) return;
+    
     e.stopPropagation();
     if(foundProduct) return;
 
@@ -82,14 +82,16 @@ function ProductCard({ product, isInAdmin }) {
           color={foundProduct ? "primary" : "secondary"}
           fontSize={16}
           size="full"
-          Icon={foundProduct ? FaCheck : TiShoppingCart}
+          Icon={isInAdmin ? null : (foundProduct ? FaCheck : TiShoppingCart)}
           iconSize={18}
           onClick={handleCartButtonClick}
         >
           {
-            foundProduct
-            ? "En el carrito"
-            : "Agregar al carrito"
+            isInAdmin
+            ? "Ver detalle"
+            : foundProduct
+              ? "En el carrito"
+              : "Agregar al carrito"
           }
         </Button>
       </Description>

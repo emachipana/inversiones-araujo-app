@@ -11,6 +11,7 @@ export const Container = styled.div`
   position: absolute;
   bottom: -1rem;
   right: 10px;
+  padding-bottom: 2rem;
 `;
 
 export const Item = styled.div`
