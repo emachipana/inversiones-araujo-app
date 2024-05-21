@@ -3,7 +3,7 @@ import styled from "@emotion/styled/macro";
 export const FlexRow = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 1rem;
 

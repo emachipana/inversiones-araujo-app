@@ -18,7 +18,7 @@ export const Text = styled.p`
 export const FlexRow = styled.div`
   width: ${({ width }) => width || "auto"};
   display: flex;
-  align-items: center;
+  align-items: ${({ align }) => align || "center"};
   justify-content: ${({ justify }) => justify || "center"};
   gap: ${({ gap }) => gap || 0.5}rem;
 `;

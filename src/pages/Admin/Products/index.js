@@ -212,7 +212,10 @@ function Products() {
                 handleBlur={handleBlur}
                 handleChange={handleChange}
               />
-              <FlexRow gap={1}>
+              <FlexRow 
+                gap={1}
+                align="flex-start"
+              >
                 <Input
                   id="price"
                   label="Precio"
