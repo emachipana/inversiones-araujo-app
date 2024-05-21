@@ -154,8 +154,8 @@ function Messages() {
       >
         <ModalSection>
           <Text
-            size={26}
-            weight={800}
+            size={24}
+            weight={700}
           >
             ¿Estas seguro de eliminar el mensaje?
           </Text>

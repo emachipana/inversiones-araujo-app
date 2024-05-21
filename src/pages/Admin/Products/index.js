@@ -48,7 +48,6 @@ function Products() {
       setIsLoading(false);
       setIsOpen(false);
       setError(null);
-
     }catch(e) {
       setIsLoading(false);
 
