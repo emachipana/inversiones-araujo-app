@@ -14,6 +14,7 @@ function Aside({ isOpen, handleToggle, onClick, ...props }) {
   const category = pathname.split("/")[2] || "todo";
 
   const redirect = (to) => {
+    window.scrollTo(0, 0);
     onClick();
 
     navigate(to);

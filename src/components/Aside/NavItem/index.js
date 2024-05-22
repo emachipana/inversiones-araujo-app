@@ -8,6 +8,7 @@ function NavItem({ Icon, children, redirectTo, setIsOpen, isOpen, isLogout, isAc
   const navigate = useNavigate();
 
   const handleClick = () => {
+    window.scrollTo(0, 0);
     if(isOpen) setIsOpen(false);
     navigate(redirectTo);
   }

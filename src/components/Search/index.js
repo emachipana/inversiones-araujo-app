@@ -40,6 +40,7 @@ function Search({ placeholder, backgroundColor, ...props }) {
   }
 
   const handleClick = (id) => {
+    window.scrollTo(0, 0);
     setParam("");
     setData({section: false, isOpen: false});
     setResult([]);
