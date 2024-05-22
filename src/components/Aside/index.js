@@ -7,8 +7,11 @@ import { GiShoppingBag, GiWallet } from "react-icons/gi";
 import { FaUserGroup } from "react-icons/fa6";
 import { MdDiscount } from "react-icons/md";
 import { RiMessage3Fill, RiLogoutBoxFill } from "react-icons/ri";
+import { useLocation } from "react-router-dom";
 
 function Aside({ isOpen, setIsOpen }) {
+  const { pathname } = useLocation();
+
   return (
     <>
       <Container isOpen={isOpen}>
@@ -33,6 +36,7 @@ function Aside({ isOpen, setIsOpen }) {
           setIsOpen={setIsOpen}
           redirectTo="/admin/invitro"
           Icon={PiPottedPlantFill}
+          isActive={pathname.includes("invitro")}
         >
           In vitro
         </NavItem>
@@ -41,6 +45,7 @@ function Aside({ isOpen, setIsOpen }) {
           setIsOpen={setIsOpen}
           redirectTo="/admin/productos"
           Icon={GiShoppingBag}
+          isActive={pathname.includes("productos")}
         >
           Productos
         </NavItem>
@@ -49,6 +54,7 @@ function Aside({ isOpen, setIsOpen }) {
           setIsOpen={setIsOpen}
           redirectTo="/admin/pedidos"
           Icon={FaClipboardList}
+          isActive={pathname.includes("pedidos")}
         >
           Pedidos
         </NavItem>
