@@ -46,6 +46,7 @@ export const Product = styled.div`
 export const Img = styled.img`
   height: 75px;
   min-width: 75px;
+  max-width: 75px;
   object-fit: contain;
   mix-blend-mode: multiply;
 `;
