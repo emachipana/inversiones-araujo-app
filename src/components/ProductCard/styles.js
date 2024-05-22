@@ -12,14 +12,14 @@ export const Container = styled.div`
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.8rem 0.5rem 0.8rem;
   background-color: white;
   position: relative;
 `;
 
 export const Image = styled.img`
   width: 100%;
-  height: 50%;
+  height: 48%;
   cursor: pointer;
   object-fit: contain;
   transition: transform .3s ease-out;
@@ -37,13 +37,14 @@ export const Description = styled.section`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.4rem;
+  gap: 0.5rem;
 `;
 
 export const Name = styled.h4`
-  font-size: 1rem;
-  line-height: 19px;
-  height: 40px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 17px;
+  max-width: 180px;
   overflow: hidden;
 `;
 
@@ -58,4 +59,15 @@ export const Discount = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const TextDescription = styled.p`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 500;
+  font-size: 14px;
+  color: ${COLORS.taupe};
+  line-height: 13px;
 `;

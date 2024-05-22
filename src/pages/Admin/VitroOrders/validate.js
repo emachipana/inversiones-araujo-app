@@ -40,6 +40,9 @@ function validate(values) {
     errors.phone = "Solo se aceptan números";
   }
 
+  if(!values.init_date) errors.init_date = "Este campo es obligatorio";
+  if(!values.finish_date) errors.finish_date = "Este campo es obligatorio";
+
   return errors;
 }
 

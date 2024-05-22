@@ -16,6 +16,8 @@ function Pagination({ currentPage, lastPage, links, pageLinks, onClick }) {
 
   const handleClick = (link) => {
     if(!link) return;
+    const page = link.split("=")[1];
+    if((page * 1) === currentPage) return;
 
     window.scrollTo(0, 0);
     onClick(link);

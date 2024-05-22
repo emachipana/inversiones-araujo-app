@@ -16,8 +16,9 @@ export const Text = styled.p`
 `;
 
 export const FlexRow = styled.div`
+  width: ${({ width }) => width || "auto"};
   display: flex;
-  align-items: center;
+  align-items: ${({ align }) => align || "center"};
   justify-content: ${({ justify }) => justify || "center"};
   gap: ${({ gap }) => gap || 0.5}rem;
 `;
@@ -50,10 +51,11 @@ export const Container = styled.div`
 export const Section = styled.section`
   width: 100%;
   height: 100%;
-  padding: 1rem 1.2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 2rem;
+  padding-bottom: 3rem;
 `;

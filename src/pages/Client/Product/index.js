@@ -20,7 +20,7 @@ function Product() {
   const [isLoading, setIsLoading] = useState(true);
   const [imageIndex, setImageIndex] = useState(0);
   const { id, category } = useParams();
-  const { addCartProduct, cartItems } = useClient();
+  const { addCartProduct, cartItems, categories } = useClient();
 
   useEffect(() => {
     const fetch = async () => {
@@ -178,6 +178,9 @@ function Product() {
                         <ProductCard 
                           key={index}
                           product={product}
+                          addCartProduct={addCartProduct}
+                          cartItems={cartItems}
+                          categories={categories}
                         />
                       ))
                     }

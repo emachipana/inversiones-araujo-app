@@ -10,7 +10,7 @@ import apiFetch from "../../../services/apiFetch";
 import { useEffect } from "react";
 
 function Store() {
-  const { products, isLoading, setIsLoading, setProducts, categories, productBackup } = useClient();
+  const { products, isLoading, setIsLoading, addCartProduct, cartItems, setProducts, categories, productBackup } = useClient();
   const params = useParams();
   const category = params.category || "todo";
 
@@ -67,6 +67,9 @@ function Store() {
                         <ProductCard
                           key={index}
                           product={product}
+                          categories={categories}
+                          addCartProduct={addCartProduct}
+                          cartItems={cartItems}
                         />
                       ))
                     }

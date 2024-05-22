@@ -1,18 +1,30 @@
+import { useNavigate } from "react-router-dom";
+import { capitalize } from "../../helpers/capitalize";
 import { COLORS, FlexColumn, FlexRow, Text } from "../../styles";
 import Badge from "../Badge";
 import { Container, Header, Section } from "./styles";
 import { FaCalendarAlt } from "react-icons/fa";
 
-function OrderCard({ client_name, destination, status, variety, ship_type }) {
+function OrderCard({ id, client_name, destination, status, varieties, ship_type, date }) {
+  const navigate = useNavigate();
+  const parsedDate = new Date(date);
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }
+
+  const handleRedirect = () => navigate(`/admin/${ship_type ? "pedidos" : "invitro"}/${id}`);
+
   return (
-    <Container>
+    <Container onClick={handleRedirect}>
       <Header>
         <Text
           color={COLORS.white}
           weight={800}
           size={17}
         >
-          { client_name }
+          { capitalize(client_name) }
         </Text>
         <FlexRow
           gap={0.3}
@@ -26,7 +38,7 @@ function OrderCard({ client_name, destination, status, variety, ship_type }) {
             weight={600}
             size={15}
           >
-            19 de abril de 2024
+            { parsedDate.toLocaleDateString("es-ES", options) }
           </Text>
         </FlexRow>
       </Header>
@@ -50,18 +62,22 @@ function OrderCard({ client_name, destination, status, variety, ship_type }) {
             { destination }
           </Text>
         </FlexColumn>
-        <FlexColumn>
+        <FlexColumn align="center">
           <Text
             color={COLORS.white}
             weight={700}
           >
-            { variety ? "Variedad" : "Envío" }
+            { ship_type ? "Envío" : "Variedades" }
           </Text>
           <Text
+            align="center"
             color={COLORS.white}
+            style={{maxWidth: "90px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}
           >
             {
-              variety || ship_type
+              ship_type
+              ? capitalize(ship_type)
+              : varieties.map(variety => capitalize(variety.variety_name)).join(", ")
             }
           </Text>
         </FlexColumn>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
 import Pagination from "../../../components/Pagination";
 import ProductCard from "../../../components/ProductCard";
@@ -8,20 +8,17 @@ import { MdAdd } from "react-icons/md";
 import Modal from "../../../components/Modal";
 import { Formik } from "formik";
 import validate from "./validate";
-import { COLORS, FlexRow } from "../../../styles";
+import { COLORS, FlexRow, Text } from "../../../styles";
 import Input from "../../../components/Input";
 import apiFetch from "../../../services/apiFetch";
 import { useNavigate } from "react-router-dom";
+import { useAdmin } from "../../../context/admin";
+import { capitalize } from "../../../helpers/capitalize";
 
 function Products() {
+  const [ currentCategory, setCurrentCategory ] = useState("todo");
   const [ isOpen, setIsOpen ] = useState(false);
-  // const { products, isLoading, setIsLoading, setError, addProduct } = useData();
-  const products = [];
-  const isLoading = false;
-  const setIsLoading = () => {};
-  const setError = () => {};
-  const addProduct = () => {};
-
+  const { products, isLoading, setIsLoading, setError, setProductsBackup, productsBackup, categories, setProducts } = useAdmin();
   const navigate = useNavigate();
 
   const initialValues = {
@@ -29,27 +26,28 @@ function Products() {
     description: "",
     price: "",
     stock: "",
-    category_id: ""
+    category_id: "",
+    image: "",
   }
 
   const handleSubmit = async (values) => {
     try {
       setIsLoading(true);
-      let newProduct = await apiFetch("products", { body: values });
-      const productImage = await apiFetch("product_images", {
+      const newProduct = await apiFetch("products", { body: {...values, category_id: 1} });
+      const image = await apiFetch("images", { body: { url: values.image } });
+      await apiFetch("product_images", {
         body: {
           product_id: newProduct.data.id,
-          image_id: 2 // momentaneo
+          image_id: image.data.id
         }
       });
-
-      newProduct = {...newProduct.data, images: [productImage.data]};
-      addProduct(newProduct);
+      const products = await apiFetch("products");
+      navigate(`/admin/productos/${newProduct.data.id}`);
+      setProducts(products);
+      setProductsBackup(products);
       setIsLoading(false);
       setIsOpen(false);
       setError(null);
-      navigate(`/admin/productos/${newProduct.id}`);
-
     }catch(e) {
       setIsLoading(false);
 
@@ -57,41 +55,75 @@ function Products() {
     }
   }
 
+  const handlePaginationClick = async (link) => {
+    try {
+      setIsLoading(true);
+      const products = await apiFetch(link, { isFull: true });
+      setProducts(products);
+      setIsLoading(false);
+    }catch(e) {
+      setIsLoading(false);
+      setError(e.message);
+    }
+  }
+
+  const handleCategoryClick = (category) => {
+    if(category === currentCategory) return;
+
+    setCurrentCategory(category);
+  } 
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        if(currentCategory === "todo") return setProducts(productsBackup);
+        setIsLoading(true);
+        const found = categories.data.find(item => item.name === currentCategory);
+        const products = await apiFetch(`products?category_id[eq]=${found?.id}`);
+        setProducts(products);
+        setIsLoading(false);
+      }catch(e) {
+        setIsLoading(false);
+        console.error(e.message);
+      }
+    }
+
+    fetch();
+  }, [ currentCategory, categories, productsBackup, setIsLoading, setProducts ]);
+
   return (
     <>
       <Title>Productos</Title>
       <Section>
-        <Filter gap={1}>
-          <Button
-            fontSize={17}
+        <FlexRow gap={1} style={{flexWrap: "wrap"}}>
+          <Filter
+            isActive={currentCategory === "todo"}
+            onClick={() => handleCategoryClick("todo")}
           >
-            Todo
-          </Button>
-          <Button
-            fontSize={17}
-            color="white"
-          >
-            Campo
-          </Button>
-          <Button
-            fontSize={17}
-            color="white"
-          >
-            Laboratorio
-          </Button>
-          <Button
-            fontSize={17}
-            color="white"
-          >
-            Invernadero
-          </Button>
-          <Button
-            fontSize={17}
-            color="white"
-          >
-            Riego
-          </Button>
-        </Filter>
+            <Text
+              size={17}
+              weight={700}
+            >
+              Todo
+            </Text>
+          </Filter>
+          {
+            categories.data?.map((category, index) => (
+              <Filter 
+                key={index}
+                isActive={currentCategory === category.name}
+                onClick={() => handleCategoryClick(category.name)}
+              >
+                <Text
+                  size={17}
+                  weight={700}
+                >
+                  { capitalize(category.name) }
+                </Text>
+              </Filter>
+            ))
+          }
+        </FlexRow>
         <Button
           Icon={MdAdd}
           onClick={() => setIsOpen(true)}
@@ -105,7 +137,7 @@ function Products() {
           ? "Cargando..."
           : <>
               {
-                !products.data || products.data.length <= 0
+                !products.data || products?.data.length <= 0
                 ?
                 <Title style={{margin: "0 auto"}}>
                   No hay productos disponibles
@@ -116,20 +148,18 @@ function Products() {
                     products.data.map((product, index) => (
                       <ProductCard
                         isInAdmin
-                        category_id={product.category_id * 1}
-                        id={product.id}
-                        img={product.images[0]?.image_url}
-                        name={product.name}
-                        price={product.price}
+                        product={product}
+                        categories={categories.data}
                         key={index}
                       />
                     ))
                   }
-                  <Pagination 
-                    currentPage={1}
-                    nextLink=""
-                    prevLink=""
-                    pages={10}
+                  <Pagination
+                    onClick={handlePaginationClick}
+                    currentPage={products.meta.current_page}
+                    lastPage={products.meta.last_page}
+                    links={products.links}
+                    pageLinks={products.meta.links}
                   />
                 </>
               }
@@ -182,11 +212,14 @@ function Products() {
                 handleBlur={handleBlur}
                 handleChange={handleChange}
               />
-              <FlexRow gap={1}>
+              <FlexRow 
+                gap={1}
+                align="flex-start"
+              >
                 <Input
                   id="price"
                   label="Precio"
-                  placeholder="Precio del producto"
+                  placeholder="S/. 0.00"
                   value={values.price}
                   touched={touched.price}
                   error={errors.price}
@@ -211,6 +244,16 @@ function Products() {
                 value={values.description}
                 touched={touched.description}
                 error={errors.description}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <Input 
+                id="image"
+                label="Imagen"
+                placeholder="Link de la imagen"
+                value={values.image}
+                touched={touched.image}
+                error={errors.image}
                 handleBlur={handleBlur}
                 handleChange={handleChange}
               />

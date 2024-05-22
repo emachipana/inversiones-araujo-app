@@ -31,6 +31,8 @@ function validate(values) {
 
   if(!values.category_id) errors.category_id = "Este campo es obligatorio";
 
+  if(!values.image) errors.image = "Este campo es obligatorio";
+  
   return errors;
 }
 

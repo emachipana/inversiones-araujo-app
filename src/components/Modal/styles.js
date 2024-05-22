@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 export const Container = styled.div`
   position: fixed;
   width: 100%;
-  height: 100vh;
+  max-height: 100vh;
   z-index: 51;
   top: 0;
   bottom: 0;
@@ -17,7 +17,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 2rem 1rem 1rem 1rem;
+  overflow-y: auto;
 
   @keyframes modal {
     from {
@@ -27,12 +28,15 @@ export const Container = styled.div`
       opacity: 1;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    align-items: start;
+  }
 `;
 
 export const Section = styled.section`
-  padding: 2rem 1.8rem;
+  padding: ${({ padding }) => padding || "2rem 1.8rem"};
   width: ${({ size }) => size === "lg" ? 750 : 420}px;
-  min-height: 300px;
   background-color: ${COLORS.white};
   display: flex;
   flex-direction: column;

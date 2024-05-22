@@ -13,7 +13,7 @@ export const Section = styled.section`
 export const Description = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: flex-start;
   gap: 2.8rem;
   flex-wrap: wrap;
@@ -81,8 +81,8 @@ export const Products = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: space-around;
+  gap: 1.8rem;
   flex-wrap: wrap;
 
   @media screen and (max-width: 540px) {

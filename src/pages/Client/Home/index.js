@@ -14,7 +14,7 @@ import { useClient } from "../../../context/client";
 import { elements } from "../../../data/home";
 
 function Home() {
-  const { trendProducts } = useClient();
+  const { trendProducts, categories, addCartProduct, cartItems } = useClient();
   const navigate = useNavigate();
 
   return (
@@ -35,8 +35,8 @@ function Home() {
           Contamos con productos para riego, laboratorio e invernadero
         </Text>
       </FlexColumn>
-      <Categories>
-        <Category onClick={() => navigate("/tienda?category=laboratorio")}>
+      <Categories justify="center">
+        <Category onClick={() => navigate("/tienda/laboratorio")}>
           <Image 
             alt="laboratorio"
             src="/img/lab.jpeg"
@@ -52,7 +52,7 @@ function Home() {
             </Text>
           </Description>
         </Category>
-        <Category onClick={() => navigate("/tienda?category=invernadero")}>
+        <Category onClick={() => navigate("/tienda/invernadero")}>
           <Image 
             alt="invernadero"
             src="/img/slider.jpg"
@@ -68,7 +68,7 @@ function Home() {
             </Text>
           </Description>
         </Category>
-        <Category onClick={() => navigate("/tienda?category=riego")}>
+        <Category onClick={() => navigate("/tienda/riego")}>
           <Image 
             alt="riego"
             src="/img/riego.jpg"
@@ -195,6 +195,9 @@ function Home() {
           :
           trendProducts.map((product, index) => (
             <ProductCard
+              addCartProduct={addCartProduct}
+              cartItems={cartItems}
+              categories={categories}
               product={product}
               key={index}
             />

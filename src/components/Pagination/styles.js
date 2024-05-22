@@ -9,8 +9,9 @@ export const Container = styled.div`
   gap: 0.8rem;
   margin: 1rem auto;
   position: absolute;
-  bottom: -1rem;
+  bottom: 0;
   right: 10px;
+  margin-top: 2rem;
 `;
 
 export const Item = styled.div`

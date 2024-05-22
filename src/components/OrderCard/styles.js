@@ -14,6 +14,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 export const Header = styled.div`

@@ -1,54 +1,35 @@
-import { useState } from "react";
-import { MdAdd } from "react-icons/md";
-import Button from "../../../components/Button";
-import { Filter, Section } from "../Products/styles";
+import { Section } from "../Products/styles";
 import { Title } from "../styles";
 import OrderCard from "../../../components/OrderCard";
+import { useAdmin } from "../../../context/admin";
+import Pagination from "../../../components/Pagination";
+import apiFetch from "../../../services/apiFetch";
 
 function Orders() {
-  const [ isOpen, setIsOpen ] = useState(false);
-  const orders = [];
-  const isLoading = false;
-  // const { orders, isLoading, setIsLoading, setError } = useData();
+  const { orders, isLoading, setIsLoading, setOrders } = useAdmin();
+
+  const handlePaginationClick = async (link) => {
+    try {
+      setIsLoading(true);
+      const orders = await apiFetch(link, { isFull: true });
+      setOrders(orders)
+      setIsLoading(false);
+    }catch(e) {
+      console.error(e.message);
+      setIsLoading(false);
+    }
+  }
 
   return (
     <>
       <Title>Pedidos</Title>
-      <Section>
-        <Filter gap={2}>
-          <Button 
-            fontSize={17}
-            color="white"
-          >
-            Destino
-          </Button>
-          <Button 
-            fontSize={17}
-            color="white"
-          >
-            Tipo de envío
-          </Button>
-          <Button 
-            fontSize={17}
-            color="white"
-          >
-            Estado
-          </Button>
-        </Filter>
-        <Button
-          Icon={MdAdd}
-          onClick={() => setIsOpen(true)}
-        >
-          Crear pedido
-        </Button>
-      </Section>
       <Section>
         {
           isLoading
           ? "Cargando..."
           : <>
               {
-                !orders.data || orders.data.length <= 0
+                !orders.data || orders?.data.length <= 0
                 ?
                 <Title style={{margin: "0 auto"}}>
                   No hay pedidos disponibles
@@ -58,14 +39,23 @@ function Orders() {
                   {
                     orders.data.map((order, index) => (
                       <OrderCard
+                        id={order.id}
                         destination={order.destination}
                         key={index}
                         client_name={order.client.first_name}
                         status={order.status}
                         ship_type={order.shipping_type}
+                        date={order.created_at}
                       />
                     ))
                   }
+                  <Pagination 
+                    onClick={handlePaginationClick}
+                    currentPage={orders.meta.current_page}
+                    lastPage={orders.meta.last_page}
+                    links={orders.links}
+                    pageLinks={orders.meta.links}
+                  />
                 </>
               }
             </>
