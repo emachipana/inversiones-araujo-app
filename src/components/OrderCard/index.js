@@ -76,7 +76,7 @@ function OrderCard({ id, client_name, destination, status, varieties, ship_type,
           >
             {
               ship_type
-              ? ship_type
+              ? capitalize(ship_type)
               : varieties.map(variety => capitalize(variety.variety_name)).join(", ")
             }
           </Text>
