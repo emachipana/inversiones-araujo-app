@@ -19,6 +19,12 @@ function Clients() {
     }
   }
 
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }
+
   return (
     <>
       <Title>
@@ -87,7 +93,15 @@ function Clients() {
                   weight={700}
                   size={17}
                 >
-                  Ubicación
+                  Fecha creación
+                </Text>
+              </th>
+              <th>
+                <Text
+                  weight={700}
+                  size={17}
+                >
+                  Último consumo
                 </Text>
               </th>
               <th>
@@ -149,7 +163,15 @@ function Clients() {
                       weight={700}
                       color={COLORS.dim}
                     >
-                      { client.city }, { client.department }
+                      { new Date(client.created_at).toLocaleDateString("es-ES", options) }
+                    </Text>
+                  </td>
+                  <td>
+                    <Text
+                      weight={700}
+                      color={COLORS.dim}
+                    >
+                      { new Date(client.updated_at).toLocaleDateString("es-ES", options) }
                     </Text>
                   </td>
                   <td>

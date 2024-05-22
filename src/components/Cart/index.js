@@ -84,7 +84,10 @@ function Cart() {
             <FlexColumn>
               <Button
                 size="full"
-                onClick={() => navigate("/carrito")}
+                onClick={() => {
+                  navigate("/carrito");
+                  window.scrollTo(0, 0);
+                }}
               >
                 Finalizar compra
               </Button>

@@ -58,7 +58,7 @@ function VitroOrders() {
       await apiFetch("order_varieties", { body: data });
       const vitroOrders = await apiFetch("vitro_orders");
       setVitroOrders(vitroOrders);
-      navigate(`/admin/invitro/${newOrder.id}`);
+      navigate(`/admin/invitro/${newOrder.data.id}`);
       setIsLoading(false);
       setIsOpen(false);
       setError(null);

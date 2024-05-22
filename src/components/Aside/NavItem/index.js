@@ -3,11 +3,12 @@ import { FlexRow, Text } from "../../../styles";
 import { FaChevronRight } from "react-icons/fa";
 import { Container } from "./styles";
 
-function NavItem({ Icon, children, redirectTo, setIsOpen, isOpen, isLogout }) {
+function NavItem({ Icon, children, redirectTo, setIsOpen, isOpen, isLogout, isActive }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const handleClick = () => {
+    window.scrollTo(0, 0);
     if(isOpen) setIsOpen(false);
     navigate(redirectTo);
   }
@@ -15,7 +16,7 @@ function NavItem({ Icon, children, redirectTo, setIsOpen, isOpen, isLogout }) {
   return (
     <Container
       onClick={handleClick}
-      isActive={pathname === redirectTo}
+      isActive={isActive || (pathname === redirectTo)}
     >
       <FlexRow gap={0.8}>
         <Icon

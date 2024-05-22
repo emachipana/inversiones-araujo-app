@@ -9,10 +9,15 @@ function Menu() {
   const { pathname } = useLocation();
   const category = pathname.split("/")[2] || "todo";
 
+  const handleClick = (to) => {
+    window.scrollTo(0, 0);
+    navigate(to);
+  }
+
   return (
     <Container>
       <Item 
-        onClick={() => navigate("/tienda")}
+        onClick={() => handleClick("/tienda")}
         isActive={category === "todo"}
       >
         Todo
@@ -23,7 +28,7 @@ function Menu() {
           <Item
             key={index}
             isActive={category === item.name}
-            onClick={() => navigate(`/tienda/${item.name}`)}
+            onClick={() => handleClick(`/tienda/${item.name}`)}
           >
             {capitalize(item.name)}
             <Line width={(item.name.length + 1) * 2} />

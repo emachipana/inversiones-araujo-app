@@ -45,6 +45,11 @@ function Navbar({ userModal, setUserModal }) {
     setUserModal(!userModal);
   }
 
+  const handleClick = (to) => {
+    window.scrollTo(0, 0);
+    navigate(to);
+  }
+
   return (
     <Container>
       <Info>
@@ -83,7 +88,7 @@ function Navbar({ userModal, setUserModal }) {
         />
         <Logo
           src="/img/logo.png"
-          onClick={() => navigate("/")}
+          onClick={() => handleClick("/")}
         />
         <Search 
           className="handler"
@@ -124,7 +129,7 @@ function Navbar({ userModal, setUserModal }) {
           weight={700}
           css={NavStyle}
           color={pathname === "/" ? COLORS.persian : ""}
-          onClick={() => navigate("/")}
+          onClick={() => handleClick("/")}
         >
           Inicio
         </Text>
@@ -146,7 +151,6 @@ function Navbar({ userModal, setUserModal }) {
           <Text
             weight={700}
             css={NavStyle}
-
             className="handler"
           >
             Agroinvitro
@@ -156,7 +160,7 @@ function Navbar({ userModal, setUserModal }) {
           weight={700}
           css={NavStyle}
           className="handler"
-          onClick={() => navigate("/servicios")}
+          onClick={() => handleClick("/servicios")}
           color={pathname === "/servicios" ? COLORS.persian : ""}
         >
           Servicios
@@ -165,7 +169,7 @@ function Navbar({ userModal, setUserModal }) {
           weight={700}
           css={NavStyle}
           className="handler"
-          onClick={() => navigate("/contactanos")}
+          onClick={() => handleClick("/contactanos")}
           color={pathname === "/contactanos" ? COLORS.persian : ""}
         >
           Contáctanos
@@ -174,7 +178,7 @@ function Navbar({ userModal, setUserModal }) {
           weight={700}
           css={NavStyle}
           className="handler"
-          onClick={() => navigate("/nosotros")}
+          onClick={() => handleClick("/nosotros")}
           color={pathname === "/nosotros" ? COLORS.persian : ""}
         >
           Sobre nosotros
