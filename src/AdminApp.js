@@ -14,6 +14,7 @@ import Clients from "./pages/Admin/Clients";
 import Messages from "./pages/Admin/Messages";
 import Calendar from "./pages/Admin/Calendar";
 import VitroOrder from "./pages/Admin/VitroOrder";
+import Order from "./pages/Admin/Order";
 
 function AdminApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +46,7 @@ function AdminApp() {
             <Route path="productos" element={<Products />} />
             <Route path="productos/:id" element={<Product />} />
             <Route path="pedidos" element={<Orders />} />
-            <Route path="pedidos/:id" element={<h1>Admin pedidos id page</h1>} />
+            <Route path="pedidos/:id" element={<Order />} />
             <Route path="facturas" element={<h1>Admin facturas page</h1>} />
             <Route path="facturas/:id" element={<h1>Admin facturas id page</h1>} />
             <Route path="clientes" element={<Clients />} />

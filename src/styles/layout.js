@@ -27,7 +27,7 @@ export const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: ${({ align }) => align || "flex-start"};
-  justify-content: center;
+  justify-content: ${({ justify }) => justify || "center"};
   gap: ${({ gap }) => gap || 0.5}rem;
 `;
 
