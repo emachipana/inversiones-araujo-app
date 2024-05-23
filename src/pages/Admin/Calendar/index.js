@@ -32,8 +32,12 @@ function Calendar() {
 
   useEffect(() => {
     const fetch = async () => {
-      const events = await apiFetch(`events?month[eq]=${monthName}`);
-      setEvents(events);
+      try {
+        const events = await apiFetch(`events?month[eq]=${monthName}`);
+        setEvents(events);
+      }catch(e) {
+        console.error(e.message);
+      }
     }
 
     fetch();
@@ -334,7 +338,20 @@ function Calendar() {
                 handleChange={handleChange}
                 id="event_type"
                 label="Tipo de actividad"
-                options={["invitro", "viaje", "cotidiano"]}
+                options={[
+                  {
+                    id: "invitro",
+                    content: "Invitro"
+                  },
+                  {
+                    id: "viaje",
+                    content: "Viaje"
+                  },
+                  {
+                    id: "cotidiano",
+                    content: "Cotidiano"
+                  }
+                ]}
                 error={errors.event_type}
                 handleBlur={handleBlur}
                 touched={touched.event_type}
