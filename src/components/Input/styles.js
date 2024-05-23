@@ -20,13 +20,14 @@ export const Label = styled.label`
 
 export const Section = styled.section`
   width: 100%;
-  height: 40px;
+  height: ${({ isFile }) => isFile ? "auto" : "40px"};
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.3rem 0.7rem;
+  padding: ${({ isFile }) => isFile ? "0" : "0.3rem 0.7rem"};
   outline: 1px solid  ${({ color }) => color};
+  outline: ${({ isFile }) => isFile ? "none" : ""};
   border-radius: 0.5rem;
   background-color: ${({ backgroundColor }) => backgroundColor || "transparent"};
 `;

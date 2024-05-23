@@ -23,7 +23,7 @@ export const setColor = (error, touched, focused) => {
 function Input({ 
   id, disabled, label, placeholder,
   type, value, handleChange, handleBlur,
-  error, touched, Icon, backgroundColor}) {
+  error, touched, Icon, backgroundColor, ...props }) {
 
   const [focused, setFocused] = useState(false);
   const color = setColor(error, touched, focused);
@@ -32,6 +32,7 @@ function Input({
     <Container>
       { label && <Label htmlFor={id}>{ label }</Label> }
       <Section
+        isFile={type === "file"}
         color={color}
         backgroundColor={backgroundColor}
       >
@@ -46,6 +47,7 @@ function Input({
           onBlur={(e) => onBlur(e, setFocused, handleBlur)}
           onFocus={() => setFocused(true)}
           css={Main}
+          {...props}
         />
       </Section>
       { touched && error && <TextError>{ error }</TextError> }

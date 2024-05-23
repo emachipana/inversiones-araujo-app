@@ -14,8 +14,11 @@ import apiFetch from "../../../services/apiFetch";
 import { useNavigate } from "react-router-dom";
 import { useAdmin } from "../../../context/admin";
 import { capitalize } from "../../../helpers/capitalize";
+import Select from "../../../components/Input/Select";
+import { uploadImage } from "../../../services/uploadImage";
 
 function Products() {
+  const [ image, setImage ] = useState("");
   const [ currentCategory, setCurrentCategory ] = useState("todo");
   const [ isOpen, setIsOpen ] = useState(false);
   const { products, isLoading, setIsLoading, setError, setProductsBackup, productsBackup, categories, setProducts } = useAdmin();
@@ -33,21 +36,23 @@ function Products() {
   const handleSubmit = async (values) => {
     try {
       setIsLoading(true);
-      const newProduct = await apiFetch("products", { body: {...values, category_id: 1} });
-      const image = await apiFetch("images", { body: { url: values.image } });
+      const newProduct = await apiFetch("products", { body: values });
+      const url = await uploadImage(image, newProduct.data.id);
+      console.log(url);
+      const imageData = await apiFetch("images", { body: { url } });
       await apiFetch("product_images", {
         body: {
           product_id: newProduct.data.id,
-          image_id: image.data.id
+          image_id: imageData.data.id
         }
       });
       const products = await apiFetch("products");
-      navigate(`/admin/productos/${newProduct.data.id}`);
       setProducts(products);
       setProductsBackup(products);
       setIsLoading(false);
       setIsOpen(false);
       setError(null);
+      navigate(`/admin/productos/${newProduct.data.id}`);
     }catch(e) {
       setIsLoading(false);
 
@@ -90,6 +95,13 @@ function Products() {
 
     fetch();
   }, [ currentCategory, categories, productsBackup, setIsLoading, setProducts ]);
+
+  const options = categories.data?.map(category => ({ ...category, content: capitalize(category.name) }));
+
+  const handleFileChange = (e, handleChange) => {
+    handleChange(e);
+    setImage(e.target.files[0]);
+  }
 
   return (
     <>
@@ -202,15 +214,14 @@ function Products() {
                 handleBlur={handleBlur}
                 handleChange={handleChange}
               />
-              <Input 
+              <Select 
                 id="category_id"
                 label="Categoría"
-                placeholder="Elige una categoría"
-                value={values.category_id}
-                touched={touched.category_id}
                 error={errors.category_id}
                 handleBlur={handleBlur}
                 handleChange={handleChange}
+                touched={touched.category_id}
+                options={options}
               />
               <FlexRow 
                 gap={1}
@@ -247,7 +258,9 @@ function Products() {
                 handleBlur={handleBlur}
                 handleChange={handleChange}
               />
-              <Input 
+              <Input
+                accept="image/*"
+                type="file"
                 id="image"
                 label="Imagen"
                 placeholder="Link de la imagen"
@@ -255,7 +268,7 @@ function Products() {
                 touched={touched.image}
                 error={errors.image}
                 handleBlur={handleBlur}
-                handleChange={handleChange}
+                handleChange={(e) => handleFileChange(e, handleChange)}
               />
               <Button
                 type="submit"

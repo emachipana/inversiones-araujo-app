@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Title } from "../styles";
 import { Form, Section } from "../Products/styles";
 import Button from "../../../components/Button";
@@ -15,11 +15,27 @@ import { FlexRow } from "./styles";
 import { useAdmin } from "../../../context/admin";
 import Pagination from "../../../components/Pagination";
 import { useNavigate } from "react-router-dom";
+import Select from "../../../components/Input/Select";
+import { capitalize } from "../../../helpers/capitalize";
 
 function VitroOrders() {
+  const [ varieties, setVarieties ] = useState([]);
   const [ isOpen, setIsOpen ] = useState(false);
   const { vitroOrders, isLoading, setIsLoading, setError, setVitroOrders } = useAdmin();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const varieties = await apiFetch("varieties");
+        setVarieties(varieties.data);
+      }catch(e) {
+        console.error(e);
+      }
+    }
+
+    fetch();
+  }, []);
 
   const initialValues = {
     document: "",
@@ -41,19 +57,13 @@ function VitroOrders() {
         ...values,
         first_name: values.first_name.toLowerCase(),
         last_name: values.last_name.toLowerCase(),
-        document: values.document,
-        variety_id: 1,
-        document_type: "dni",
-        init_date: values.init_date,
-        finish_date: values.finish_date
+        document_type: "dni"
       }
 
       const newOrder = await apiFetch("vitro_orders", { body });
       const data = {
+        ...values,
         vitro_order_id: newOrder.data.id,
-        variety_id: 1,
-        price: values.price * 1,
-        quantity: values.quantity * 1
       }
       await apiFetch("order_varieties", { body: data });
       const vitroOrders = await apiFetch("vitro_orders");
@@ -101,6 +111,8 @@ function VitroOrders() {
       console.error(e.message);
     }
   }
+
+  const options = varieties.map(variety => ({...variety, content: capitalize(variety.name)}));
 
   return (
     <>
@@ -227,15 +239,14 @@ function VitroOrders() {
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                 />
-                <Input
+                <Select 
                   id="variety_id"
-                  label="Variedad"
-                  placeholder="ej. Andina"
-                  value={values.variety_id}
-                  touched={touched.variety_id}
                   error={errors.variety_id}
                   handleBlur={handleBlur}
                   handleChange={handleChange}
+                  label="Variedad"
+                  touched={touched.variety_id}
+                  options={options}
                 />
                 <Input
                   id="price"
