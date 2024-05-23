@@ -14,6 +14,7 @@ import { Formik } from "formik";
 import { Form } from "../Products/styles";
 import { validate } from "./validate";
 import Input from "../../../components/Input";
+import Select from "../../../components/Input/Select";
 
 function Calendar() {
   const ref = new Date();
@@ -51,7 +52,6 @@ function Calendar() {
       const events = await apiFetch(`events?month[eq]=${monthName}`);
       setEvents(events);
       setModalOpen(false);
-
     }catch(e) {
       console.error(e.message);
     }
@@ -330,20 +330,20 @@ function Calendar() {
                 handleBlur={handleBlur}
                 handleChange={handleChange}
               />
-              <Input 
+              <Select 
+                handleChange={handleChange}
                 id="event_type"
-                label="Tipo de la actividad"
-                placeholder="invitro / viaje / cotidiano"
-                value={values.event_type}
-                touched={touched.event_type}
+                label="Tipo de actividad"
+                options={["invitro", "viaje", "cotidiano"]}
                 error={errors.event_type}
                 handleBlur={handleBlur}
-                handleChange={handleChange}
+                touched={touched.event_type}
               />
               <Button
                 size="full"
                 style={{marginTop: "0.5rem"}}
                 type="submit"
+                disabled={!isValid}
               >
                 Agregar
               </Button>

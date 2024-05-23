@@ -1,6 +1,24 @@
+/** @jsxImportSource @emotion/react */
 import { useState } from "react";
 import { COLORS } from "../../styles";
 import { Container, Label, Main, Section, TextError } from "./styles";
+
+
+export const onBlur = (e, setFocused, handleBlur) => {
+  setFocused(false);
+
+  handleBlur && handleBlur(e);
+}
+
+export const setColor = (error, touched, focused) => {
+  return error && touched
+  ? COLORS.red
+  : (touched && !error
+    ? COLORS.persian
+    : (focused
+        ? COLORS.persian
+        : COLORS.taupe));
+}
 
 function Input({ 
   id, disabled, label, placeholder,
@@ -8,20 +26,7 @@ function Input({
   error, touched, Icon, backgroundColor}) {
 
   const [focused, setFocused] = useState(false);
-
-  const onBlur = (e) => {
-    setFocused(false);
-
-    handleBlur && handleBlur(e);
-  }
-
-  const color = error && touched
-    ? COLORS.red
-    : (touched && !error
-      ? COLORS.persian
-      : (focused
-          ? COLORS.persian
-          : COLORS.taupe));
+  const color = setColor(error, touched, focused);
 
   return (
     <Container>
@@ -31,15 +36,16 @@ function Input({
         backgroundColor={backgroundColor}
       >
         { Icon && <Icon size={25} color={color} /> }
-        <Main 
+        <input 
           id={id}
           disabled={disabled}
           placeholder={placeholder}
           type={type || "text"}
           value={value}
           onChange={handleChange}
-          onBlur={onBlur}
+          onBlur={(e) => onBlur(e, setFocused, handleBlur)}
           onFocus={() => setFocused(true)}
+          css={Main}
         />
       </Section>
       { touched && error && <TextError>{ error }</TextError> }

@@ -94,7 +94,7 @@ function Products() {
   return (
     <>
       <Title>Productos</Title>
-      <Section>
+      <Section justify="space-between">
         <FlexRow gap={1} style={{flexWrap: "wrap"}}>
           <Filter
             isActive={currentCategory === "todo"}
@@ -132,39 +132,39 @@ function Products() {
         </Button>
       </Section>
       <Section>
-        {
-          isLoading
-          ? "Cargando..."
-          : <>
-              {
-                !products.data || products?.data.length <= 0
-                ?
-                <Title style={{margin: "0 auto"}}>
-                  No hay productos disponibles
-                </Title>
-                :
-                <>
-                  {
-                    products.data.map((product, index) => (
-                      <ProductCard
-                        isInAdmin
-                        product={product}
-                        categories={categories.data}
-                        key={index}
-                      />
-                    ))
-                  }
-                  <Pagination
-                    onClick={handlePaginationClick}
-                    currentPage={products.meta.current_page}
-                    lastPage={products.meta.last_page}
-                    links={products.links}
-                    pageLinks={products.meta.links}
-                  />
-                </>
-              }
-            </>
-        }
+          {
+            isLoading
+            ? "Cargando..."
+            : <>
+                {
+                  !products.data || products?.data.length <= 0
+                  ?
+                  <Title style={{margin: "0 auto"}}>
+                    No hay productos disponibles
+                  </Title>
+                  :
+                  <>
+                    {
+                      products.data.map((product, index) => (
+                        <ProductCard
+                          isInAdmin
+                          product={product}
+                          categories={categories.data}
+                          key={index}
+                        />
+                      ))
+                    }
+                    <Pagination
+                      onClick={handlePaginationClick}
+                      currentPage={products.meta.current_page}
+                      lastPage={products.meta.last_page}
+                      links={products.links}
+                      pageLinks={products.meta.links}
+                    />
+                  </>
+                }
+              </>
+          }
       </Section>
       <Modal
         setIsActive={setIsOpen}
