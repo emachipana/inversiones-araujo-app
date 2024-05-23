@@ -14,6 +14,7 @@ import apiFetch from "../../../services/apiFetch";
 import { useNavigate } from "react-router-dom";
 import { useAdmin } from "../../../context/admin";
 import { capitalize } from "../../../helpers/capitalize";
+import Select from "../../../components/Input/Select";
 
 function Products() {
   const [ currentCategory, setCurrentCategory ] = useState("todo");
@@ -33,7 +34,7 @@ function Products() {
   const handleSubmit = async (values) => {
     try {
       setIsLoading(true);
-      const newProduct = await apiFetch("products", { body: {...values, category_id: 1} });
+      const newProduct = await apiFetch("products", { body: values });
       const image = await apiFetch("images", { body: { url: values.image } });
       await apiFetch("product_images", {
         body: {
@@ -90,6 +91,8 @@ function Products() {
 
     fetch();
   }, [ currentCategory, categories, productsBackup, setIsLoading, setProducts ]);
+
+  const options = categories.data?.map(category => ({ ...category, content: capitalize(category.name) }));
 
   return (
     <>
@@ -202,15 +205,14 @@ function Products() {
                 handleBlur={handleBlur}
                 handleChange={handleChange}
               />
-              <Input 
+              <Select 
                 id="category_id"
                 label="Categoría"
-                placeholder="Elige una categoría"
-                value={values.category_id}
-                touched={touched.category_id}
                 error={errors.category_id}
                 handleBlur={handleBlur}
                 handleChange={handleChange}
+                touched={touched.category_id}
+                options={options}
               />
               <FlexRow 
                 gap={1}
