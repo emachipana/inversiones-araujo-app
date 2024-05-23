@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
-import { capitalize } from "../../helpers/capitalize";
 import { Container, Label, Section, Main, TextError } from "./styles";
 import { onBlur, setColor } from ".";
 
@@ -24,8 +23,8 @@ function Select({ id, label, handleChange, options = [], handleBlur, error, touc
         >
           <option selected disabled value="">Eligen una</option>
           {
-            options.map((value, index) => (
-              <option value={value} key={index}>{ capitalize(value) }</option>
+            options.map((item, index) => (
+              <option value={item.id} key={index}>{ item.content }</option>
             ))
           }
         </select>
