@@ -4,7 +4,7 @@ import { COLORS } from "../../../styles";
 export const Section = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ justify }) => justify || "space-evenly"};
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
