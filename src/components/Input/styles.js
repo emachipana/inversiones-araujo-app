@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { COLORS, FONT } from "../../styles";
+import { css } from "@emotion/react";
 
 export const Container = styled.div`
   width: 100%;
@@ -30,7 +31,7 @@ export const Section = styled.section`
   background-color: ${({ backgroundColor }) => backgroundColor || "transparent"};
 `;
 
-export const Main = styled.input`
+export const Main = css`
   width: 100%;
   height: 100%;
   font-size: 1rem;
